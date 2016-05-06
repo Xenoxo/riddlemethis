@@ -2,13 +2,13 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
 
-import { Index } from '../../ui/components/index.jsx';
+import App from '../../ui/containers/App.jsx';
 
 Meteor.startup( () => {
 	render(
 		<Router history={ browserHistory }>
-			<Route path='/' component={ Index } />
+			<Route path='/' component={ App } />
 		</Router>,
-		document.getElementById( 'react-root' )
+		document.getElementById( 'render-target' )
 	);
 });
