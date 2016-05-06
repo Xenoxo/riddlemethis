@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+/* import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 
 import { Riddles } from '../imports/api/riddles.js';
@@ -47,3 +47,5 @@ export default createContainer(() => {
     riddles: Riddles.find({}).fetch(),
   };
 }, App);
+
+*/
