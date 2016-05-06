@@ -1,8 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 
+import { Riddles } from '../../api/riddles.js';
+
+import { createContainer } from 'meteor/react-meteor-data';
+
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 
-export default class App extends Component {
+class App extends Component {
  
   renderRiddle() {
     return this.props.riddles.map((riddle) => (
@@ -32,10 +36,20 @@ export default class App extends Component {
   }
 }
 
-/* 
-import { createContainer } from 'meteor/react-meteor-data';
+App.propTypes = {
 
-import { Riddles } from '../imports/api/riddles.js';
+}
+
+// This piece of code makes the component take
+// reactive data from the underlying MongoDB
+export default createContainer(() => {
+  return {
+    riddles: Riddles.find({}).fetch(),
+  };
+}, App);
+
+/* 
+
 
 import RiddleContainer from './RiddleContainer.jsx';
 import Riddle from './Riddle.jsx';
@@ -72,14 +86,6 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
 
-}
-
-export default createContainer(() => {
-  return {
-    riddles: Riddles.find({}).fetch(),
-  };
-}, App);
 
 */
