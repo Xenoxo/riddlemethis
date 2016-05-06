@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
+import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 
 export default class App extends Component {
  
@@ -20,7 +21,7 @@ export default class App extends Component {
           </div>
 
           <div className="user-options">
-            {/* <AccountsUIWrapper/> */}
+            <AccountsUIWrapper/>
             <button className="btn btn-info">New Riddle</button>
           </div>
         </header>
@@ -39,7 +40,7 @@ import { Riddles } from '../imports/api/riddles.js';
 import RiddleContainer from './RiddleContainer.jsx';
 import Riddle from './Riddle.jsx';
  
-import AccountsUIWrapper from './AccountsUIWrapper.jsx';
+
 // App component - represents the whole app
 class App extends Component {
  
