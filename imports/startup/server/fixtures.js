@@ -1,4 +1,4 @@
-import { Riddles } from '../imports/api/riddles';
+import { Riddles } from '../../api/riddles';
 
 let now = new Date();
 if (Riddles.find().count() === 0) {

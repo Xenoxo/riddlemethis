@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Riddles } from '../imports/api/riddles';
+import { Riddles } from '../../api/riddles';
 
 
 export default class Riddle extends Component {

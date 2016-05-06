@@ -1,13 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 
 import { Riddles } from '../../api/riddles.js';
+import Riddle from '../components/Riddle.jsx'
 
 import { createContainer } from 'meteor/react-meteor-data';
 
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 
 class App extends Component {
- 
+  logMe(){
+    console.log(this.props.riddles);
+  }
+
   renderRiddle() {
     return this.props.riddles.map((riddle) => (
       <Riddle riddle={riddle}/>
@@ -29,8 +33,8 @@ class App extends Component {
             <button className="btn btn-info">New Riddle</button>
           </div>
         </header>
-
-        {/* this.renderRiddle() */}
+        { this.logMe() }
+        { this.renderRiddle() }
       </div>
     );
   }
