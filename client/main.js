@@ -1,4 +1,8 @@
+import '../imports/startup/client/routes.jsx';
 
+
+
+// Old code below - before moving things to new structure
 /*import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
@@ -14,4 +18,4 @@ Meteor.startup(() => {
 */
 
 
-import '/imports/startup/client';
+
