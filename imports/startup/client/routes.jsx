@@ -1,17 +1,29 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 // there is probably a better place to put this
-// data shouldn't be passed in from this level
+// data, it shouldn't be passed in from this level
 import { Riddles } from '../../api/riddles.js';
 
 import App from '../../ui/containers/App.jsx';
 
+import Submit from '../../ui/containers/Submit.jsx';
+import RiddleContainer from '../../ui/containers/RiddleContainer.jsx';
+import Navigation from '../../ui/components/navigation.jsx';
+import RiddleList from '../../ui/pages/RiddleList.jsx';
+
+// import { HeaderBar } from '../../ui/containers/HeaderBar.jsx';
+
 Meteor.startup( () => {
 	render(
 		<Router history={ browserHistory }>
-			<Route path='/' component={ App } riddles={ Riddles }/>
+			<Route path='/' component={ App } >
+				<IndexRoute component= { RiddleList } riddles={ Riddles } />
+				<Route path='submit' component={ Submit }/>
+				<Route path='navigation' component={ Navigation }/>
+			</Route>
+			
 		</Router>,
 		document.getElementById( 'render-target' )
 	);
