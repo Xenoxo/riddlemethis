@@ -15,7 +15,7 @@ export default class SubmitRiddle extends Component {
 		// needs to refactor to allow parsing of retrieved content into array
 		const theAnswer = ReactDOM.findDOMNode(this.refs.theAnswer).value.trim();
 
-		if (theRiddle !== '' || theAnswer !== ''){
+		if (theRiddle !== '' && theAnswer !== ''){
 	    Riddles.insert({
 	      riddle: theRiddle,
 				answers: theAnswer,
