@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 import { Link } from 'react-router';
 
-export class HeaderBar extends Component {
+export class HeaderBarContainer extends Component {
 	render() {
 		return (
 			<div className="jumbotron header-container">

@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { Riddles } from '../../api/riddles.js';
-import Riddle from '../components/Riddle.jsx'
 import { createContainer } from 'meteor/react-meteor-data';
+
+import Riddle from '../components/Riddle.jsx'
 
 
 class RiddleList extends Component {
-	logMe() {
-		return console.log(this.props.riddles);
-	}
 
-	renderRiddle() {
+	renderRiddles() {
 		return this.props.riddles.map((riddle) => (
 			<Riddle key={riddle._id} riddle={riddle}/>
 		));
@@ -18,7 +16,7 @@ class RiddleList extends Component {
 	render() {
 		return (
 			<div>
-	  		{ this.renderRiddle() }
+	  		{ this.renderRiddles() }
 			</div>
 		);
 	}
@@ -29,3 +27,8 @@ export default createContainer(() => {
     riddles: Riddles.find({}).fetch(),
   };
 }, RiddleList);
+
+
+RiddleList.propTypes = {
+
+}

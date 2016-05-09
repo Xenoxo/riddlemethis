@@ -1,4 +1,4 @@
-// will need this to be a container at some point
+// move most of this to Riddle Container and then separate parts into components
 
 import React, { Component } from 'react';
 import { Riddles } from '../../api/riddles';
