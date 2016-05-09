@@ -23,7 +23,7 @@ export default class Riddle extends Component {
 					{this.props.riddle.riddle}
 					</h3>
 					<div className="riddle-details">
-					Submitted by {this.props.riddle.author} on {this.props.riddle.submitted.toTimeString()}
+					Submitted by {this.props.riddle.username} on {this.props.riddle.submitted.toTimeString()}
 					</div>
 				</div>
 

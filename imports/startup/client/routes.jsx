@@ -4,7 +4,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import App from '../../ui/containers/App.jsx';
 
-import Submit from '../../ui/containers/Submit.jsx';
+import SubmitRiddle from '../../ui/pages/SubmitRiddle.jsx';
 import RiddleContainer from '../../ui/containers/RiddleContainer.jsx';
 import RiddleList from '../../ui/pages/RiddleList.jsx';
 
@@ -15,7 +15,7 @@ Meteor.startup( () => {
 		<Router history={ browserHistory }>
 			<Route path='/' component={ App } >
 				<IndexRoute component= { RiddleList } />
-				<Route path='submit' component={ Submit }/>
+				<Route path='submit-riddle' component={ SubmitRiddle }/>
 			</Route>
 			
 		</Router>,
