@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import ReactDOM, { render } from 'react-dom';
 import { Link } from 'react-router';
 import { Riddles } from '../../api/riddles.js';
+import { browserHistory } from 'react-router';
 
 export default class SubmitRiddle extends Component {
 	
@@ -14,22 +15,26 @@ export default class SubmitRiddle extends Component {
 		// needs to refactor to allow parsing of retrieved content into array
 		const theAnswer = ReactDOM.findDOMNode(this.refs.theAnswer).value.trim();
 
-    Riddles.insert({
-      riddle: theRiddle,
-			answers: theAnswer,
-			reveals: 0,
-			solves: 0,
-			author: Meteor.userId(),
-			username: Meteor.user().username,
-			submitted: new Date(),
-			upvotes: 0,
-			difficulty: 0,
-    });
- 
-    // Clear form
-    ReactDOM.findDOMNode(this.refs.theRiddle).value = '';
-    ReactDOM.findDOMNode(this.refs.theAnswer).value = '';
-
+		if (theRiddle !== '' || theAnswer !== ''){
+	    Riddles.insert({
+	      riddle: theRiddle,
+				answers: theAnswer,
+				reveals: 0,
+				solves: 0,
+				author: Meteor.userId(),
+				username: Meteor.user().username,
+				submitted: new Date(),
+				upvotes: 0,
+				difficulty: 0,
+	    });
+	 
+	    // Clear form
+	    ReactDOM.findDOMNode(this.refs.theRiddle).value = '';
+	    ReactDOM.findDOMNode(this.refs.theAnswer).value = '';
+	    browserHistory.push('/');			
+		} else {
+			console.log('the Riddle and Answer can\'t be blank' );
+		}
 	}
 
 	render() {
