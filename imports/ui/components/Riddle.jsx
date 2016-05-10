@@ -6,10 +6,6 @@ import { Riddles } from '../../api/riddles';
 
 export default class Riddle extends Component {
 
-	onUpVote(){
-
-	}
-
 	render(){
 		return (
 			<div className="col-sm-12 riddle-container">
@@ -38,12 +34,11 @@ export default class Riddle extends Component {
 					<button className="btn btn-primary">
 						<i className="fa fa-question fa-3x"></i>
 					</button>
-					{ (this.props.currentUser._id === this.props.riddle.author) ? 
+					{ this.props.isOwner ? 
 					<div className="delete" onClick={this.props.onDelete}>
 						delete
 					</div> : ''
 					}
-				 {/* <div className="ribbon"><span>Solved!</span></div>	*/}
 				</div>	
 
 			</div>	

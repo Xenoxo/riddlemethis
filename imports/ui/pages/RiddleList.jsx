@@ -6,10 +6,17 @@ import Riddle from '../components/Riddle.jsx'
 
 
 class RiddleList extends Component {
-
+	isOwner() {
+		return this.props.currentUser._id === this.props.riddle.author;
+	}
 	onDelete(){
 		/* onDelete={this.onDelete()} */
-		return console.log('why does this fire??!');
+		
+		return console.log("this is the id yo ");
+	}
+
+	onUpVote(){
+		return console.log(this.currentUser._id);
 	}
 
 	renderRiddles() {
@@ -19,6 +26,7 @@ class RiddleList extends Component {
 				riddle={riddle}
 				currentUser={this.props.currentUser}
 				onDelete={() => this.onDelete()}
+				isOwner={() => this.isOwner()}
 			/>
 		));
 	}
@@ -30,6 +38,7 @@ class RiddleList extends Component {
 			</div>
 		);
 	}
+
 }
 
 export default createContainer(() => {
