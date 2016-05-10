@@ -7,9 +7,19 @@ import Riddle from '../components/Riddle.jsx'
 
 class RiddleList extends Component {
 
+	onDelete(){
+		/* onDelete={this.onDelete()} */
+		return console.log('why does this fire??!');
+	}
+
 	renderRiddles() {
 		return this.props.riddles.map((riddle) => (
-			<Riddle key={riddle._id} riddle={riddle}/>
+			<Riddle 
+				key={riddle._id}
+				riddle={riddle}
+				currentUser={this.props.currentUser}
+				onDelete={() => this.onDelete()}
+			/>
 		));
 	}
 
@@ -25,6 +35,7 @@ class RiddleList extends Component {
 export default createContainer(() => {
   return {
     riddles: Riddles.find({}).fetch(),
+    currentUser: Meteor.user(),
   };
 }, RiddleList);
 

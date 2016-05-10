@@ -5,6 +5,11 @@ import { Riddles } from '../../api/riddles';
 
 
 export default class Riddle extends Component {
+
+	onUpVote(){
+
+	}
+
 	render(){
 		return (
 			<div className="col-sm-12 riddle-container">
@@ -23,15 +28,21 @@ export default class Riddle extends Component {
 					{this.props.riddle.riddle}
 					</h3>
 					<div className="riddle-details">
-					Submitted by {this.props.riddle.username} on {this.props.riddle.submitted.toTimeString()}
+					Submitted by {this.props.riddle.username} on {this.props.riddle.submitted.toDateString()}
 					</div>
 				</div>
 
 
 				<div className="solved-spacer">
+				{/*console.log(this.props.currentUser)*/}
 					<button className="btn btn-primary">
 						<i className="fa fa-question fa-3x"></i>
 					</button>
+					{ (this.props.currentUser._id === this.props.riddle.author) ? 
+					<div className="delete" onClick={this.props.onDelete}>
+						delete
+					</div> : ''
+					}
 				 {/* <div className="ribbon"><span>Solved!</span></div>	*/}
 				</div>	
 

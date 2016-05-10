@@ -6,7 +6,7 @@ import { Riddles } from '../../api/riddles.js';
 import { browserHistory } from 'react-router';
 
 export default class SubmitRiddle extends Component {
-	
+		
 	handleSubmit(event){
 		event.preventDefault();
 
@@ -40,6 +40,7 @@ export default class SubmitRiddle extends Component {
 	render() {
 		return (
 			<div>
+			{ //pass in a prop with the user in it
 	      <form className="new-riddle" onSubmit={this.handleSubmit.bind(this)} >
 	      	<fieldset className="form-group">
 	      		<label>What is your riddle?</label>
@@ -60,6 +61,7 @@ export default class SubmitRiddle extends Component {
 		        />
 			      <small class="text-muted">If your riddle has more than one answer, use commas to separate them.</small>
 	        </fieldset>
+			
 {/*}	        <h3>What is the answer to your riddle? (If more than one answer, use commas to separate them.)</h3>
 
 	        <input
@@ -69,6 +71,7 @@ export default class SubmitRiddle extends Component {
 	        />	        */}
 	          <button type="submit" className="btn btn-primary">Submit</button>
 	      </form>
+	      }
 			</div>
 		);
 	}
