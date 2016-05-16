@@ -34,7 +34,7 @@ export default class Riddle extends Component {
 					<button className="btn btn-primary">
 						<i className="fa fa-question fa-3x"></i>
 					</button>
-					{ this.props.isOwner ? 
+					{ true ? 
 					<div className="delete" onClick={this.props.onDelete}>
 						delete
 					</div> : ''

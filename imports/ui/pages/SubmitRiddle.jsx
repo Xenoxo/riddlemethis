@@ -1,10 +1,10 @@
-import { Meteor } from 'meteor/meteor';
-
 import React, { Component } from 'react';
 import ReactDOM, { render } from 'react-dom';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
+
 import { Riddles } from '../../api/riddles.js';
-import { browserHistory } from 'react-router';
+
+import { Meteor } from 'meteor/meteor';
 
 export default class SubmitRiddle extends Component {
 		
@@ -17,10 +17,15 @@ export default class SubmitRiddle extends Component {
 		const theAnswer = ReactDOM.findDOMNode(this.refs.theAnswer).value.trim();
 
 		if (theRiddle !== '' && theAnswer !== ''){
-			Meteor.call('riddles.insert', theRiddle, theAnswer);
+			let dude = Meteor.call('riddles.insert', theRiddle, theAnswer, function (error, result){
+				console.log("the error = " + error);
+				console.log("the result = " + result)
+			});
+			
 			Meteor.call('test');
 			// ReactDOM.findDOMNode(this.refs.theRiddle).value = '';
 	    // ReactDOM.findDOMNode(this.refs.theAnswer).value = '';
+
 	    browserHistory.push('/');			
 		} else {
 			console.log('the Riddle and Answer can\'t be blank' );
@@ -30,7 +35,7 @@ export default class SubmitRiddle extends Component {
 	render() {
 		return (
 			<div>
-			{ //pass in a prop with the user in it
+			 
 	      <form className="new-riddle" onSubmit={this.handleSubmit.bind(this)} >
 	      	<fieldset className="form-group">
 	      		<label>What is your riddle?</label>
@@ -63,7 +68,7 @@ export default class SubmitRiddle extends Component {
 */}
 	          <button type="submit" className="btn btn-primary">Submit</button>
 	      </form>
-	      }
+	      
 			</div>
 		);
 	}
