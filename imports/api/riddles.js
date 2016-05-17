@@ -1,6 +1,6 @@
 import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
-import { check } from 'meteor/mongo';
+import { check } from 'meteor/check';
 
 // import { Meteor } from 'meteor/mongo';
 
@@ -30,7 +30,11 @@ export const Riddles = new Meteor.Collection('riddles');
 	    });
 		},
 		'riddles.remove'(riddleId) {
-			return console.log(riddleId);
+			
+
+			Riddles.remove(riddleId);
+			
+			// return console.log(riddleId);
 		}
 
 	});
