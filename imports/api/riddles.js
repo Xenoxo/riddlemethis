@@ -9,8 +9,8 @@ export const Riddles = new Meteor.Collection('riddles');
 
 	Meteor.methods({
 		'riddles.insert'(riddle, answer) {
-			// check(riddle, String);
-			// check(answer, String);
+			check(riddle, String);
+			check(answer, String);
 
 			// Make sure the user is logged in before inserting
 			if (! this.userId) {
@@ -30,11 +30,8 @@ export const Riddles = new Meteor.Collection('riddles');
 	    });
 		},
 		'riddles.remove'(riddleId) {
-			
-
+			check(riddleId, String);
 			Riddles.remove(riddleId);
-			
-			// return console.log(riddleId);
 		}
 
 	});
