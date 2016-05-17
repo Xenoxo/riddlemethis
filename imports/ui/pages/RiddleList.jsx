@@ -9,17 +9,17 @@ class RiddleList extends Component {
 	
 	isOwner() {
 		let user = this.props.currentUser._id;
-		let theOwner = this.props.riddles.owner;
-		console.log(this.props.currentUser);
-		console.log(this.props.currentUser._id);
+		let theOwner = this.props.riddles;
+
+		// console.log(this.props.currentUser);
+		// console.log(this.props.currentUser._id);
+		console.log("theUser = " + user);
+		console.log("theOwner = " + theOwner);
 		// console.log("currentUser is " + user + " and riddleOwner is " + theOwner);
 		// console.log(user === theOwner);
 		// return (this.props.currentUser._id === this.props.riddle.author);
-		return user;
-	}
 
-	onDelete(){	
-		return console.log("this is the id yo ");
+		return "yo";
 	}
 
 	onUpVote(){
@@ -32,7 +32,8 @@ class RiddleList extends Component {
 				key={riddle._id}
 				riddle={riddle}
 				currentUser={this.props.currentUser}
-				onDelete={() => this.onDelete()}
+				// deleteThisRiddle={() => this.deleteThisRiddle()}
+				isOwner={() => this.isOwner()}
 				// isOwner={this.isOwner()}
 			/>
 		));
@@ -50,7 +51,7 @@ class RiddleList extends Component {
 
 export default createContainer(() => {
   return {
-    riddles: Riddles.find({}).fetch(),
+  	riddles: Riddles.find({}).fetch(),
     currentUser: Meteor.user(),
   };
 }, RiddleList);

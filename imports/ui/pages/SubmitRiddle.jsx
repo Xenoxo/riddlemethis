@@ -10,22 +10,19 @@ export default class SubmitRiddle extends Component {
 		
 	handleSubmit(event){
 		event.preventDefault();
-
-		const theRiddle = ReactDOM.findDOMNode(this.refs.theRiddle).value.trim();
-		
 		// needs to refactor to allow parsing of retrieved content into array
+		const theRiddle = ReactDOM.findDOMNode(this.refs.theRiddle).value.trim();
 		const theAnswer = ReactDOM.findDOMNode(this.refs.theAnswer).value.trim();
 
 		if (theRiddle !== '' && theAnswer !== ''){
 			let dude = Meteor.call('riddles.insert', theRiddle, theAnswer, function (error, result){
-				console.log("the error = " + error);
-				console.log("the result = " + result)
+				if(error !== undefined || result !== undefined){ //used to log errors or results
+					console.log("the error = " + error);
+					console.log("the result = " + result)
+				}
 			});
-			
-			Meteor.call('test');
 			// ReactDOM.findDOMNode(this.refs.theRiddle).value = '';
 	    // ReactDOM.findDOMNode(this.refs.theAnswer).value = '';
-
 	    browserHistory.push('/');			
 		} else {
 			console.log('the Riddle and Answer can\'t be blank' );

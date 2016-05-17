@@ -29,9 +29,8 @@ export const Riddles = new Meteor.Collection('riddles');
 				difficulty: 0,
 	    });
 		},
-		'test'() {
-			return console.log('meteor!');
+		'riddles.remove'(riddleId) {
+			return console.log(riddleId);
 		}
 
 	});
-if (Meteor.isServer) {}

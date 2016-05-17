@@ -6,6 +6,11 @@ import { Riddles } from '../../api/riddles';
 
 export default class Riddle extends Component {
 
+	deleteThisRiddle(){	
+		Meteor.call('riddles.remove', this.props.riddle._id);
+		return console.log("this is the id yo ");
+	}	
+
 	render(){
 		return (
 			<div className="col-sm-12 riddle-container">
@@ -35,7 +40,7 @@ export default class Riddle extends Component {
 						<i className="fa fa-question fa-3x"></i>
 					</button>
 					{ true ? 
-					<div className="delete" onClick={this.props.onDelete}>
+					<div className="delete" onClick={this.deleteThisRiddle.bind(this)}>
 						delete
 					</div> : ''
 					}

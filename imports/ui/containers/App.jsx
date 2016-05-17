@@ -4,6 +4,7 @@ import HeaderBarContainer from '../../ui/containers/HeaderBarContainer.jsx';
 
 import { createContainer } from 'meteor/react-meteor-data';
 
+import { Riddles } from '../../api/riddles.js';
 
 class App extends Component {
  
@@ -20,5 +21,6 @@ class App extends Component {
 export default createContainer(() => {
   return {
     currentUser: Meteor.user(),
+    riddles: Riddles.find({}).fetch(),
   };
 }, App);
