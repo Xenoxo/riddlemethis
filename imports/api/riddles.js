@@ -39,6 +39,9 @@ Meteor.methods({
 		Riddles.remove(riddleId);
 	},
 	'riddles.upvote'(riddleId) {
+		if (! this.userId) {
+			throw new Meteor.Error('must log in to upvote');
+		}		
 		check(riddleId, String);
 		Riddles.update({ _id: riddleId }, { $inc: {upvotes:1} });
 	}

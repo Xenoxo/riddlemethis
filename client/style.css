@@ -48,7 +48,6 @@
 
 .riddle-container .upvote-box {
 	display: flex;
-	background-color: white;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
@@ -56,6 +55,16 @@
 	border: 1px black solid;
 	cursor: pointer;
 }
+
+	.not-upvoted {
+		background-color: white;
+		color:#659AC5;
+	}
+
+	.upvoted {
+		background-color: #659AC5;
+		color:white;
+	}
 
 .riddle-container .solved-spacer {
 	height: 100px;
@@ -79,10 +88,6 @@
 	background-color: blue;
 	width: 50px;
 }
-
-/*
-Submitting a new riddle
-*/
 
 .new-riddle {
 /*	display: flex;

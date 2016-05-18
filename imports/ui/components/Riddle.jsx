@@ -7,7 +7,6 @@ import { Riddles } from '../../api/riddles';
 export default class Riddle extends Component {
 	deleteThisRiddle(){	
 		Meteor.call('riddles.remove', this.props.riddle._id);
-		return console.log("this is the id yo ");
 	}
 
 	upvoteThisRiddle(){
@@ -19,7 +18,7 @@ export default class Riddle extends Component {
 			<div className="col-sm-12 riddle-container">
 				
 
-				<div className="upvote-box" onClick={this.upvoteThisRiddle.bind(this)}>
+				<div className={"upvote-box " + ""} onClick={this.upvoteThisRiddle.bind(this)}>
 					<i className="fa fa-chevron-up"></i>
 					<div className="vote-count">
 						{this.props.riddle.upvotes}
