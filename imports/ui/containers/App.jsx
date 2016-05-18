@@ -19,6 +19,7 @@ class App extends Component {
 }
 
 export default createContainer(() => {
+  Meteor.subscribe('riddles');
   return {
     currentUser: Meteor.user(),
     riddles: Riddles.find({}).fetch(),

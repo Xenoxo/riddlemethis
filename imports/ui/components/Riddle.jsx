@@ -8,14 +8,18 @@ export default class Riddle extends Component {
 	deleteThisRiddle(){	
 		Meteor.call('riddles.remove', this.props.riddle._id);
 		return console.log("this is the id yo ");
-	}	
+	}
+
+	upvoteThisRiddle(){
+		Meteor.call('riddles.upvote', this.props.riddle._id);
+	}
 
 	render(){
 		return (
 			<div className="col-sm-12 riddle-container">
 				
 
-				<div className="upvote-box">
+				<div className="upvote-box" onClick={this.upvoteThisRiddle.bind(this)}>
 					<i className="fa fa-chevron-up"></i>
 					<div className="vote-count">
 						{this.props.riddle.upvotes}
@@ -34,12 +38,10 @@ export default class Riddle extends Component {
 
 
 				<div className="solved-spacer">
-				
-				{/*console.log(this.props.currentUser)*/}
-
 					<button className="btn btn-primary">
 						<i className="fa fa-question fa-3x"></i>
 					</button>
+
 					{ this.props.currentUserId === this.props.riddle.author ? 
 					<div className="delete" onClick={this.deleteThisRiddle.bind(this)}>
 						delete

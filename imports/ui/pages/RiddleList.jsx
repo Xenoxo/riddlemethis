@@ -8,7 +8,7 @@ import Riddle from '../components/Riddle.jsx'
 class RiddleList extends Component {
 
 
-	onUpVote(){
+	upVote(){
 		return console.log(this.currentUser._id);
 	}
 
@@ -18,6 +18,8 @@ class RiddleList extends Component {
 				key={riddle._id}
 				riddle={riddle}
 				currentUser={this.props.currentUser}
+
+				//not sure if below is needed
 				currentUserId={this.props.currentUserId}
 			/>
 		));

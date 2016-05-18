@@ -5,33 +5,42 @@ import { check } from 'meteor/check';
 // import { Meteor } from 'meteor/mongo';
 
 export const Riddles = new Meteor.Collection('riddles');
+	
+if (Meteor.isServer) {
+	Meteor.publish('riddles', function riddlesPublication(){
+		return Riddles.find();
+	});
+}
 
+Meteor.methods({
+	'riddles.insert'(riddle, answer) {
+		check(riddle, String);
+		check(answer, String);
 
-	Meteor.methods({
-		'riddles.insert'(riddle, answer) {
-			check(riddle, String);
-			check(answer, String);
-
-			// Make sure the user is logged in before inserting
-			if (! this.userId) {
-				throw new Meteor.Error('not-authorized');
-			}
-
-	    Riddles.insert({
-	      riddle: riddle,
-				answers: answer,
-				reveals: 0,
-				solves: 0,
-				author: this.userId,
-				username: Meteor.users.findOne(this.userId).username,
-				submitted: new Date(),
-				upvotes: 0,
-				difficulty: 0,
-	    });
-		},
-		'riddles.remove'(riddleId) {
-			check(riddleId, String);
-			Riddles.remove(riddleId);
+		// Make sure the user is logged in before inserting
+		if (! this.userId) {
+			throw new Meteor.Error('not-authorized');
 		}
 
-	});
+    Riddles.insert({
+      riddle: riddle,
+			answers: answer,
+			reveals: 0,
+			solves: 0,
+			author: this.userId,
+			username: Meteor.users.findOne(this.userId).username,
+			submitted: new Date(),
+			upvotes: 0,
+			difficulty: 0,
+    });
+	},
+	'riddles.remove'(riddleId) {
+		check(riddleId, String);
+		Riddles.remove(riddleId);
+	},
+	'riddles.upvote'(riddleId) {
+		check(riddleId, String);
+		Riddles.update({ _id: riddleId }, { $inc: {upvotes:1} });
+	}
+
+});
