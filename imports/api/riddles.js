@@ -45,7 +45,10 @@ Meteor.methods({
 		}
 		//if user has already upvoted, then downvote, otherwise upvote
 		Riddles.update({ _id: riddleId }, { $inc: {upvotes:1} });
-		// Meteor.users.upsert({ });
+		// Meteor.users.upsert({listofvoted:{idwouldgohere: 'asdfasfasdfdsafdsa'}});
+	},
+	'listofvoted.update'(userId) {
+		Meteor.users.upsert({_id: userId },{$push : {listofvoted : { riddleid: '12312312312123', voted: false } }});
 	}
 
 });

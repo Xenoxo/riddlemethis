@@ -10,8 +10,15 @@ export default class Riddle extends Component {
 	}
 
 	upvoteThisRiddle(){
-		Meteor.call('riddles.upvote', this.props.riddle._id, this.props.currentUser);
-		console.log(this.props.currentUser.listofvoted);
+		Meteor.call('listofvoted.update', this.props.currentUser._id);
+		let me = Meteor.users.findOne({_id: this.props.currentUser._id});
+		
+		console.log(me.listofvoted);
+		console.log(me.idforriddle);
+		console.log(me.username);
+		// Meteor.call('riddles.upvote', this.props.riddle._id, this.props.currentUser);
+		// console.log(this.props.currentUser.listofvoted === undefined);
+		// console.log(this.props.currentUser);
 	}
 
 	voted(){
