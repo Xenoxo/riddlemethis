@@ -38,12 +38,14 @@ Meteor.methods({
 		check(riddleId, String);
 		Riddles.remove(riddleId);
 	},
-	'riddles.upvote'(riddleId) {
+	'riddles.upvote'(riddleId, theUser) {
+		check(riddleId, String);
 		if (! this.userId) {
 			throw new Meteor.Error('must log in to upvote');
-		}		
-		check(riddleId, String);
+		}
+		//if user has already upvoted, then downvote, otherwise upvote
 		Riddles.update({ _id: riddleId }, { $inc: {upvotes:1} });
+		// Meteor.users.upsert({ });
 	}
 
 });

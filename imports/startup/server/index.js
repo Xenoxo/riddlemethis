@@ -2,3 +2,4 @@
 // every module in the folder should be imported here
 
 import './fixtures.js'
+import './accountconfig.js'

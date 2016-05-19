@@ -10,7 +10,12 @@ export default class Riddle extends Component {
 	}
 
 	upvoteThisRiddle(){
-		Meteor.call('riddles.upvote', this.props.riddle._id);
+		Meteor.call('riddles.upvote', this.props.riddle._id, this.props.currentUser);
+		console.log(this.props.currentUser.listofvoted);
+	}
+
+	voted(){
+
 	}
 
 	render(){
@@ -18,7 +23,7 @@ export default class Riddle extends Component {
 			<div className="col-sm-12 riddle-container">
 				
 
-				<div className={"upvote-box " + ""} onClick={this.upvoteThisRiddle.bind(this)}>
+				<div className={"upvote-box " + "not-upvoted"} onClick={this.upvoteThisRiddle.bind(this)}>
 					<i className="fa fa-chevron-up"></i>
 					<div className="vote-count">
 						{this.props.riddle.upvotes}
