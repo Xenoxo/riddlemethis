@@ -10,6 +10,9 @@ if (Meteor.isServer) {
 	Meteor.publish('riddles', function riddlesPublication(){
 		return Riddles.find();
 	});
+	Meteor.publish("users", function(){
+  	return Meteor.users.find()
+	});
 }
 
 Meteor.methods({
@@ -65,7 +68,7 @@ Meteor.methods({
 		// Meteor.users.upsert({listofvoted:{idwouldgohere: 'asdfasfasdfdsafdsa'}});
 	},
 
-	'listofvoted.update'(riddleId, user) {		
+	'riddlevoted.update'(riddleId, user) {		
 
 		// BELOW STATEMENT WORKS GREAT FOR INSERTING
 		// Meteor.users.update({_id: userId._id },{$push:{listofvoted : { riddleid:"kjhdsfkjh13", voted:false, solved:false} }});
@@ -74,16 +77,35 @@ Meteor.methods({
 		// Meteor.users.update({_id: userId._id },{listofvoted})		
 
 		// Meteor.users.upsert({'_id': userId._id}, {'listofvoted':riddleId} );
-		let ridid = {} 
-		ridid["listofvoted.riddle_id_goeshere.upvoted"] = false;
+		let yo = "listofvoted"
+		let key = "listofvoted" + ".riddle_id_goeshere.upvoted";
+		let query = {} 
+		query[key] = false;
+		let changequery = {}
+		changequery["listofvoted.riddle_id_goeshere.upvoted"] = true;
+
 		let theuser = Meteor.users.findOne({'_id':user._id});
-		let theuser2 = Meteor.users.findOne(ridid);
-		//let lists = theuser.listofvoted;
-		console.log(theuser2);
+		let theuser2 = Meteor.users.update({'_id':user._id}, {$set : changequery});
+		//let theuser3 = theuser2.update()
+
+		console.log(result);
 
 		// console.log("the riddleId = "+riddleId+" and userId = "+ userId._id);
 		// console.log(Meteor.users.findOne({_id: userId._id}).listofvoted)
 		// console.log("listofvoted = "+ userId.listofvoted);
+	},
+
+	'riddlevote.check'(riddleId, user) {
+		let key = "listofvoted." + "riddle_id_goeshere" + ".upvoted";
+		let query = {};
+		query[key] = 1;
+		let result = Meteor.users.findOne({'_id':user._id}, {"listofvoted.riddle_id_goeshere.upvoted":1});
+		function pls(){
+			return result.listofvoted.riddle_id_goeshere.upvoted
+		}
+		let result2 = ( pls() === true);
+		// console.log(key);
+		console.log(result2);
 	}
 
 });

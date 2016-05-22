@@ -36,6 +36,8 @@ class RiddleList extends Component {
 }
 
 export default createContainer(() => {
+	Meteor.subscribe('riddles');
+  Meteor.subscribe('users');
   return {
   	riddles: Riddles.find({}).fetch(),
     currentUser: Meteor.user(),

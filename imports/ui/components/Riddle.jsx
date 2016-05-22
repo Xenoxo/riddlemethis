@@ -10,7 +10,7 @@ export default class Riddle extends Component {
 	}
 
 	upvoteThisRiddle(){
-		Meteor.call('listofvoted.update', this.props.riddle._id, this.props.currentUser);
+		Meteor.call('riddlevoted.update', this.props.riddle._id, this.props.currentUser);
 		//let me = Meteor.users.findOne({_id: this.props.currentUser._id});
 		
 		// console.log(me.listofvoted);
@@ -22,7 +22,8 @@ export default class Riddle extends Component {
 		// console.log(this.props.currentUser);
 	}
 
-	voted(){
+	checkIfVoted(){
+		Meteor.call('riddlevote.check', this.props.riddle._id, this.props.currentUser);
 
 	}
 
@@ -31,7 +32,7 @@ export default class Riddle extends Component {
 			<div className="col-sm-12 riddle-container">
 				
 
-				<div className={"upvote-box " + "not-upvoted"} onClick={this.upvoteThisRiddle.bind(this)}>
+				<div className={"upvote-box " + "not-upvoted"} onClick={this.checkIfVoted.bind(this)}>
 					<i className="fa fa-chevron-up"></i>
 					<div className="vote-count">
 						{this.props.riddle.upvotes}
