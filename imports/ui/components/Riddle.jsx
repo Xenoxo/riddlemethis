@@ -5,64 +5,86 @@ import { Riddles } from '../../api/riddles';
 
 
 export default class Riddle extends Component {
+	
+	voteOnThisRiddle(){
+		Meteor.call('riddlevote.flip', this.props.riddle._id, this.props.currentUser);
+
+		// manipulate the dom using the results from the meteor call - possibly store the results in a state
+		// the below code worked (kind of) in the className, removed now for above solution attempt
+		// this.checkIfVoted.bind(this) === true ? "not-upvoted" : "upvoted" 
+	}
+
 	deleteThisRiddle(){	
 		Meteor.call('riddles.remove', this.props.riddle._id);
 	}
 
-	upvoteThisRiddle(){
-		Meteor.call('riddlevoted.update', this.props.riddle._id, this.props.currentUser);
-		//let me = Meteor.users.findOne({_id: this.props.currentUser._id});
-		
-		// console.log(me.listofvoted);
-		// console.log(me.idforriddle);
-		// console.log(me.username);
+	checkIfVoted(){
+		return Meteor.call('riddlevote.check', this.props.riddle._id, this.props.currentUser);
+	}	
 
-		// Meteor.call('riddles.upvote', this.props.riddle._id, this.props.currentUser);
-		// console.log(this.props.currentUser.listofvoted === undefined);
-		// console.log(this.props.currentUser);
+	test(){
+		return undefined;
 	}
 
-	checkIfVoted(){
-		Meteor.call('riddlevote.check', this.props.riddle._id, this.props.currentUser);
-
+	//use this method to change the state which will dictate what is to be shown
+	//regarding the answerbox
+	changeState(){
+		return true;
 	}
 
 	render(){
 		return (
+			<div className="riddle-object">
 			<div className="col-sm-12 riddle-container">
 				
-
-				<div className={"upvote-box " + "not-upvoted"} onClick={this.checkIfVoted.bind(this)}>
-					<i className="fa fa-chevron-up"></i>
-					<div className="vote-count">
-						{this.props.riddle.upvotes}
-					</div>
-				</div>
 				
 
-				<div className="riddle-content">
-					<h3>
-						{this.props.riddle.riddle}
-					</h3>
-					<div className="riddle-details">
-						Submitted by {this.props.riddle.username} on {this.props.riddle.submitted.toDateString()}
+					<div className={"upvote-box " + "not-upvoted"} onClick={this.voteOnThisRiddle.bind(this)}>
+						<i className="fa fa-chevron-up"></i>
+						<div className="vote-count">
+							{this.props.riddle.upvotes}
+						</div>
 					</div>
+					
+
+					<div className="riddle-content">
+						<h3>
+							{this.props.riddle.riddle}
+						</h3>
+						<div className="riddle-details">
+							Submitted by {this.props.riddle.username} on {this.props.riddle.submitted.toDateString()}
+						</div>
+					</div>
+
+
+					<div className="solved-spacer">
+						<button className="btn btn-primary">
+							<i className="fa fa-question fa-3x"></i>
+						</button>
+
+						{ this.props.currentUserId === this.props.riddle.author ? 
+						<div className="delete" onClick={this.deleteThisRiddle.bind(this)}>
+							delete
+						</div> : ''
+						}
+					</div>
+
 				</div>
+			{/* Use state here
+						
+					If the state is in answer mode then render the below thing
+					otherwise don't render it
 
 
-				<div className="solved-spacer">
-					<button className="btn btn-primary">
-						<i className="fa fa-question fa-3x"></i>
-					</button>
 
-					{ this.props.currentUserId === this.props.riddle.author ? 
-					<div className="delete" onClick={this.deleteThisRiddle.bind(this)}>
-						delete
-					</div> : ''
-					}
-				</div>	
+			*/}
+							<div className="answer-box">
+					Answer box here 
+				</div>
+</div>
 
-			</div>	
+
+			
 		);
 	}
 } 

@@ -101,8 +101,20 @@ Meteor.methods({
 	//
 	//	-focus on being able to turn on/off for the riddle based on clicking on a button
 	//	-wire this up to work with actual riddles
+	
+	'riddlevote.check'(riddleId, user) {
+		let temp = Meteor.users.findOne({'_id':user._id}, query).listofvoted.riddle_id_goeshere.upvoted
+		console.log(temp);
+		return temp;
+	},
 
-	'riddlevote.check'(riddleId, user) { 
+
+	// Work on increasing / decreasing the number ????
+	// Work on upserting the riddle with the appropriate information if it doesn't exist
+
+
+	//preserving this for now, will combine the methods into one after proofing out the upserting part....
+	'riddlevote.flip'(riddleId, user) { 
 		let tempid = "riddle_id_goeshere";
 		console.log(riddleId);
 		let key = "listofvoted." + tempid + ".upvoted";
@@ -129,6 +141,8 @@ Meteor.methods({
 		
 		// isupvoted =	pls(query,riddleId);
 		// console.log("This is isupvoted AFTER the flip: " + isupvoted);
-	}
+	},
+
+
 
 });
