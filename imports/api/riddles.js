@@ -95,17 +95,40 @@ Meteor.methods({
 		// console.log("listofvoted = "+ userId.listofvoted);
 	},
 
-	'riddlevote.check'(riddleId, user) {
-		let key = "listofvoted." + "riddle_id_goeshere" + ".upvoted";
+
+	//checks to see if the riddle has ever been voted on
+	// FUTURE -> slowly turn this block into the actual insert method
+	//
+	//	-focus on being able to turn on/off for the riddle based on clicking on a button
+	//	-wire this up to work with actual riddles
+
+	'riddlevote.check'(riddleId, user) { 
+		let tempid = "riddle_id_goeshere";
+		console.log(riddleId);
+		let key = "listofvoted." + tempid + ".upvoted";
 		let query = {};
 		query[key] = 1;
-		let result = Meteor.users.findOne({'_id':user._id}, {"listofvoted.riddle_id_goeshere.upvoted":1});
-		function pls(){
-			return result.listofvoted.riddle_id_goeshere.upvoted
+		
+		function pls(query,riddleId){
+			return Meteor.users.findOne({'_id':user._id}, query).listofvoted.riddle_id_goeshere.upvoted
 		}
-		let result2 = ( pls() === true);
+
+		let isupvoted =	pls(query,riddleId);
+		console.log("This is isupvoted BEFORE the flip: " + isupvoted);
+
+		// behavior: the true/flase should flip everytime 
+		
+		let query2 = {};
+		query2[key] = !isupvoted;
+		Meteor.users.update({'_id':user._id}, {$set: query2})
+
+		
+		// let result2 = ( pls() === true);
+		// let result3 = ( pls() === undefined);
 		// console.log(key);
-		console.log(result2);
+		
+		// isupvoted =	pls(query,riddleId);
+		// console.log("This is isupvoted AFTER the flip: " + isupvoted);
 	}
 
 });
