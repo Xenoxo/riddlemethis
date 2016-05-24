@@ -5,7 +5,28 @@ import { Riddles } from '../../api/riddles';
 
 
 export default class Riddle extends Component {
-	
+  
+  constructor(props) {
+    super(props);
+ 
+    this.state = {
+      hasVoted: false,
+      showAnswerBox: false,
+    };
+  }
+  
+  toggleShowAnwerBox() {
+  	this.setState({
+  		showAnswerBox: !this.state.showAnswerBox,
+  	})
+  }
+
+  toggleHasVoted() {
+    this.setState({
+      hasVoted: !this.state.hasVoted,
+    });
+  }
+
 	voteOnThisRiddle(){
 		Meteor.call('riddlevote.flip', this.props.riddle._id, this.props.currentUser);
 
@@ -58,7 +79,7 @@ export default class Riddle extends Component {
 
 
 					<div className="solved-spacer">
-						<button className="btn btn-primary">
+						<button className="btn btn-primary" onClick={this.toggleShowAnwerBox.bind(this)}>
 							<i className="fa fa-question fa-3x"></i>
 						</button>
 
@@ -78,9 +99,11 @@ export default class Riddle extends Component {
 
 
 			*/}
-							<div className="answer-box">
+			{ this.state.showAnswerBox ? 
+				<div className="answer-box">
 					Answer box here 
-				</div>
+				</div> : ''
+			}
 </div>
 
 
