@@ -20,31 +20,27 @@ export default class Riddle extends Component {
   	})
   }
 
-  toggleHasVoted() {
-    this.setState({
-      hasVoted: !this.state.hasVoted,
-    });
-  }
-
+  //	
+  //  If user has never voted on the riddle, then insert entry into user collection under listofriddles obj
+  //  If already exists, then toggle the status of the appropriate 'riddle id entry' and it's voted value
+  //  
 	voteOnThisRiddle(){
 		Meteor.call('riddlevote.flip', this.props.riddle._id, this.props.currentUser);
-
+		this.setState({
+      hasVoted: !this.state.hasVoted,
+    });
 		// manipulate the dom using the results from the meteor call - possibly store the results in a state
 		// the below code worked (kind of) in the className, removed now for above solution attempt
 		// this.checkIfVoted.bind(this) === true ? "not-upvoted" : "upvoted" 
 	}
 
-	deleteThisRiddle(){	
+	deleteThisRiddle(){	//Removes the given riddle from the backend
 		Meteor.call('riddles.remove', this.props.riddle._id);
 	}
 
-	checkIfVoted(){
+	checkIfVoted(){ //check to see if user has voted at all on the riddle
 		return Meteor.call('riddlevote.check', this.props.riddle._id, this.props.currentUser);
 	}	
-
-	test(){
-		return undefined;
-	}
 
 	//use this method to change the state which will dictate what is to be shown
 	//regarding the answerbox
@@ -56,10 +52,9 @@ export default class Riddle extends Component {
 		return (
 			<div className="riddle-object">
 			<div className="col-sm-12 riddle-container">
-				
-				
 
-					<div className={"upvote-box " + (this.state.hasVoted ? "voted" : "not-upvoted")} onClick={this.toggleHasVoted.bind(this)}>
+
+					<div className={"upvote-box " + (this.state.hasVoted ? "upvoted" : "not-upvoted")} onClick={this.voteOnThisRiddle.bind(this)}>
 						<i className="fa fa-chevron-up"></i>
 						<div className="vote-count">
 							{this.props.riddle.upvotes}
@@ -77,18 +72,17 @@ export default class Riddle extends Component {
 					</div>
 
 
-
 					<div className="solved-spacer">
 						<button className="btn btn-primary" onClick={this.toggleShowAnwerBox.bind(this)}>
 							<i className="fa fa-question fa-3x"></i>
 						</button>
-
 						{ this.props.currentUserId === this.props.riddle.author ? 
-						<div className="delete" onClick={this.deleteThisRiddle.bind(this)}>
-							delete
-						</div> : ''
+							<div className="delete" onClick={this.deleteThisRiddle.bind(this)}>
+								delete
+							</div> : ''
 						}
 					</div>
+				
 
 				</div>
 			{/* Use state here
@@ -104,7 +98,7 @@ export default class Riddle extends Component {
 					Answer box here 
 				</div> : ''
 			}
-</div>
+			</div>
 
 
 			
