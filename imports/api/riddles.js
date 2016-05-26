@@ -68,33 +68,6 @@ Meteor.methods({
 		// Meteor.users.upsert({listofvoted:{idwouldgohere: 'asdfasfasdfdsafdsa'}});
 	},
 
-	'riddlevoted.update'(riddleId, user) {		
-
-		// BELOW STATEMENT WORKS GREAT FOR INSERTING
-		// Meteor.users.update({_id: userId._id },{$push:{listofvoted : { riddleid:"kjhdsfkjh13", voted:false, solved:false} }});
-
-		// Work on updating
-		// Meteor.users.update({_id: userId._id },{listofvoted})		
-
-		// Meteor.users.upsert({'_id': userId._id}, {'listofvoted':riddleId} );
-		let yo = "listofvoted"
-		let key = "listofvoted" + ".riddle_id_goeshere.upvoted";
-		let query = {} 
-		query[key] = false;
-		let changequery = {}
-		changequery["listofvoted.riddle_id_goeshere.upvoted"] = true;
-
-		let theuser = Meteor.users.findOne({'_id':user._id});
-		let theuser2 = Meteor.users.update({'_id':user._id}, {$set : changequery});
-		//let theuser3 = theuser2.update()
-
-		console.log(result);
-
-		// console.log("the riddleId = "+riddleId+" and userId = "+ userId._id);
-		// console.log(Meteor.users.findOne({_id: userId._id}).listofvoted)
-		// console.log("listofvoted = "+ userId.listofvoted);
-	},
-
 
 	//checks to see if the riddle has ever been voted on
 	// FUTURE -> slowly turn this block into the actual insert method
