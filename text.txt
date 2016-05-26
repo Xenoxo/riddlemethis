@@ -1,4 +1,49 @@
-trying to make insert work -> not finding 'riddles.text' bug -> http://stackoverflow.com/questions/34966349/mongo-node-typeerror-callback-is-not-a-function-on-query
+what to work on next:
+
+Regarding changing the color of the upvote button
+
+***********************************
+
+onClick for the button should call a method that no only calls the method to change 
+the internal state (inc/dec  vote by 1) but will also get the returned value from that
+and change the state of the component, which will reflect via the className
+
+AKA
+
+onClick = newmethod
+
+newmethod {
+  1. calls the meteor method to update votes by 1 which also returns whether voted or not as (TRUE/FALSE)
+  2. using the above return, change the state of the component
+  
+}
+
+className = conditional based on the State value
+
+***********************************
+NEW THING Notes from Meteor Meetup
+***********************************
+const ready = Meteor.subscribe(w/e)
+
+during the return: ready.isReady()
+
+Container > Page > Component
+
+Gets data > layout of the Page > Renders specific things
+
+* redux
+* redux dev tools
+* redux-form
+* redux selectors
+* chromatic
+* apollo stack
+* meteor guide
+
+***********************************
+
+
+
+|------------------------ IDEAL STRUCTURE BELOW ---------------------|
 
 imports/
   startup/

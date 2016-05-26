@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import { Riddles } from '../../api/riddles';
 
-
 export default class Riddle extends Component {
   
   constructor(props) {
@@ -60,7 +59,7 @@ export default class Riddle extends Component {
 				
 				
 
-					<div className={"upvote-box " + "not-upvoted"} onClick={this.voteOnThisRiddle.bind(this)}>
+					<div className={"upvote-box " + (this.state.hasVoted ? "voted" : "not-upvoted")} onClick={this.toggleHasVoted.bind(this)}>
 						<i className="fa fa-chevron-up"></i>
 						<div className="vote-count">
 							{this.props.riddle.upvotes}
@@ -76,6 +75,7 @@ export default class Riddle extends Component {
 							Submitted by {this.props.riddle.username} on {this.props.riddle.submitted.toDateString()}
 						</div>
 					</div>
+
 
 
 					<div className="solved-spacer">
