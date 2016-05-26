@@ -26,9 +26,11 @@ export default class Riddle extends Component {
   //  
 	voteOnThisRiddle(){
 		Meteor.call('riddlevote.flip', this.props.riddle._id, this.props.currentUser);
-		this.setState({
-      hasVoted: !this.state.hasVoted,
-    });
+		// this.setState({
+  //     hasVoted: !this.state.hasVoted,
+  //   });
+
+    
 		// manipulate the dom using the results from the meteor call - possibly store the results in a state
 		// the below code worked (kind of) in the className, removed now for above solution attempt
 		// this.checkIfVoted.bind(this) === true ? "not-upvoted" : "upvoted" 
