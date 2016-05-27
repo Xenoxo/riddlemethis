@@ -105,16 +105,39 @@ Meteor.methods({
 		// ------------------------------------------------------------------------
 
 		// Check to see if the riddle is in the embedded document
-		let testid = "riddle_id_goeshere";
-		let result = Meteor.users.findOne( { '_id':user._id } );
+		let key = "listofvoted." + riddleId;		
+		let result = Meteor.users.findOne(user._id);
+		let query = {}
+		query[key] = true;
+		
+		let str = "other_riddle_id"
+		
+		let qbuild = "listofvoted."+str+".upvoted"
 
-		if ( result['listofvoted'][riddleId] === undefined ) {
-			console.log("Hey this is undefined");
+		let tempobj = {}
+		tempobj[qbuild] = true
+
+		let query2 = {$set:tempobj}; //this is great for constructing
+		
+		let man = result['listofvoted']['other_riddle_id']['solved']; //bracket notation is great for checking
+
+
+		//console.log(result['listofvoted']['riddle_id_goeshere']['upvoted']);
+
+		Meteor.users.update(user._id, query2 );
+
+		// if ( result['listofvoted'][riddleId] === undefined ) {
+		// 	console.log("This riddle has never been interacted with, now inserting entry into it");
+		// 	Meteor.users.upsert(user._id, query2); // try limiting the selector more
+		// }
+		// } else {
 			
+		// 	console.log("now you in the else section");
 
-		} else {
-			// flip the value
-		}
+		// 	result['listofvoted'][riddleId]['voted'] = ///
+
+		// 	Meteor.users.update(user._id, query);
+		// }
 		// if no, upsert riddle_id {"upvoted":true,"solved":false}
 		// else, flip the value
 		
