@@ -85,72 +85,22 @@ Meteor.methods({
 	// ##### Work on increasing / decreasing the number ????
 	// ##### Work on upserting the riddle with the appropriate information if it doesn't exist
 	'riddlevote.flip'(riddleId, user) { 
-		
-		// --- Below commented out code currently flips the status of upvoted from fixture obj riddle with id = "riddle_id_goeshere" ----
-		//
-		// let tempid = "riddle_id_goeshere";
-		// console.log(riddleId);
-		// let key = "listofvoted." + tempid + ".upvoted";
-		// let query = {};
-		// query[key] = 1;
-		
-		// function pls(query,riddleId){
-		// 	return Meteor.users.findOne({'_id':user._id}, query).listofvoted.riddle_id_goeshere.upvoted
-		// }
-
-		// let isupvoted =	pls(query,riddleId);
-		// console.log("This is isupvoted BEFORE the flip: " + isupvoted);
-
-		// ------------------------------------------------------------------------
-		// ------------------------------------------------------------------------
-
 		// Check to see if the riddle is in the embedded document
 
 		let currentUser = Meteor.users.findOne(user._id);
+		let queryStr = "listofvoted."+riddleId+".upvoted"
+		let query = {}
+
 		if ( currentUser['listofvoted'][riddleId] === undefined ) {
 			console.log("This riddle has never been interacted with, now inserting entry into it");
-			let queryStr = "listofvoted."+riddleId+".upvoted"
-			let query = {}
+
 			query[queryStr] = true
 			Meteor.users.upsert(user._id, {$set:query}); // upsert the new query
 		} else {
-			console.log("you've already voted on this");
+			let newResult = !currentUser['listofvoted'][riddleId]['upvoted'];
+			query[queryStr] = newResult;
+			Meteor.users.upsert(user._id, {$set:query})
 		}
-
-		
-			
-		// 	console.log("now you in the else section");
-
-		// 	result['listofvoted'][riddleId]['voted'] = ///
-
-		// 	Meteor.users.update(user._id, query);
-		// }
-		// if no, upsert riddle_id {"upvoted":true,"solved":false}
-		// else, flip the value
-		
-
-
-
-
-		// result.forEach(function (thing) {
-		// 	console.log(thing);
-		// });
-		
-
-
-		// let result2 = ( pls() === true);
-		// let result3 = ( pls() === undefined);
-		// console.log(key);
-		
-		// isupvoted =	pls(query,riddleId);
-		// console.log("This is isupvoted AFTER the flip: " + isupvoted);
-
-
-		// BELOW IS ACTUAL CODE TO FLIP isupvoted VALUE
-
-		// let query2 = {};
-		// query2[key] = !isupvoted;
-		// Meteor.users.update({'_id':user._id}, {$set: query2})
 
 	},
 
