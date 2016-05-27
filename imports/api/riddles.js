@@ -105,32 +105,19 @@ Meteor.methods({
 		// ------------------------------------------------------------------------
 
 		// Check to see if the riddle is in the embedded document
-		let key = "listofvoted." + riddleId;		
-		let result = Meteor.users.findOne(user._id);
-		let query = {}
-		query[key] = true;
+
+		let currentUser = Meteor.users.findOne(user._id);
+		if ( currentUser['listofvoted'][riddleId] === undefined ) {
+			console.log("This riddle has never been interacted with, now inserting entry into it");
+			let queryStr = "listofvoted."+riddleId+".upvoted"
+			let query = {}
+			query[queryStr] = true
+			Meteor.users.upsert(user._id, {$set:query}); // upsert the new query
+		} else {
+			console.log("you've already voted on this");
+		}
+
 		
-		let str = "other_riddle_id"
-		
-		let qbuild = "listofvoted."+str+".upvoted"
-
-		let tempobj = {}
-		tempobj[qbuild] = true
-
-		let query2 = {$set:tempobj}; //this is great for constructing
-		
-		let man = result['listofvoted']['other_riddle_id']['solved']; //bracket notation is great for checking
-
-
-		//console.log(result['listofvoted']['riddle_id_goeshere']['upvoted']);
-
-		Meteor.users.update(user._id, query2 );
-
-		// if ( result['listofvoted'][riddleId] === undefined ) {
-		// 	console.log("This riddle has never been interacted with, now inserting entry into it");
-		// 	Meteor.users.upsert(user._id, query2); // try limiting the selector more
-		// }
-		// } else {
 			
 		// 	console.log("now you in the else section");
 
