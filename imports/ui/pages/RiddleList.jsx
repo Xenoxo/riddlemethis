@@ -4,7 +4,6 @@ import { createContainer } from 'meteor/react-meteor-data';
 
 import Riddle from '../components/Riddle.jsx'
 
-
 class RiddleList extends Component {
 
 
@@ -18,6 +17,8 @@ class RiddleList extends Component {
 				key={riddle._id}
 				riddle={riddle}
 				currentUser={this.props.currentUser}
+
+				voteStatus={this.props.voteStatus}
 
 				//not sure if below is needed
 				currentUserId={this.props.currentUserId}
@@ -35,14 +36,28 @@ class RiddleList extends Component {
 
 }
 
-export default createContainer(() => {
-	Meteor.subscribe('riddles');
-  Meteor.subscribe('users');
-  return {
-  	riddles: Riddles.find({}).fetch(),
-    currentUser: Meteor.user(),
-    currentUserId: Meteor.userId(),
-  };
+export default RiddleContainer = createContainer(({ params }) => {
+	const riddleSubscription = Meteor.subscribe('riddles');
+  const ready1 = Meteor.subscribe('users');
+  
+  // const upvotedStatus = Meteor.user()
+  
+  const { id } = params;
+  //console.log("from RiddleList " + params);
+  
+  // const theUser = Meteor.users.findOne(Meteor.userId());
+  return {	
+	  	riddles: Riddles.find({}).fetch(),
+	    currentUser: Meteor.user(),
+	    currentUserId: Meteor.userId(),
+
+	    // pass in the user's specific query of riddles
+
+	    // 1. pass in the entire listofvoted
+	    // for some reason this causes an error......
+	    voteStatus: this.thisUser,
+    }
+
 }, RiddleList);
 
 

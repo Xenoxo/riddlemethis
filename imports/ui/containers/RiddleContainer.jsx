@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-//import Riddle from './Riddle.jsx';
+import RiddleList from '../pages/RiddleList.jsx';
 
-export default class RiddleContainer extends Component {
 
-	renderRiddles(){
-		return "gg";
-	}
+import {composeWithTracker} from 'react-komposer';
 
-	render() {
-		return (
-				<div>
-					This is the persistent header
-					{this.props.children}
-				</div>
-		);
-	}
-}
+function composer(props, onData) {
+	const handle = Meteor.subscribe('users');
+  if (handle.ready()) {
+    console.log('users ready!');
+    const thisuser = Meteor.users.find(Meteor.user()._id).fetch();
+    onData(null, {thisuser});
+  } else {
+  	console.log('not ready yet....')
+  }
+};
+
+export default composeWithTracker(composer)(RiddleList);

@@ -81,9 +81,11 @@ Meteor.methods({
 		return temp;
 	},
 
-
-	// ##### Work on increasing / decreasing the number ????
-	// ##### Work on upserting the riddle with the appropriate information if it doesn't exist
+	//
+	// Will test to see if user has ever interacted with this riddle and upsert if not
+	// otherwise method will flip the existing value
+	// Also will inc/dec the upvote count for the given riddle
+	// 
 	'riddlevote.flip'(riddleId, user) { 
 		if (! this.userId) {
 			throw new Meteor.Error('must log in to upvote');
@@ -91,18 +93,20 @@ Meteor.methods({
 		// Check to see if the riddle is in the embedded document
 
 		let currentUser = Meteor.users.findOne(user._id);
-		let queryStr = "listofvoted."+riddleId+".upvoted"
-		let query = {}
+		let queryStr = "listofvoted."+riddleId+".upvoted";
+		let query = {};
 		let num;
+		let newResult;
 
 		if ( currentUser['listofvoted'][riddleId] === undefined ) { //this is the case only if the riddle has never been interacted with
 
-			query[queryStr] = true
+			query[queryStr] = true;
+			newResult = true;
 			Meteor.users.upsert(user._id, {$set:query}); // upsert the new query
 			num = 1;
 		} else { //all other casese
 
-			let newResult = !currentUser['listofvoted'][riddleId]['upvoted'];
+			newResult = !currentUser['listofvoted'][riddleId]['upvoted'];
 			if (newResult) { //newResult is already flipped...
 				num = 1;
 			} else {
@@ -111,7 +115,8 @@ Meteor.methods({
 			query[queryStr] = newResult;
 			Meteor.users.upsert(user._id, {$set:query})
 		}
-		Riddles.update(riddleId, {$inc:{"upvotes":num}});	
+		Riddles.update(riddleId, {$inc:{"upvotes":num}});
+		return newResult;
 	},
 
 

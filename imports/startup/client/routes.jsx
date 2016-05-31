@@ -14,7 +14,7 @@ Meteor.startup( () => {
 	render(
 		<Router history={ browserHistory }>
 			<Route path='/' component={ App } >
-				<IndexRoute component= { RiddleList } />
+				<IndexRoute component= { RiddleContainer } />
 				<Route path='submit-riddle' component={ SubmitRiddle }/>
 			</Route>
 			

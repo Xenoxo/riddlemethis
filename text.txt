@@ -1,24 +1,14 @@
 what to work on next:
 
-Regarding changing the color of the upvote button
+trying to make the state of the buttons respond reactively to whether they are being clicked on or not
 
-***********************************
+**********************************************************************
 
-onClick for the button should call a method that no only calls the method to change 
-the internal state (inc/dec  vote by 1) but will also get the returned value from that
-and change the state of the component, which will reflect via the className
+**********************************************************************
 
-AKA
+**********************************************************************
 
-onClick = newmethod
 
-newmethod {
-  1. calls the meteor method to update votes by 1 which also returns whether voted or not as (TRUE/FALSE)
-  2. using the above return, change the state of the component
-  
-}
-
-className = conditional based on the State value
 
 ***********************************
 NEW THING Notes from Meteor Meetup

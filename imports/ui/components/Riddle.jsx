@@ -2,16 +2,40 @@
 
 import React, { Component } from 'react';
 import { Riddles } from '../../api/riddles';
+import { createContainer } from 'meteor/react-meteor-data';
+
 
 export default class Riddle extends Component {
   
+  //in ES6 constructor == componentWillMount()
   constructor(props) {
     super(props);
- 
+    console.log();
     this.state = {
       hasVoted: false,
       showAnswerBox: false,
     };
+  }
+
+  getVotedStatus() {
+  	return this.props.currentUser['listofvoted']
+  }
+
+  componentWillMount() {
+  	if (this.props.currentUser['listofvoted'][this.props.riddle._id] !== undefined) {
+  		let thisUser = this.props.currentUser;
+	  	// this.setState({
+	  	// 	hasVoted: thisUser['listofvoted'][this.props.riddle._id]['upvoted'];
+	  	// }) 
+  	}
+  }
+
+  componentDidMount() {
+  	// if (this.props.currentUser['listofvoted'][this.props.riddle._id] !== undefined){
+			// this.setState({
+	  // 		hasVoted: this.props.currentUser['listofvoted'][this.props.riddle._id]['upvoted'],
+	  // 	})  	
+  	// }
   }
   
   toggleShowAnwerBox() {
@@ -21,19 +45,22 @@ export default class Riddle extends Component {
   }
 
   //	
-  //  If user has never voted on the riddle, then insert entry into user collection under listofriddles obj
-  //  If already exists, then toggle the status of the appropriate 'riddle id entry' and it's voted value
+  //  If user has never voted on the riddle, then insert 
+  //  entry into user collection under listofriddles obj
+  //						-					-					-
+  //  If already exists, then toggle the status of the 
+  //  appropriate 'riddle id entry' and its upvoted value
   //  
 	voteOnThisRiddle(){
-		Meteor.call('riddlevote.flip', this.props.riddle._id, this.props.currentUser);
-		// this.setState({
-  //     hasVoted: !this.state.hasVoted,
-  //   });
-
-    
-		// manipulate the dom using the results from the meteor call - possibly store the results in a state
-		// the below code worked (kind of) in the className, removed now for above solution attempt
-		// this.checkIfVoted.bind(this) === true ? "not-upvoted" : "upvoted" 
+		let newState;
+		Meteor.call('riddlevote.flip', this.props.riddle._id, this.props.currentUser, 
+			function(error,result){
+				if (error){
+					console.log(error);	
+				}
+				return result;
+			}
+		);
 	}
 
 	deleteThisRiddle(){	//Removes the given riddle from the backend
@@ -56,7 +83,7 @@ export default class Riddle extends Component {
 			<div className="col-sm-12 riddle-container">
 
 
-					<div className={"upvote-box " + (this.state.hasVoted ? "upvoted" : "not-upvoted")} onClick={this.voteOnThisRiddle.bind(this)}>
+					<div className={"upvote-box " + ((this.props.voteStatus[this.props.riddle._id]['upvoted']) ? "upvoted" : "not-upvoted")} onClick={this.voteOnThisRiddle.bind(this)}>
 						<i className="fa fa-chevron-up"></i>
 						<div className="vote-count">
 							{this.props.riddle.upvotes}
@@ -104,6 +131,17 @@ export default class Riddle extends Component {
 
 
 			
-		);
-	}
-} 
+			);
+		}
+}
+
+export default theRiddleContainer = createContainer(({ params }) => {
+  let theUser = Meteor.user();
+  // console.log(Meteor.user()['listofvoted']);
+  // console.log("from Riddle " + params);
+  return {
+  	voteStatus:Meteor.user()['listofvoted'],
+	    // currentUserVote: theUser['listofvoted'],
+    }
+
+}, Riddle);
