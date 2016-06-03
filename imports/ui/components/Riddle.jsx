@@ -73,7 +73,12 @@ export default class Riddle extends Component {
 
 	//use this method to change the state which will dictate what is to be shown
 	//regarding the answerbox
-	changeState(){
+	getUpvoted(){
+		console.log(this.props.voteStatus[this.props.riddle._id]['upvoted']);
+		return this.props.voteStatus[this.props.riddle._id]['upvoted']; 
+	}
+
+	testMethod(){
 		return true;
 	}
 
@@ -83,7 +88,10 @@ export default class Riddle extends Component {
 			<div className="col-sm-12 riddle-container">
 
 
-					<div className={"upvote-box " + ((this.props.voteStatus[this.props.riddle._id]['upvoted']) ? "upvoted" : "not-upvoted")} onClick={this.voteOnThisRiddle.bind(this)}>
+					<div className={"upvote-box " + 
+						(this.props.voteStatus[this.props.riddle._id]['upvoted'] ? "upvoted" : "not-upvoted")
+					} 
+						onClick={this.voteOnThisRiddle.bind(this)}>
 						<i className="fa fa-chevron-up"></i>
 						<div className="vote-count">
 							{this.props.riddle.upvotes}

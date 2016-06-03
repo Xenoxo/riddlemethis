@@ -15,11 +15,12 @@ export default class SubmitRiddle extends Component {
 		const theAnswer = ReactDOM.findDOMNode(this.refs.theAnswer).value.trim();
 
 		if (theRiddle !== '' && theAnswer !== ''){
-			let dude = Meteor.call('riddles.insert', theRiddle, theAnswer, function (error, result){
+			Meteor.call('riddles.insert', theRiddle, theAnswer, function (error, result){
 				if(error !== undefined || result !== undefined){ //used to log errors or results
 					console.log("the error = " + error);
 					console.log("the result = " + result)
 				}
+
 			});
 			// ReactDOM.findDOMNode(this.refs.theRiddle).value = '';
 	    // ReactDOM.findDOMNode(this.refs.theAnswer).value = '';

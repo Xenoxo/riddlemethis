@@ -25,7 +25,7 @@ Meteor.methods({
 			throw new Meteor.Error('not-authorized');
 		}
 
-    Riddles.insert({
+   let riddleId = Riddles.insert({ //adds the Riddle to the riddle collection and returns id
       riddle: riddle,
 			answers: answer,
 			reveals: 0,
@@ -36,6 +36,11 @@ Meteor.methods({
 			upvotes: 0,
 			difficulty: 0,
     });
+
+		let queryStr = "listofvoted."+riddleId+".upvoted";
+		let query = {};
+		query[queryStr] = false;
+		Meteor.users.upsert(this.userId, {$set:query}); // upsert the new query
 	},
 
 	'riddles.remove'(riddleId) {
@@ -50,39 +55,14 @@ Meteor.methods({
 		if (! this.userId) {
 			throw new Meteor.Error('must log in to upvote');
 		}
-		//if [user has already upvoted] 
-		// the current user's listofvoted returns "true" when I plug in (the id of the riddle given) , then decrease riddle's upvote count by 1
-		// otherwise increase upvote by 1 AND add this riddle's id to listofvoted and set to 'true'
-
-		// if(Meteor.users.findOne({_id:theUser}))
 
 		Riddles.update({ _id: riddleId }, { $inc: {upvotes:1} });
-		
-		//
-		//	possibly need to rethink whether I'm going to use arrays vs just a list of {lskajdfslakdjfsdakl: true, kjsdhfsakjhsadjh: false}
-		//	
-		//
-		
-
-
-		// Meteor.users.upsert({listofvoted:{idwouldgohere: 'asdfasfasdfdsafdsa'}});
-	},
-
-
-	//checks to see if the riddle has ever been voted on
-	// FUTURE -> slowly turn this block into the actual insert method
-	//
-	//	-focus on being able to turn on/off for the riddle based on clicking on a button
-	//	-wire this up to work with actual riddles
 	
-	'riddlevote.check'(riddleId, user) {
-		let temp = Meteor.users.findOne({'_id':user._id}, query).listofvoted.riddle_id_goeshere.upvoted
-		console.log(temp);
-		return temp;
 	},
 
-	//
-	// Will test to see if user has ever interacted with this riddle and upsert if not
+	
+	// Will test to see if user has ever 
+	// interacted with this riddle and upsert if not
 	// otherwise method will flip the existing value
 	// Also will inc/dec the upvote count for the given riddle
 	// 
@@ -119,6 +99,16 @@ Meteor.methods({
 		return newResult;
 	},
 
-
+	// //checks to see if the riddle has ever been voted on
+	// // FUTURE -> slowly turn this block into the actual insert method
+	// //
+	// //	-focus on being able to turn on/off for the riddle based on clicking on a button
+	// //	-wire this up to work with actual riddles
+	
+	// 'riddlevote.check'(riddleId, user) {
+	// 	let temp = Meteor.users.findOne({'_id':user._id}, query).listofvoted.riddle_id_goeshere.upvoted
+	// 	console.log(temp);
+	// 	return temp;
+	// },
 
 });
