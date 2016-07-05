@@ -17,7 +17,7 @@
 /*
 
 	=========================================================
-	==== Below is for the riddle component and container ====
+	====	 			 riddle component and container 			   ====
 	=========================================================
 
 */
@@ -25,10 +25,11 @@
 	/* color:#659AC5; */
 	background-color: #E3E5F8;
 	font-size: 24px;
-	margin:5px 0px 5px 0px;
+	margin:10px 0px 0px 0px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+
 }
 
 .riddle-container .riddle-content {
@@ -99,10 +100,34 @@
 }
 
 /*
-.fa {
-	color:black;
-}
+
+	=========================================================
+		 			 							Answer Box
+	=========================================================
+
 */
+
+.answer-box {
+	background-color: #E3E5F8;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: 5px;
+}
+
+
+.answer-input {
+	width: 65%;
+}
+
+.give-up {
+	
+}
+
+.answer-submit {
+	
+}
+
 
 /*
 

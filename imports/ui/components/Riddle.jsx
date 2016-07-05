@@ -86,8 +86,6 @@ export default class Riddle extends Component {
 		return (
 			<div className="riddle-object">
 			<div className="col-sm-12 riddle-container">
-
-
 					<div className={"upvote-box " + 
 						(this.props.voteStatus[this.props.riddle._id]['upvoted'] ? "upvoted" : "not-upvoted")
 					} 
@@ -122,17 +120,22 @@ export default class Riddle extends Component {
 				
 
 				</div>
-			{/* Use state here
-						
-					If the state is in answer mode then render the below thing
-					otherwise don't render it
-
-
-
-			*/}
 			{ this.state.showAnswerBox ? 
-				<div className="answer-box">
-					Answer box here 
+				<div className="col-sm-12 answer-box">
+					
+	      	
+	    
+	        <input
+	        	className="answer-input"
+	          type="text"
+	          ref="theAnswer"
+	          placeholder="Type your answers here!"
+	        />
+	    	
+	      	<button type="submit" className="btn btn-success answer-submit">Submit</button>
+	      	<button type="submit" className="btn btn-danger give-up">Give Up</button>
+		        
+	      	
 				</div> : ''
 			}
 			</div>
