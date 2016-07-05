@@ -1,6 +1,7 @@
 // move most of this to Riddle Container and then separate parts into components
 
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { Riddles } from '../../api/riddles';
 import { createContainer } from 'meteor/react-meteor-data';
 
@@ -78,8 +79,13 @@ export default class Riddle extends Component {
 		return this.props.voteStatus[this.props.riddle._id]['upvoted']; 
 	}
 
-	testMethod(){
-		return true;
+	handleSubmitAnswer(event){
+		event.preventDefault();
+		
+			console.log(ReactDOM.findDOMNode(this.refs.userAnswer).value.trim());
+		
+		//const userAnwers = ReactDOM.findDOMNode(this.refs.userAnwser).value.trim();
+
 	}
 
 	render(){
@@ -122,25 +128,26 @@ export default class Riddle extends Component {
 				</div>
 			{ this.state.showAnswerBox ? 
 				<div className="col-sm-12 answer-box">
-					
-	      	
-	    
+				<form onSubmit={this.handleSubmitAnswer.bind(this)}>
 	        <input
 	        	className="answer-input"
 	          type="text"
-	          ref="theAnswer"
+	          ref="userAnswer"
 	          placeholder="Type your answers here!"
 	        />
 	    	
-	      	<button type="submit" className="btn btn-success answer-submit">Submit</button>
+	      	<button
+	      		type="submit"
+	      		className="btn btn-success answer-submit"
+	      	>
+	      		Submit
+	      	</button>
 	      	<button type="submit" className="btn btn-danger give-up">Give Up</button>
-		        
-	      	
+		    
+	      </form>
 				</div> : ''
 			}
 			</div>
-
-
 			
 			);
 		}
