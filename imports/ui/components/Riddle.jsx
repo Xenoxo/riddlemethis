@@ -79,10 +79,14 @@ export default class Riddle extends Component {
 		return this.props.voteStatus[this.props.riddle._id]['upvoted']; 
 	}
 
+	handleGiveUp(event){
+		event.preventDefault();
+		console.log("y'all"+ReactDOM.findDOMNode(this.refs.userAnswer).value.trim());
+	}
+
 	handleSubmitAnswer(event){
 		event.preventDefault();
-		
-			console.log(ReactDOM.findDOMNode(this.refs.userAnswer).value.trim());
+		console.log(ReactDOM.findDOMNode(this.refs.userAnswer).value.trim());
 		
 		//const userAnwers = ReactDOM.findDOMNode(this.refs.userAnwser).value.trim();
 
@@ -128,23 +132,26 @@ export default class Riddle extends Component {
 				</div>
 			{ this.state.showAnswerBox ? 
 				<div className="col-sm-12 answer-box">
-				<form onSubmit={this.handleSubmitAnswer.bind(this)}>
-	        <input
-	        	className="answer-input"
-	          type="text"
-	          ref="userAnswer"
-	          placeholder="Type your answers here!"
-	        />
-	    	
-	      	<button
-	      		type="submit"
-	      		className="btn btn-success answer-submit"
-	      	>
-	      		Submit
-	      	</button>
-	      	<button type="submit" className="btn btn-danger give-up">Give Up</button>
-		    
-	      </form>
+					<form onSubmit={this.handleSubmitAnswer.bind(this)}>
+		        <input
+		        	className="answer-input"
+		          type="text"
+		          ref="userAnswer"
+		          placeholder="Type your answers here!"
+		        />
+		    	
+		      	<button
+		      		type="submit"
+		      		className="btn btn-success answer-submit"
+		      	>
+		      		Submit
+		      	</button>
+			    
+		      </form>
+		      <form onSubmit={this.handleGiveUp.bind(this)}>
+		      	<button type="submit" className="btn btn-danger give-up">Give Up</button>
+			    
+		      </form>
 				</div> : ''
 			}
 			</div>
