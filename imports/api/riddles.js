@@ -16,6 +16,10 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
+
+	//
+	//	Method to insert riddle
+	//
 	'riddles.insert'(riddle, answer) {
 		check(riddle, String);
 		check(answer, String);
@@ -60,7 +64,7 @@ Meteor.methods({
 	
 	},
 
-	
+	//
 	// Will test to see if user has ever 
 	// interacted with this riddle and upsert if not
 	// otherwise method will flip the existing value
@@ -99,6 +103,22 @@ Meteor.methods({
 		return newResult;
 	},
 
+
+	'riddleanswer.check'(riddleId, user) { 
+		if (! this.userId) {
+			throw new Meteor.Error('must log in to upvote');
+		}		
+		//	Needs to loop through all existing answers for this riddle 
+		//	While submitted answer != current answer from riddle, keep going
+		//	return either true or false?
+
+		// test looping through all the answers
+		let riddle = Riddles.findOne(riddleId);
+		let theAnswer = riddle.answers;
+		console.log(theAnswer);
+
+		
+	},
 	// //checks to see if the riddle has ever been voted on
 	// // FUTURE -> slowly turn this block into the actual insert method
 	// //

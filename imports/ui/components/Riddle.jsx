@@ -75,7 +75,7 @@ export default class Riddle extends Component {
 	//use this method to change the state which will dictate what is to be shown
 	//regarding the answerbox
 	getUpvoted(){
-		console.log(this.props.voteStatus[this.props.riddle._id]['upvoted']);
+		//console.log(this.props.voteStatus[this.props.riddle._id]['upvoted']);
 		return this.props.voteStatus[this.props.riddle._id]['upvoted']; 
 	}
 
@@ -86,7 +86,10 @@ export default class Riddle extends Component {
 
 	handleSubmitAnswer(event){
 		event.preventDefault();
+
 		console.log(ReactDOM.findDOMNode(this.refs.userAnswer).value.trim());
+		return Meteor.call('riddleanswer.check', this.props.riddle._id, this.props.currentUser);
+		
 		
 		//const userAnwers = ReactDOM.findDOMNode(this.refs.userAnwser).value.trim();
 
