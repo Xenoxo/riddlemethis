@@ -15,6 +15,7 @@ export default class Riddle extends Component {
     this.state = {
       hasVoted: false,
       showAnswerBox: false,
+      solved: false,
     };
   }
 
@@ -100,10 +101,10 @@ export default class Riddle extends Component {
 		return (
 			<div className="riddle-object">
 			<div className="col-sm-12 riddle-container">
-					<div className={"upvote-box " + 
-						(this.props.voteStatus[this.props.riddle._id]['upvoted'] ? "upvoted" : "not-upvoted")
-					} 
-						onClick={this.voteOnThisRiddle.bind(this)}>
+					<div 
+						className={"upvote-box " + (this.props.voteStatus[this.props.riddle._id]['upvoted'] ? "upvoted" : "not-upvoted")} 
+						onClick={this.voteOnThisRiddle.bind(this)}
+					>
 						<i className="fa fa-chevron-up"></i>
 						<div className="vote-count">
 							{this.props.riddle.upvotes}
@@ -132,34 +133,35 @@ export default class Riddle extends Component {
 						}
 					</div>
 				
-
+					<div className="ribbon"><span>Solved!</span></div>
 				</div>
-			{ this.state.showAnswerBox ? 
-				<div className="col-sm-12 answer-box">
-					<form onSubmit={this.handleSubmitAnswer.bind(this)}>
-		        <input
-		        	className="answer-input"
-		          type="text"
-		          ref="userAnswer"
-		          placeholder="Type your answers here!"
-		        />
-		    	
-		      	<button
-		      		type="submit"
-		      		className="btn btn-success answer-submit"
-		      	>
-		      		Submit
-		      	</button>
-			    
-		      </form>
-		      <form onSubmit={this.handleGiveUp.bind(this)}>
-		      	<button type="submit" className="btn btn-danger give-up">Give Up</button>
-			    
-		      </form>
-				</div> : ''
-			}
+
+				{ this.state.showAnswerBox ? 
+					<div className="col-sm-12 answer-box">
+						<form onSubmit={this.handleSubmitAnswer.bind(this)}>
+			        <input
+			        	className="answer-input"
+			          type="text"
+			          ref="userAnswer"
+			          placeholder="Type your answers here!"
+			        />
+			    	
+			      	<button
+			      		type="submit"
+			      		className="btn btn-success answer-submit"
+			      	>
+			      		Submit
+			      	</button>
+				    
+			      </form>
+			      <form onSubmit={this.handleGiveUp.bind(this)}>
+			      	<button type="submit" className="btn btn-danger give-up">Give Up</button>
+				    
+			      </form>
+					</div> : ''
+				}
+					
 			</div>
-			
 			);
 		}
 }
