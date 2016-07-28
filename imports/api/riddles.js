@@ -68,19 +68,20 @@ Meteor.methods({
 	// Will test to see if user has ever 
 	// interacted with this riddle and upsert if not
 	// otherwise method will flip the existing value
+	//
 	// Also will inc/dec the upvote count for the given riddle
 	// 
 	'riddlevote.flip'(riddleId, user) { 
 		if (! this.userId) {
 			throw new Meteor.Error('must log in to upvote');
-		}		
-		// Check to see if the riddle is in the embedded document
+		}	
 
+		// ADD FEATURE: Check to see if the riddle is in the embedded document
 		let currentUser = Meteor.users.findOne(user._id);
 		let queryStr = "listofvoted."+riddleId+".upvoted";
 		let query = {};
 		let num;
-		let newResult;
+		let newResult; //what the method returns to the client -> affects the upvote ui
 
 		if ( currentUser['listofvoted'][riddleId] === undefined ) { //this is the case only if the riddle has never been interacted with
 
@@ -88,6 +89,7 @@ Meteor.methods({
 			newResult = true;
 			Meteor.users.upsert(user._id, {$set:query}); // upsert the new query
 			num = 1;
+
 		} else { //all other casese
 
 			newResult = !currentUser['listofvoted'][riddleId]['upvoted'];
@@ -104,21 +106,43 @@ Meteor.methods({
 	},
 
 
-	'riddleanswer.check'(riddleId, user) { 
+	//	could use significant refactoring
+	//	
+	'riddleanswer.check'(riddleId, user, userAnswer) { 
 		if (! this.userId) {
 			throw new Meteor.Error('must log in to upvote');
 		}		
-		//	Needs to loop through all existing answers for this riddle 
-		//	While submitted answer != current answer from riddle, keep going
-		//	return either true or false?
-
-		// test looping through all the answers
+		userAnswer = userAnswer.toLowerCase();
+		//	test looping through all the answers and returning
+		//	true only if answer matches (ignoring case)
+		
 		let riddle = Riddles.findOne(riddleId);
 		let theAnswer = riddle.answers;
-		console.log(theAnswer);
+		for (var i = theAnswer.length - 1; i >= 0; i--) {
+			if ( userAnswer === theAnswer[i] ){ //user answer matches existing answer
 
-		
+				let currentUser = Meteor.users.findOne(user._id);
+				let queryStr = "listofvoted."+riddleId+".solved";
+				let query = {};
+				let newResult;
+				query[queryStr] = true;
+				Meteor.users.upsert(user._id, {$set:query}); // upserts and updates query
+				
+				//
+				// find the riddle by id and increment solves by 1
+				// (+) should only do this if the riddle was previously unsolved to the user
+				//
+
+				Riddles.upsert({_id: riddleId}, {$inc:{'solves':1}});
+				console.log(Meteor.users.findOne(user._id));
+
+				return true;
+			}
+		}
+		return false;
 	},
+
+
 	// //checks to see if the riddle has ever been voted on
 	// // FUTURE -> slowly turn this block into the actual insert method
 	// //

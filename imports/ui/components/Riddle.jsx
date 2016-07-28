@@ -81,18 +81,19 @@ export default class Riddle extends Component {
 
 	handleGiveUp(event){
 		event.preventDefault();
-		console.log("y'all"+ReactDOM.findDOMNode(this.refs.userAnswer).value.trim());
+		console.log("this is the give up button " + ReactDOM.findDOMNode(this.refs.userAnswer).value.trim());
 	}
 
 	handleSubmitAnswer(event){
 		event.preventDefault();
-
-		console.log(ReactDOM.findDOMNode(this.refs.userAnswer).value.trim());
-		return Meteor.call('riddleanswer.check', this.props.riddle._id, this.props.currentUser);
+		let userAnswer = ReactDOM.findDOMNode(this.refs.userAnswer).value.trim();
+		Meteor.call('riddleanswer.check', this.props.riddle._id, this.props.currentUser, userAnswer, 
+			function(error, result){
+				console.log(result);
+			}
+		);
 		
 		
-		//const userAnwers = ReactDOM.findDOMNode(this.refs.userAnwser).value.trim();
-
 	}
 
 	render(){
