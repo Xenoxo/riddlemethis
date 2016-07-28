@@ -132,8 +132,11 @@ export default class Riddle extends Component {
 							</div> : ''
 						}
 					</div>
-				
-					<div className="ribbon"><span>Solved!</span></div>
+					{this.props.voteStatus[this.props.riddle._id]['solved'] ? 
+						<div className={(this.props.voteStatus[this.props.riddle._id]['solved'] ? "ribbon" : "")}>
+								<span>Solved!</span>
+						</div> : ''
+					}
 				</div>
 
 				{ this.state.showAnswerBox ? 
