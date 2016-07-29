@@ -144,10 +144,10 @@
    overflow: hidden;
    width: 75px; height: 75px; 
    text-align: right;
+   font-size: 10px;
 }
 
-.ribbon span {
-   font-size: 10px;
+.ribbon span.revealed {
    color: #fff; 
    text-transform: uppercase; 
    text-align: center;
@@ -155,7 +155,22 @@
    transform: rotate(45deg);
    -webkit-transform: rotate(45deg); /* Needed for Safari */
    width: 100px; display: block;
-   background: #79A70A;
+   background: #AB0A1A;
+   background: linear-gradient(#D51A2b 0%, #AB0A1A 100%);
+   box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+   position: absolute;
+   top: 19px; right: -21px;
+}
+
+.ribbon span.solved {
+   color: #fff;
+   text-transform: uppercase; 
+   text-align: center;
+   font-weight: bold; line-height: 20px;
+   transform: rotate(45deg);
+   -webkit-transform: rotate(45deg); /* Needed for Safari */
+   width: 100px; display: block;
+   background: #AB0A1A;
    background: linear-gradient(#9BC90D 0%, #79A70A 100%);
    box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
    position: absolute;

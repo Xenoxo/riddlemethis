@@ -131,7 +131,7 @@ export default class Riddle extends Component {
 					</div>
 					{Meteor.user() && this.props.voteStatus[this.props.riddle._id]['solved'] ? 
 						<div className={(this.props.voteStatus[this.props.riddle._id]['solved'] ? "ribbon" : "")}>
-								<span>Solved!</span>
+								<span className="solved">Solved!</span>
 						</div> : ''
 					}
 				</div>
