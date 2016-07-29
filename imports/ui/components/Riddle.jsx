@@ -23,21 +23,14 @@ export default class Riddle extends Component {
   	return this.props.currentUser['listofvoted']
   }
 
-  componentWillMount() {
-  	if (this.props.currentUser['listofvoted'][this.props.riddle._id] !== undefined) {
-  		let thisUser = this.props.currentUser;
-	  	// this.setState({
-	  	// 	hasVoted: thisUser['listofvoted'][this.props.riddle._id]['upvoted'];
-	  	// }) 
-  	}
-  }
+  // (-) currently not being used
+  // componentWillMount() {
+  // 	if ( Meteor.user() && (this.props.currentUser['listofvoted'][this.props.riddle._id] !== undefined) ) {
+  // 		let thisUser = this.props.currentUser;
+  // 	}
+  // }
 
   componentDidMount() {
-  	// if (this.props.currentUser['listofvoted'][this.props.riddle._id] !== undefined){
-			// this.setState({
-	  // 		hasVoted: this.props.currentUser['listofvoted'][this.props.riddle._id]['upvoted'],
-	  // 	})  	
-  	// }
   }
   
   toggleShowAnwerBox() {
@@ -69,16 +62,20 @@ export default class Riddle extends Component {
 		Meteor.call('riddles.remove', this.props.riddle._id);
 	}
 
-	checkIfVoted(){ //check to see if user has voted at all on the riddle
-		return Meteor.call('riddlevote.check', this.props.riddle._id, this.props.currentUser);
-	}	
+	// (-) Don't think this method is needed
+	// checkIfVoted(){ //check to see if user has voted at all on the riddle
+	// 	return Meteor.call('riddlevote.check', this.props.riddle._id, this.props.currentUser);
+	// }	
 
-	//use this method to change the state which will dictate what is to be shown
-	//regarding the answerbox
-	getUpvoted(){
-		//console.log(this.props.voteStatus[this.props.riddle._id]['upvoted']);
-		return this.props.voteStatus[this.props.riddle._id]['upvoted']; 
-	}
+	// // (-) Don't think this method is needed
+	// //use this method to change the state which will dictate what is to be shown
+	// //regarding the answerbox
+	// getUpvoted(){
+	// 	//console.log(this.props.voteStatus[this.props.riddle._id]['upvoted']);
+	// 	if (Meteor.user()) {
+	// 		return this.props.voteStatus[this.props.riddle._id]['upvoted']; 
+	// 	}
+	// }
 
 	handleGiveUp(event){
 		event.preventDefault();
@@ -102,7 +99,7 @@ export default class Riddle extends Component {
 			<div className="riddle-object">
 			<div className="col-sm-12 riddle-container">
 					<div 
-						className={"upvote-box " + (this.props.voteStatus[this.props.riddle._id]['upvoted'] ? "upvoted" : "not-upvoted")} 
+						className={"upvote-box " + (Meteor.user() && this.props.voteStatus[this.props.riddle._id]['upvoted'] ? "upvoted" : "not-upvoted")} 
 						onClick={this.voteOnThisRiddle.bind(this)}
 					>
 						<i className="fa fa-chevron-up"></i>
@@ -132,7 +129,7 @@ export default class Riddle extends Component {
 							</div> : ''
 						}
 					</div>
-					{this.props.voteStatus[this.props.riddle._id]['solved'] ? 
+					{Meteor.user() && this.props.voteStatus[this.props.riddle._id]['solved'] ? 
 						<div className={(this.props.voteStatus[this.props.riddle._id]['solved'] ? "ribbon" : "")}>
 								<span>Solved!</span>
 						</div> : ''
@@ -169,13 +166,21 @@ export default class Riddle extends Component {
 		}
 }
 
+// train of thought on figuring this out...
+// trying to make non logged in user work correctly
+// discovered that the below code is passing voteStatus while calling on Meteor.user() which returns undefined if user not logged in
+// to fix - trying to store voteStatus:Meteor.user()['listofvoted']; in a variable so that I can mess with condidions before the return
+// if I can store + conditions, then I can do a Meteor.user() check and only return if true
+
 export default theRiddleContainer = createContainer(({ params }) => {
-  let theUser = Meteor.user();
-  // console.log(Meteor.user()['listofvoted']);
-  // console.log("from Riddle " + params);
+  let voteStatus;
+  if (Meteor.user()){
+  	voteStatus = Meteor.user()['listofvoted'];
+  }
+  
+  console.log(voteStatus);
   return {
-  	voteStatus:Meteor.user()['listofvoted'],
-	    // currentUserVote: theUser['listofvoted'],
+  	voteStatus,
     }
 
 }, Riddle);

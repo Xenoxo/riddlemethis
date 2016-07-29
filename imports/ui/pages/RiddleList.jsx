@@ -17,7 +17,6 @@ class RiddleList extends Component {
 				key={riddle._id}
 				riddle={riddle}
 				currentUser={this.props.currentUser}
-
 				voteStatus={this.props.voteStatus}
 
 				//not sure if below is needed
