@@ -129,9 +129,12 @@ export default class Riddle extends Component {
 							</div> : ''
 						}
 					</div>
-					{Meteor.user() && this.props.voteStatus[this.props.riddle._id]['solved'] ? 
-						<div className={(this.props.voteStatus[this.props.riddle._id]['solved'] ? "ribbon" : "")}>
-								<span className="solved">Solved!</span>
+					{ 
+						//	checks to see if ribbon is needed at all
+						//
+						Meteor.user() && (this.props.voteStatus[this.props.riddle._id]['solved'] !== undefined) ? 
+						<div className="ribbon">
+								<span className={(this.props.voteStatus[this.props.riddle._id]['solved'] ? "solved" : "revealed")}>Solved!</span>
 						</div> : ''
 					}
 				</div>
