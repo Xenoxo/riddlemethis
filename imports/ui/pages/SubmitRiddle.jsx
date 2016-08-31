@@ -11,8 +11,10 @@ export default class SubmitRiddle extends Component {
 	handleSubmit(event){
 		event.preventDefault();
 		// needs to refactor to allow parsing of retrieved content into array
-		const theRiddle = ReactDOM.findDOMNode(this.refs.theRiddle).value.trim();
-		const theAnswer = ReactDOM.findDOMNode(this.refs.theAnswer).value.trim();
+		let theRiddle = ReactDOM.findDOMNode(this.refs.theRiddle).value.trim();		
+		let tempAnswer = ReactDOM.findDOMNode(this.refs.theAnswer).value.trim();
+		console.log("this is the temp answer " + tempAnswer);
+		let theAnswer = tempAnswer.split(",");
 
 		if (theRiddle !== '' && theAnswer !== ''){
 			Meteor.call('riddles.insert', theRiddle, theAnswer, function (error, result){

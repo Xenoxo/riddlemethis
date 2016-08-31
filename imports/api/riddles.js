@@ -22,7 +22,7 @@ Meteor.methods({
 	//
 	'riddles.insert'(riddle, answer) {
 		check(riddle, String);
-		check(answer, String);
+		check(answer, Array);
 
 		// Make sure the user is logged in before inserting
 		if (! this.userId) {
@@ -148,6 +148,12 @@ Meteor.methods({
 		}
 		let riddle = Riddles.findOne(riddleId);
 		let theAnswer = riddle.answers;
+		let currentUser = Meteor.users.findOne(user._id);
+		let queryStr = "listofvoted."+riddleId+".solved";
+		let query = {};
+		let newResult;
+		query[queryStr] = false;
+		Meteor.users.upsert(user._id, {$set:query});		
 		return theAnswer;
 	},
 
