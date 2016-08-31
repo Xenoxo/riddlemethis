@@ -1,18 +1,6 @@
 
 Accounts.onCreateUser(function(options, user) {
-  user.listofvoted = {
-  	"riddle_id_goeshere":
-  		{	
-  			"upvoted":false,
-  			"solved":false,
-  		},
-  	
-  	"other_riddle_id":
-  		{	
-  			"upvoted":false,
-  			"solved":false,
-  		},  	
-  };
+  user.listofvoted = {};
   return user;
 });
 

@@ -9,10 +9,10 @@ function composer(props, onData) {
   if (handle.ready()) {
     // console.log('users ready!');
 		if (Meteor.user()) {
-    const thisuser = Meteor.users.find(Meteor.user()._id).fetch();
-    console.log(thisuser);
-    onData(null, {thisuser});
-    } else{
+	    const thisuser = Meteor.users.find(Meteor.user()._id).fetch();
+	    console.log(thisuser);
+	    onData(null, {thisuser});
+    } else {
     	const allusers = Meteor.users.find().fetch();	
     	onData(null, {allusers});
     }

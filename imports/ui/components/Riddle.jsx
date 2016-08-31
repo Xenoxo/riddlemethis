@@ -19,8 +19,12 @@ export default class Riddle extends Component {
     };
   }
 
-  getVotedStatus() {
-  	return this.props.currentUser['listofvoted']
+  hasInteracted() {
+  	if (Meteor.user()){
+			console.log("this is hasvoted " + this.props.riddle._id === this.props.voteStatus[this.props.riddle._id]);
+	  	return this.props.voteStatus[this.props.riddle._id] !== undefined;
+  	}
+  	return false;
   }
 
   // (-) currently not being used
@@ -97,9 +101,9 @@ export default class Riddle extends Component {
 	render(){
 		return (
 			<div className="riddle-object">
-			<div className="col-sm-12 riddle-container">
+			<div className={"col-sm-12 riddle-container"}>
 					<div 
-						className={"upvote-box " + (Meteor.user() && this.props.voteStatus[this.props.riddle._id]['upvoted'] ? "upvoted" : "not-upvoted")} 
+						className={"upvote-box " + (this.hasInteracted() ? (Meteor.user() && this.props.voteStatus[this.props.riddle._id]['upvoted'] ? "upvoted" : "not-upvoted") : "not-upvoted")} 
 						onClick={this.voteOnThisRiddle.bind(this)}
 					>
 						<i className="fa fa-chevron-up"></i>
@@ -132,7 +136,8 @@ export default class Riddle extends Component {
 					{ 
 						//	checks to see if ribbon is needed at all
 						//
-						Meteor.user() && (this.props.voteStatus[this.props.riddle._id]['solved'] !== undefined) ? 
+						// Meteor.user() && (this.props.voteStatus[this.props.riddle._id]['solved'] !== undefined) 
+						this.hasInteracted() ? 
 						<div className="ribbon">
 								<span className={(this.props.voteStatus[this.props.riddle._id]['solved'] ? "solved" : "revealed")}>Solved!</span>
 						</div> : ''
@@ -181,7 +186,7 @@ export default theRiddleContainer = createContainer(({ params }) => {
   	voteStatus = Meteor.user()['listofvoted'];
   }
   
-  console.log(voteStatus);
+  console.log("this is votestatus in the createcontainer method...."+voteStatus);
   return {
   	voteStatus,
     }
