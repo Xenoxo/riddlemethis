@@ -59,6 +59,12 @@ export default class Riddle extends Component {
 	handleGiveUp(event){
 		event.preventDefault();
 		console.log("this is the give up button " + ReactDOM.findDOMNode(this.refs.userAnswer).value.trim());
+		Meteor.call('riddleanswer.reveal', this.props.riddle._id, this.props.currentUser, 
+			function(error, result){
+				console.log(result);
+				window.alert(result);
+			}
+		);
 	}
 
 	handleSubmitAnswer(event){

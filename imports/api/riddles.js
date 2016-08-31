@@ -142,6 +142,15 @@ Meteor.methods({
 		return false;
 	},
 
+'riddleanswer.reveal'(riddleId, user) { 
+		if (! this.userId) {
+			throw new Meteor.Error('must log in to upvote');
+		}
+		let riddle = Riddles.findOne(riddleId);
+		let theAnswer = riddle.answers;
+		return theAnswer;
+	},
+
 
 	// //checks to see if the riddle has ever been voted on
 	// // FUTURE -> slowly turn this block into the actual insert method
