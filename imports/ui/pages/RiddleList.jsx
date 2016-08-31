@@ -38,22 +38,11 @@ class RiddleList extends Component {
 export default RiddleContainer = createContainer(({ params }) => {
 	const riddleSubscription = Meteor.subscribe('riddles');
   const ready1 = Meteor.subscribe('users');
-  
-  // const upvotedStatus = Meteor.user()
-  
   const { id } = params;
-  //console.log("from RiddleList " + params);
-  
-  // const theUser = Meteor.users.findOne(Meteor.userId());
   return {	
 	  	riddles: Riddles.find({}).fetch(),
 	    currentUser: Meteor.user(),
 	    currentUserId: Meteor.userId(),
-
-	    // pass in the user's specific query of riddles
-
-	    // 1. pass in the entire listofvoted
-	    // for some reason this causes an error......
 	    voteStatus: this.thisUser,
     }
 

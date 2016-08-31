@@ -26,16 +26,6 @@ export default class Riddle extends Component {
   	}
   	return false;
   }
-
-  // (-) currently not being used
-  // componentWillMount() {
-  // 	if ( Meteor.user() && (this.props.currentUser['listofvoted'][this.props.riddle._id] !== undefined) ) {
-  // 		let thisUser = this.props.currentUser;
-  // 	}
-  // }
-
-  componentDidMount() {
-  }
   
   toggleShowAnwerBox() {
   	this.setState({
@@ -65,21 +55,6 @@ export default class Riddle extends Component {
 	deleteThisRiddle(){	//Removes the given riddle from the backend
 		Meteor.call('riddles.remove', this.props.riddle._id);
 	}
-
-	// (-) Don't think this method is needed
-	// checkIfVoted(){ //check to see if user has voted at all on the riddle
-	// 	return Meteor.call('riddlevote.check', this.props.riddle._id, this.props.currentUser);
-	// }	
-
-	// // (-) Don't think this method is needed
-	// //use this method to change the state which will dictate what is to be shown
-	// //regarding the answerbox
-	// getUpvoted(){
-	// 	//console.log(this.props.voteStatus[this.props.riddle._id]['upvoted']);
-	// 	if (Meteor.user()) {
-	// 		return this.props.voteStatus[this.props.riddle._id]['upvoted']; 
-	// 	}
-	// }
 
 	handleGiveUp(event){
 		event.preventDefault();
@@ -135,8 +110,6 @@ export default class Riddle extends Component {
 					</div>
 					{ 
 						//	checks to see if ribbon is needed at all
-						//
-						
 						this.hasInteracted() && ( Meteor.user() && (this.props.voteStatus[this.props.riddle._id]['solved'] !== undefined) ) ? 
 						<div className="ribbon">
 								<span className={(this.props.voteStatus[this.props.riddle._id]['solved'] ? "solved" : "revealed")}>Solved!</span>
@@ -174,19 +147,11 @@ export default class Riddle extends Component {
 		}
 }
 
-// train of thought on figuring this out...
-// trying to make non logged in user work correctly
-// discovered that the below code is passing voteStatus while calling on Meteor.user() which returns undefined if user not logged in
-// to fix - trying to store voteStatus:Meteor.user()['listofvoted']; in a variable so that I can mess with condidions before the return
-// if I can store + conditions, then I can do a Meteor.user() check and only return if true
-
 export default theRiddleContainer = createContainer(({ params }) => {
   let voteStatus;
   if (Meteor.user()){
   	voteStatus = Meteor.user()['listofvoted'];
   }
-  
-  console.log("this is votestatus in the createcontainer method...."+voteStatus);
   return {
   	voteStatus,
     }
