@@ -10,26 +10,29 @@ class HeaderBarContainer extends Component {
 		return (
 			<div className="jumbotron header-container">
         <div>
-          <Link to="/">
-            <h2 className="header-text">We got the best riddles</h2>
-          </Link>
-          { this.props.currentUser ? 
-            <div>Welcome {this.props.currentUser.username}, time to be the riddle-champ!</div>
-            : "Got a good riddle? Login/Sign Up to submit!"
-          }
-        </div>
-
-        <div className="user-options">
-          <AccountsUIWrapper/>
-          { this.props.currentUser ?
-            <Link to="/submit-riddle">
-              <button className="btn btn-info">
-                New Riddle
-              </button>
+          
+            <Link to="/">
+              <h2 className="header-text">We got the best riddles</h2>
             </Link>
-            : "Login to Submit"
-          }
-        </div>	
+            { this.props.currentUser ? 
+              <div>Welcome <strong>{this.props.currentUser.username}</strong>, time to be the riddle-champ!
+                <div>Sort by...<a className="sortButton" href="#" >Post Date <i className="fa fa-caret-down" aria-hidden="true"></i></a></div>
+              </div>
+              : "Got a good riddle? Login/Sign Up to submit!"
+            }
+          </div>
+
+          <div className="user-options">
+            <AccountsUIWrapper/>
+            { this.props.currentUser ?
+              <Link to="/submit-riddle">
+                <button className="btn btn-info">
+                  New Riddle
+                </button>
+              </Link>
+              : "Login to Submit"
+            }
+          </div>
 			</div>
 		);
 	}
