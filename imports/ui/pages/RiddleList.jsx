@@ -28,6 +28,7 @@ class RiddleList extends Component {
 	render() {
 		return (
 			<div>
+				{ Meteor.user() ? <div>Sort by...<a className="sortButton" href="#" >Post Date <i className="fa fa-caret-down" aria-hidden="true"></i></a></div> : '' }
 	  		{ this.renderRiddles() }
 			</div>
 		);
@@ -36,7 +37,7 @@ class RiddleList extends Component {
 }
 
 export default RiddleContainer = createContainer(({ params }) => {
-	const riddleSubscription = Meteor.subscribe('riddles');
+	let riddleSubscription = Meteor.subscribe('riddles');
   const ready1 = Meteor.subscribe('users');
   const { id } = params;
   return {	

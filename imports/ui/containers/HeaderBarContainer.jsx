@@ -15,9 +15,7 @@ class HeaderBarContainer extends Component {
               <h2 className="header-text">We got the best riddles</h2>
             </Link>
             { this.props.currentUser ? 
-              <div>Welcome <strong>{this.props.currentUser.username}</strong>, time to be the riddle-champ!
-                <div>Sort by...<a className="sortButton" href="#" >Post Date <i className="fa fa-caret-down" aria-hidden="true"></i></a></div>
-              </div>
+              <div>Welcome <strong>{this.props.currentUser.username}</strong>, time to be the riddle-champ!</div>
               : "Got a good riddle? Login/Sign Up to submit!"
             }
           </div>
