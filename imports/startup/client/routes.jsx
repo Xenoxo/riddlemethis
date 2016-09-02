@@ -6,10 +6,6 @@ import App from '../../ui/layouts/App.jsx';
 import RiddleListContainer from '../../ui/pages/RiddleListContainer.jsx';
 import SubmitRiddle from '../../ui/pages/SubmitRiddle.jsx';
 
-// import RiddleList from '../../ui/pages/RiddleList.jsx';
-
-// import { HeaderBar } from '../../ui/containers/HeaderBar.jsx';
-
 Meteor.startup( () => {
 	render(
 		<Router history={ browserHistory }>
