@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
-import App from '../../ui/containers/App.jsx';
+import App from '../../ui/layouts/App.jsx';
 
 import SubmitRiddle from '../../ui/pages/SubmitRiddle.jsx';
 import RiddleContainer from '../../ui/containers/RiddleContainer.jsx';
