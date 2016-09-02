@@ -70,7 +70,7 @@ export default class Riddle extends Component {
 	handleSubmitAnswer(event){
 		event.preventDefault();
 		let userAnswer = ReactDOM.findDOMNode(this.refs.userAnswer).value.trim();
-		Meteor.call('riddleanswer.check', this.props.riddle._id, this.props.currentUser, userAnswer, 
+		Meteor.call('riddleanswer.check', this.props.riddle._id, Meteor.user(), userAnswer, 
 			function(error, result){
 				console.log(result);
 			}
@@ -108,7 +108,7 @@ export default class Riddle extends Component {
 						<button className="btn btn-primary" onClick={this.toggleShowAnwerBox.bind(this)}>
 							<i className="fa fa-question fa-3x"></i>
 						</button>
-						{ this.props.currentUserId === this.props.riddle.author ? 
+						{ Meteor.userId() === this.props.riddle.author ? 
 							<div className="delete" onClick={this.deleteThisRiddle.bind(this)}>
 								delete
 							</div> : ''
