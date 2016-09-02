@@ -1,9 +1,12 @@
+import { Riddles } from '../../api/riddles.js';
 import React, { Component } from 'react';
 import RiddleList from '../pages/RiddleList.jsx';
 import { composeWithTracker } from 'react-komposer';
 import { composeAll} from 'react-komposer';
 
-function composer( props, onData ) {
+
+
+const userComposer = function( props, onData ) {
 	const handle = Meteor.subscribe( 'users' );
   if ( handle.ready() ) {
 		if ( Meteor.user() ) {
@@ -13,7 +16,34 @@ function composer( props, onData ) {
     	const allusers = Meteor.users.find().fetch();	
     	onData( null, {allusers} );
     }
-    onData
+  } else {
+  	
+  	console.log( 'not ready yet....this is where you put loading things' )
+  }
+
+  return () => { console.log( 'Container disposed!') };
+};
+
+
+// export default RiddleContainer = createContainer(({ params }) => {
+// 	let riddleSubscription = Meteor.subscribe('riddles');
+//   const ready1 = Meteor.subscribe('users');
+//   const { id } = params;
+//   return {	
+// 	  	riddles: Riddles.find({}).fetch(),
+// 	    currentUser: Meteor.user(),
+// 	    currentUserId: Meteor.userId(),
+// 	    voteStatus: this.thisUser,
+//     }
+
+// }, RiddleList);
+
+const riddleComposer = function( props, onData ) {
+	const handle = Meteor.subscribe('riddles');
+  if ( handle.ready() ) {
+    const riddles = Riddles.find({}).fetch();
+    onData( null, {riddles} );
+
   } else {
   	
   	console.log( 'not ready yet....this is where you put loading things' )
@@ -24,13 +54,11 @@ function composer( props, onData ) {
 
 
 export default composeAll(
-  composeWithTracker(composer),
+  composeWithTracker(userComposer),
+  composeWithTracker(riddleComposer),
 )(RiddleList)
 
-// export default composeAll(
-//   composeWithTracker(composer),
-//   composeWithTracker(composer)
-// )(RiddleList)
+
 
 // old working code
 //

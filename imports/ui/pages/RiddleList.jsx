@@ -41,8 +41,8 @@ export default RiddleContainer = createContainer(({ params }) => {
   const ready1 = Meteor.subscribe('users');
   const { id } = params;
   return {	
-	  	riddles: Riddles.find({}).fetch(),
-	    currentUser: Meteor.user(),
+
+	    // currentUser: Meteor.user(),
 	    currentUserId: Meteor.userId(),
 	    voteStatus: this.thisUser,
     }

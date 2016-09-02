@@ -42,7 +42,7 @@ export default class Riddle extends Component {
   //  
 	voteOnThisRiddle(){
 		let newState;
-		Meteor.call('riddlevote.flip', this.props.riddle._id, this.props.currentUser, 
+		Meteor.call('riddlevote.flip', this.props.riddle._id, Meteor.user(), 
 			function(error,result){
 				if (error){
 					console.log(error);	
@@ -59,7 +59,7 @@ export default class Riddle extends Component {
 	handleGiveUp(event){
 		event.preventDefault();
 		console.log("this is the give up button " + ReactDOM.findDOMNode(this.refs.userAnswer).value.trim());
-		Meteor.call('riddleanswer.reveal', this.props.riddle._id, this.props.currentUser, 
+		Meteor.call('riddleanswer.reveal', this.props.riddle._id, Meteor.user(), 
 			function(error, result){
 				console.log(result);
 				window.alert(result);
