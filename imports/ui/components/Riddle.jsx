@@ -75,8 +75,6 @@ export default class Riddle extends Component {
 				console.log(result);
 			}
 		);
-		
-		
 	}
 
 	render(){

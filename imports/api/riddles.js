@@ -2,10 +2,10 @@ import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 
-// import { Meteor } from 'meteor/mongo';
-
 export const Riddles = new Meteor.Collection('riddles');
-	
+
+//	Server side methods to publish the two collections
+//	
 if (Meteor.isServer) {
 	Meteor.publish('riddles', function riddlesPublication(){
 		return Riddles.find();
@@ -16,16 +16,14 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-
-	//
-	//	Method to insert riddle
-	//
+	
+	/*
+		Method to insert riddle and subsequently creates a record in the associated user's account
+	*/
 	'riddles.insert'(riddle, answer) {
 		check(riddle, String);
 		check(answer, Array);
-
-		// Make sure the user is logged in before inserting
-		if (! this.userId) {
+		if (! this.userId) {// Make sure the user is logged in before inserting
 			throw new Meteor.Error('not-authorized');
 		}
 
@@ -44,7 +42,7 @@ Meteor.methods({
 		let queryStr = "listofvoted."+riddleId+".upvoted";
 		let query = {};
 		query[queryStr] = false;
-		Meteor.users.upsert(this.userId, {$set:query}); // upsert the new query
+		Meteor.users.upsert(this.userId, {$set:query}); //updates user's account with record of this riddle
 	},
 
 	'riddles.remove'(riddleId) {
@@ -52,46 +50,35 @@ Meteor.methods({
 		Riddles.remove(riddleId);
 	},
 
-	'riddles.upvote'(riddleId, theUser) {
-		check(riddleId, String);
-		check(theUser, String)
+	/*
+		Method to give a riddle an upvote OR take one away
+		if the riddle already has one from this user.	
+		
+		It tests to see if user has ever interacted with this 
+		riddle and upsert a new record if not, otherwise the
+		method will increase/decrease existing value by 1
 
-		if (! this.userId) {
-			throw new Meteor.Error('must log in to upvote');
-		}
-
-		Riddles.update({ _id: riddleId }, { $inc: {upvotes:1} });
-	
-	},
-
-	//
-	// Will test to see if user has ever 
-	// interacted with this riddle and upsert if not
-	// otherwise method will flip the existing value
-	//
-	// Also will inc/dec the upvote count for the given riddle
-	// 
+		Returns boolean value
+	*/
 	'riddlevote.flip'(riddleId, user) { 
 		if (! this.userId) {
 			throw new Meteor.Error('must log in to upvote');
 		}	
 
-		// ADD FEATURE: Check to see if the riddle is in the embedded document
+		// Builds a query
 		let currentUser = Meteor.users.findOne(user._id);
 		let queryStr = "listofvoted."+riddleId+".upvoted";
 		let query = {};
 		let num;
 		let newResult; //what the method returns to the client -> affects the upvote ui
 
-		if ( currentUser['listofvoted'][riddleId] === undefined ) { //this is the case only if the riddle has never been interacted with
-
+		if ( currentUser['listofvoted'][riddleId] === undefined ) { //this is the case ONLY if the riddle has never been interacted with
 			query[queryStr] = true;
 			newResult = true;
 			Meteor.users.upsert(user._id, {$set:query}); // upsert the new query
 			num = 1;
 
 		} else { //all other casese
-
 			newResult = !currentUser['listofvoted'][riddleId]['upvoted'];
 			if (newResult) { //newResult is already flipped...
 				num = 1;
@@ -105,17 +92,19 @@ Meteor.methods({
 		return newResult;
 	},
 
+	/*
+		The method tests the user answer by looping through
+		all the answers of the riddle and if a match (ignoring case)
+		is found, the method then inserts an entry in the user's
+		profile and updates the riddle's solve count.
 
-	//	could use significant refactoring
-	//	
+		Returns true only if answer matches (ignoring case).
+	*/
 	'riddleanswer.check'(riddleId, user, userAnswer) { 
 		if (! this.userId) {
 			throw new Meteor.Error('must log in to upvote');
 		}		
 		userAnswer = userAnswer.toLowerCase();
-		//	test looping through all the answers and returning
-		//	true only if answer matches (ignoring case)
-		
 		let riddle = Riddles.findOne(riddleId);
 		let theAnswer = riddle.answers;
 		for (var i = theAnswer.length - 1; i >= 0; i--) {
@@ -134,40 +123,30 @@ Meteor.methods({
 				//
 
 				Riddles.upsert({_id: riddleId}, {$inc:{'solves':1}});
-				console.log(Meteor.users.findOne(user._id));
-
 				return true;
 			}
 		}
 		return false;
 	},
 
-'riddleanswer.reveal'(riddleId, user) { 
-		if (! this.userId) {
-			throw new Meteor.Error('must log in to upvote');
-		}
-		let riddle = Riddles.findOne(riddleId);
-		let theAnswer = riddle.answers;
-		let currentUser = Meteor.users.findOne(user._id);
-		let queryStr = "listofvoted."+riddleId+".solved";
-		let query = {};
-		let newResult;
-		query[queryStr] = false;
-		Meteor.users.upsert(user._id, {$set:query});		
-		return theAnswer;
-	},
-
-
-	// //checks to see if the riddle has ever been voted on
-	// // FUTURE -> slowly turn this block into the actual insert method
-	// //
-	// //	-focus on being able to turn on/off for the riddle based on clicking on a button
-	// //	-wire this up to work with actual riddles
-	
-	// 'riddlevote.check'(riddleId, user) {
-	// 	let temp = Meteor.users.findOne({'_id':user._id}, query).listofvoted.riddle_id_goeshere.upvoted
-	// 	console.log(temp);
-	// 	return temp;
-	// },
+	/*
+		Method alerts user to the answers of the riddle and then counts
+		the riddle as solved. Increase the "reveal" count of the riddle by 1
+	*/
+	'riddleanswer.reveal'(riddleId, user) { 
+			if (! this.userId) {
+				throw new Meteor.Error('must log in to upvote');
+			}
+			let riddle = Riddles.findOne(riddleId);
+			let theAnswer = riddle.answers;
+			let currentUser = Meteor.users.findOne(user._id);
+			let queryStr = "listofvoted."+riddleId+".solved";
+			let query = {};
+			let newResult;
+			query[queryStr] = false;
+			Meteor.users.upsert(user._id, {$set:query});
+			Riddles.upsert({_id: riddleId}, {$inc:{'reveals':1}});
+			return theAnswer;
+		},
 
 });
