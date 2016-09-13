@@ -5,6 +5,8 @@ import ReactDOM from 'react-dom';
 import { Riddles } from '../../api/riddles';
 import { createContainer } from 'meteor/react-meteor-data';
 
+import { RiddleContent } from './RiddleContent.jsx';
+
 
 export default class Riddle extends Component {
   
@@ -107,17 +109,13 @@ export default class Riddle extends Component {
 								{this.props.riddle.upvotes}
 							</div>
 						</div>
-						
 
-						<div className="riddle-content">
-							<h3>
-								{this.props.riddle.riddle}
-							</h3>
-							<div className="riddle-details">
-								Submitted by {this.props.riddle.username} on {this.props.riddle.submitted.toDateString()}
-							</div>
-						</div>
-
+						<RiddleContent
+							className="riddle-content"
+							riddle={this.props.riddle.riddle}
+							username={this.props.riddle.username}
+							date={this.props.riddle.submitted.toDateString()}
+						/>
 
 						<div className="solved-spacer">
 							<button className="btn btn-primary" onClick={this.toggleShowAnwerBox.bind(this)}>
