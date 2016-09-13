@@ -6,6 +6,7 @@ import { Riddles } from '../../api/riddles';
 import { createContainer } from 'meteor/react-meteor-data';
 
 import { RiddleContent } from './RiddleContent.jsx';
+import { UpvoteBox } from './UpvoteBox.jsx';
 
 
 export default class Riddle extends Component {
@@ -94,22 +95,20 @@ export default class Riddle extends Component {
 		);
 	}
 
+
+
 	render(){
 		return (
 			<div className="riddle-object">
 
 				<div className={"col-sm-12 riddle-container"}>
+								
+						<UpvoteBox
+							className={"upvote-box " + (this.hasInteracted() ? ( Meteor.user() && this.props.voteStatus[this.props.riddle._id]['upvoted'] ? "upvoted" : "not-upvoted" ) : "not-upvoted")}
+							upvoteHandler={this.voteOnThisRiddle.bind(this)}
+							upvotes={this.props.riddle.upvotes}
+						/>
 						
-
-						<div 
-							className={"upvote-box " + (this.hasInteracted() ? ( Meteor.user() && this.props.voteStatus[this.props.riddle._id]['upvoted'] ? "upvoted" : "not-upvoted" ) : "not-upvoted")} 
-							onClick={this.voteOnThisRiddle.bind(this)} >
-							<i className="fa fa-chevron-up"></i>
-							<div className="vote-count">
-								{this.props.riddle.upvotes}
-							</div>
-						</div>
-
 						<RiddleContent
 							className="riddle-content"
 							riddle={this.props.riddle.riddle}
