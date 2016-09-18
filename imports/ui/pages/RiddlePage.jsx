@@ -4,9 +4,18 @@ import Riddle from '../components/Riddle.jsx';
 import RiddleListContainer from './RiddleListContainer.jsx';
 
 export default class RiddlePage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sortorder: -1,
+    };
+  }
 
 	handleSort(){
-		console.log("works!");
+		//console.log("this is the state "+(this.state.sortorder * 5));
+  	this.setState({
+  		sortorder: ((this.state.sortorder) * -1),
+  	});
 	}
 	render() {
 		// console.log("from riddlePage "+ this.props.thisuser);
@@ -19,7 +28,7 @@ export default class RiddlePage extends Component {
 							Post Date <i className="fa fa-caret-down" aria-hidden="true"></i>
 						</a>
 					</div>		
-	  		<RiddleListContainer test={ true }/>
+	  		<RiddleListContainer test={ this.state.sortorder }/>
 			</div>
 		);
 	}

@@ -13,7 +13,6 @@ export default class RiddleList extends Component {
 	}
 
 	render() {
-		console.log("from the list"+Meteor.user());
 		return (
 			<div>
 	  		{ this.renderRiddles() }

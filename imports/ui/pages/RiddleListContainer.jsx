@@ -33,10 +33,10 @@ const userComposer = function( props, onData ) {
 const riddleComposer = function( props, onData ) {
 	const handle = Meteor.subscribe('riddles');
 
-  if ( props.true ){
-    console.log('TRUE');
+  if ( props.test === 1 ){
+    console.log('1');
   } else {
-    console.log('FALSE');
+    console.log(props.test);
   }
 
   if ( handle.ready() ) {
