@@ -7,6 +7,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 
 import { RiddleContent } from './RiddleContent.jsx';
 import { UpvoteBox } from './UpvoteBox.jsx';
+import { SolvedSpacer } from './SolvedSpacer.jsx';
 
 
 export default class Riddle extends Component {
@@ -44,7 +45,7 @@ export default class Riddle extends Component {
 	/*
 		Removes the given riddle from the backend and by proxy, the front end
 	*/  
-	deleteThisRiddle(){
+	deleteRiddle(){
 		Meteor.call('riddles.remove', this.props.riddle._id);
 	}
 
@@ -62,7 +63,7 @@ export default class Riddle extends Component {
 	/*
 		Toggles the status of the answer box
 	*/  
-  toggleShowAnwerBox() {
+  toggleAnswerBox() {
   	this.setState({
   		showAnswerBox: !this.state.showAnswerBox,
   	})
@@ -105,10 +106,10 @@ export default class Riddle extends Component {
 								
 						<UpvoteBox
 							className={"upvote-box " + (this.hasInteracted() ? ( Meteor.user() && this.props.voteStatus[this.props.riddle._id]['upvoted'] ? "upvoted" : "not-upvoted" ) : "not-upvoted")}
-							upvoteHandler={this.voteOnThisRiddle.bind(this)}
 							upvotes={this.props.riddle.upvotes}
+							upvoteHandler={this.voteOnThisRiddle.bind(this)}
 						/>
-						
+
 						<RiddleContent
 							className="riddle-content"
 							riddle={this.props.riddle.riddle}
@@ -116,18 +117,14 @@ export default class Riddle extends Component {
 							date={this.props.riddle.submitted.toDateString()}
 						/>
 
-						<div className="solved-spacer">
-							<button className="btn btn-primary" onClick={this.toggleShowAnwerBox.bind(this)}>
-								<i className="fa fa-question fa-3x"></i>
-							</button>
-							{ Meteor.userId() === this.props.riddle.author ? 
-								<div className="delete" onClick={this.deleteThisRiddle.bind(this)}>
-									delete
-								</div> : ''
-							}
-						</div>
-						{ 
-							//	checks to see if ribbon is needed at all
+						<SolvedSpacer
+							className="solved-spacer"
+							isAuthor= { Meteor.userId() === this.props.riddle.author }
+							toggleAnswerBoxHandler={ this.toggleAnswerBox.bind(this) }
+							deleteRiddleHandler={ this.deleteRiddle.bind(this) }
+						/>
+						
+						{ //	checks to see if ribbon is needed at all
 							this.hasInteracted() && ( Meteor.user() && (this.props.voteStatus[this.props.riddle._id]['solved'] !== undefined) ) ? 
 							<div className="ribbon">
 									<span className={(this.props.voteStatus[this.props.riddle._id]['solved'] ? "solved" : "revealed")}>Solved!</span>
