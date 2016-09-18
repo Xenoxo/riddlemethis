@@ -17,16 +17,3 @@ UpvoteBox.propTypes = {
 	className: React.PropTypes.string,
 	upvotes: React.PropTypes.number,
 }
-
-{/*
-
-<div 
-	className={"upvote-box " + (this.hasInteracted() ? ( Meteor.user() && this.props.voteStatus[this.props.riddle._id]['upvoted'] ? "upvoted" : "not-upvoted" ) : "not-upvoted")} 
-	onClick={this.voteOnThisRiddle.bind(this)} >
-	<i className="fa fa-chevron-up"></i>
-	<div className="vote-count">
-		{this.props.riddle.upvotes}
-	</div>
-</div>
-
-*/}

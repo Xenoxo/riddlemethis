@@ -21,17 +21,3 @@ SolvedSpacer.propTypes = {
 	className: React.PropTypes.string,
 	isAuthor: React.PropTypes.bool,
 }
-
-{/* 
-						<div className="solved-spacer">
-							<button className="btn btn-primary" onClick={this.toggleShowAnwerBox.bind(this)}>
-								<i className="fa fa-question fa-3x"></i>
-							</button>
-							{ Meteor.userId() === this.props.riddle.author ? 
-								<div className="delete" onClick={this.deleteThisRiddle.bind(this)}>
-									delete
-								</div> : ''
-							}
-						</div>
-
-					*/}

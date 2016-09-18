@@ -1,5 +1,3 @@
-// move most of this to Riddle Container and then separate parts into components
-
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Riddles } from '../../api/riddles';
@@ -125,7 +123,7 @@ export default class Riddle extends Component {
 							deleteRiddleHandler={ this.deleteRiddle.bind(this) }
 						/>
 						
-						{ //	checks to see if ribbon is needed at all
+						{ // THIS IS FOR THE RIBBON
 							this.hasInteracted() && ( Meteor.user() && (this.props.voteStatus[this.props.riddle._id]['solved'] !== undefined) ) ? 
 							<div className="ribbon">
 									<span className={(this.props.voteStatus[this.props.riddle._id]['solved'] ? "solved" : "revealed")}>Solved!</span>

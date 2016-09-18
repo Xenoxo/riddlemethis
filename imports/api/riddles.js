@@ -15,8 +15,8 @@ if (Meteor.isServer) {
 	});
 }
 
-Meteor.methods({
-	
+
+Meteor.methods({	
 	/*
 		Method to insert riddle and subsequently creates a record in the associated user's account
 	*/
@@ -132,6 +132,8 @@ Meteor.methods({
 	/*
 		Method alerts user to the answers of the riddle and then counts
 		the riddle as solved. Increase the "reveal" count of the riddle by 1
+
+		Returns the Answer(s) for the given Riddle
 	*/
 	'riddleanswer.reveal'(riddleId, user) { 
 			if (! this.userId) {

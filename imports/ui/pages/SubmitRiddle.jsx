@@ -25,7 +25,6 @@ export default class SubmitRiddle extends Component {
 
 			});
 			// ReactDOM.findDOMNode(this.refs.theRiddle).value = '';
-	    // ReactDOM.findDOMNode(this.refs.theAnswer).value = '';
 	    browserHistory.push('/');			
 		} else {
 			console.log('the Riddle and Answer can\'t be blank' );

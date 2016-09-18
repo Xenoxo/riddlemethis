@@ -21,14 +21,3 @@ RiddleContent.propTypes = {
 	username: React.PropTypes.string,
 	date: React.PropTypes.string,
 }
-
-{/* OLD CODE THAT LIVED IN RIDDLE.JSX
-								<div className="riddle-content">
-									<h3>
-										{this.props.riddle.riddle}
-									</h3>
-									<div className="riddle-details">
-										Submitted by {this.props.riddle.username} on {this.props.riddle.submitted.toDateString()}
-									</div>
-								</div>
-*/}
