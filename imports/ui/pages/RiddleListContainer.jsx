@@ -7,8 +7,10 @@
 import React, { Component } from 'react';
 import { Riddles } from '../../api/riddles.js';
 import RiddleList from './RiddleList.jsx';
-import { composeAll} from 'react-komposer'; 
+import { composeAll } from 'react-komposer'; 
 import { composeWithTracker } from 'react-komposer';
+
+import Containers from "meteor/utilities:react-list-container";
 
 // Composer needed in order for the data being composed
 // to be reactive
@@ -30,6 +32,13 @@ const userComposer = function( props, onData ) {
 
 const riddleComposer = function( props, onData ) {
 	const handle = Meteor.subscribe('riddles');
+
+  if ( props.true ){
+    console.log('TRUE');
+  } else {
+    console.log('FALSE');
+  }
+
   if ( handle.ready() ) {
     const riddles = Riddles.find({}).fetch();
     onData( null, {riddles} );

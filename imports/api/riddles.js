@@ -17,6 +17,7 @@ if (Meteor.isServer) {
 
 
 Meteor.methods({	
+
 	/*
 		Method to insert riddle and subsequently creates a record in the associated user's account
 	*/

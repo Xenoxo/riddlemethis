@@ -13,9 +13,9 @@ export default class RiddleList extends Component {
 	}
 
 	render() {
+		console.log("from the list"+Meteor.user());
 		return (
 			<div>
-				{ Meteor.user() ? <div>Sort by...<a className="sortButton" href="#" >Post Date <i className="fa fa-caret-down" aria-hidden="true"></i></a></div> : '' }
 	  		{ this.renderRiddles() }
 			</div>
 		);

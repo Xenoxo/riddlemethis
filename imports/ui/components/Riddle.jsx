@@ -51,6 +51,7 @@ export default class Riddle extends Component {
 		Checks to see if the current user has ever interacted with the riddle
 	*/  
   hasInteracted() {
+  	//console.log("this is hasInteracted "+ Meteor.user());
   	if (Meteor.user()){
 	  	return this.props.voteStatus[this.props.riddle._id] !== undefined;
   	}
@@ -71,7 +72,6 @@ export default class Riddle extends Component {
 	*/
 	handleGiveUp(event){
 		event.preventDefault();
-		console.log("this is the give up button " + ReactDOM.findDOMNode(this.refs.userAnswer).value.trim());
 		Meteor.call('riddleanswer.reveal', this.props.riddle._id, Meteor.user(), 
 			function(error, result){
 				console.log(result);
@@ -116,7 +116,7 @@ export default class Riddle extends Component {
 
 						<SolvedSpacer
 							className="solved-spacer"
-							isAuthor= { Meteor.userId() === this.props.riddle.author }
+							isAuthor={ Meteor.userId() === this.props.riddle.author }
 							toggleAnswerBoxHandler={ this.toggleAnswerBox.bind(this) }
 							deleteRiddleHandler={ this.deleteRiddle.bind(this) }
 						/>
@@ -149,6 +149,6 @@ export default theRiddleContainer = createContainer(({ params }) => {
   }
   return {
   	voteStatus,
-    }
+   }
 
 }, Riddle);
