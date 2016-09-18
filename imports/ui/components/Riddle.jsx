@@ -14,7 +14,6 @@ export default class Riddle extends Component {
   //in ES6 constructor == componentWillMount()
   constructor(props) {
     super(props);
-    console.log();
     this.state = {
       hasVoted: false,
       showAnswerBox: false,
@@ -53,7 +52,6 @@ export default class Riddle extends Component {
 	*/  
   hasInteracted() {
   	if (Meteor.user()){
-			console.log("this is hasvoted " + this.props.riddle._id === this.props.voteStatus[this.props.riddle._id]);
 	  	return this.props.voteStatus[this.props.riddle._id] !== undefined;
   	}
   	return false;

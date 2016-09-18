@@ -36,6 +36,10 @@ class HeaderBarContainer extends Component {
 	}
 }
 
+HeaderBarContainer.propTypes = {
+  currentUser: React.PropTypes.object,
+}
+
 export default createContainer(() => {
   return {
     currentUser: Meteor.user(),
