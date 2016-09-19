@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { Session } from 'meteor/session';
 
 export class AnswerBox extends Component {
 
 	handleSubmitAnswer(event){
 		event.preventDefault();		
 		let userAnswer = this.userInput.value;
-		// let userAnswer = ReactDOM.findDOMNode(this.className.answer-input).value.trim();
-		// (Meteor.call('riddleanswer.check', this.props.riddle._id, Meteor.user(), userAnswer, 
-		// 	function(error, result){
-		// 		console.log(result);
-		// 	}
-		// )) ? console.log("yo") : console.log("butts")
-  	console.log("this is the handleSubmitAnswer ");
-  	console.log(userAnswer);
-  	return true;
+		Meteor.call('riddleanswer.check', this.props.riddle._id, Meteor.user(), userAnswer, 
+			function(error, result){
+				console.log("this is the result " + result);
+				Session.set('checkMethodResult', result);
+		})
+		// var yo = Meteor.call('riddleanswer.check', this.props.riddle._id, Meteor.user(), userAnswer);
+		return Session.get('checkMethodResult');
 	}
 
 	render(){

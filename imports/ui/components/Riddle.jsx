@@ -88,7 +88,7 @@ export default class Riddle extends Component {
 		// console.log(ReactDOM.findDOMNode(this.refs.answerbox));
 		// console.log(userAnswer);
 		var yo = this.myTextInput;
-		console.log(yo.handleSubmitAnswer(event));
+		console.log("this is from Riddle.jsx "+ yo.handleSubmitAnswer(event));
 		// console.log(ReactDOM.findDOMNode(this.refs.answerbox));
     // if (this.myTextInput !== null) {
     //   this.myTextInput.focus();
