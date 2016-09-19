@@ -30,18 +30,23 @@ const userComposer = function( props, onData ) {
   return () => { console.log( 'User container disposed!') };
 };
 
+
+/*
+  Props passed in comes from Riddle page and determines the how
+  the collection is accessed such that sorting is implemented
+*/
 const riddleComposer = function( props, onData ) {
 	const handle = Meteor.subscribe('riddles');
-
-  if ( props.test === 1 ){
-    console.log('1');
-  } else {
-    console.log(props.test);
-  }
-
   if ( handle.ready() ) {
-    const riddles = Riddles.find({}).fetch();
-    onData( null, {riddles} );
+    if ( props.test === -1 ){
+      console.log('-1');
+      let riddles = Riddles.find({}, { sort: { submitted: -1 } }).fetch();
+      onData( null, {riddles} );      
+    } else {
+      console.log('1');
+      let riddles = Riddles.find({}).fetch();
+      onData( null, {riddles} );
+    }    
   } else {
   	console.log( 'not ready yet....this is where you put loading things' )
   }
