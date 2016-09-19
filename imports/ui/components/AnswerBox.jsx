@@ -2,23 +2,20 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 export class AnswerBox extends Component {
-  testMethod(){
-  	console.log("this is the test method");
+
+	handleSubmitAnswer(event){
+		event.preventDefault();		
+		let userAnswer = this.userInput.value;
+		// let userAnswer = ReactDOM.findDOMNode(this.className.answer-input).value.trim();
+		// (Meteor.call('riddleanswer.check', this.props.riddle._id, Meteor.user(), userAnswer, 
+		// 	function(error, result){
+		// 		console.log(result);
+		// 	}
+		// )) ? console.log("yo") : console.log("butts")
+  	console.log("this is the handleSubmitAnswer ");
+  	console.log(userAnswer);
   	return true;
-  }
-	// handleSubmitAnswer(event){
-	// 	event.preventDefault();		
-	// 	let userAnswer = ReactDOM.findDOMNode(this.refs.userAnswer).value.trim();
-	// 	(Meteor.call('riddleanswer.check', this.props.riddle._id, Meteor.user(), userAnswer, 
-	// 		function(error, result){
-	// 			console.log(result);
-	// 		}
-	// 	)) ? console.log("yo") : console.log("butts")
-	// }
-	// // componentDidMount(){
-	// // 	let test = ReactDOM.findDOMNode(this.refs.answerbox);
-	// // 	console.log("from the answerbox "+test);
-	// // }	
+	}
 
 	render(){
 		//this.handleSubmitAnswer.bind(this)
@@ -29,7 +26,7 @@ export class AnswerBox extends Component {
 			        <input
 			        	className="answer-input"
 			          type="text"
-			          ref="theanswerbox"
+			          ref = {(ref) => this.userInput = ref}
 			          placeholder="Type your answers here!"
 			        />
 			    	
