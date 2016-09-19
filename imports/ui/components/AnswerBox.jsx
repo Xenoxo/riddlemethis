@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
-// import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom';
 
 export class AnswerBox extends Component {
-	// handleSubmitAnswer(event){
-	// 	event.preventDefault();		
-	// 	let userAnswer = ReactDOM.findDOMNode(this.refs.userAnswer).value.trim();
-	// 	Meteor.call('riddleanswer.check', this.props.riddle._id, Meteor.user(), userAnswer, 
-	// 		function(error, result){
-	// 			console.log(result);
-	// 		}
-	// 	);
-	// }		
+	handleSubmitAnswer(event){
+		event.preventDefault();		
+		let userAnswer = ReactDOM.findDOMNode(this.refs.userAnswer).value.trim();
+		Meteor.call('riddleanswer.check', this.props.riddle._id, Meteor.user(), userAnswer, 
+			function(error, result){
+				console.log(result);
+			}
+		);
+	}		
+
 	render(){
 			return (
 				<div className={ this.props.className }>
-						<form onSubmit={ this.props.handleSubmitAnswer }>
+						<form onSubmit={ this.handleSubmitAnswer.bind(this) }>
 			        <input
 			        	className="answer-input"
 			          type="text"
@@ -41,4 +42,5 @@ export class AnswerBox extends Component {
 
 AnswerBox.propTypes = {
 	className: React.PropTypes.string,
+	riddle: React.PropTypes.object,
 }
