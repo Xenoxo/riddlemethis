@@ -12,7 +12,7 @@ class HeaderBarContainer extends Component {
         <div>
           
             <Link to="/">
-              <h2 className="header-text">We got the best riddles</h2>
+              <h2 className="header-text">Riddle Me This (alpha)</h2>
             </Link>
             { this.props.currentUser ? 
               <div>Welcome <strong>{this.props.currentUser.username}</strong>, time to be the riddle-champ!</div>

@@ -77,6 +77,9 @@ export default class Riddle extends Component {
 				window.alert(result);
 			}
 		);
+  	this.setState({
+  		showAnswerBox: false,
+  	})		
 	}
 
 	render(){
