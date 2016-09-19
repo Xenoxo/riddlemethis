@@ -17,9 +17,9 @@ export default class Riddle extends Component {
       hasVoted: false,
       showAnswerBox: false,
       solved: false,
+      userAnswer:"",
     };
   }
-
   /*
   	If user has never voted on the riddle, then insert 
   	entry into user collection under listofriddles obj
@@ -82,6 +82,34 @@ export default class Riddle extends Component {
   	})		
 	}
 
+
+	handleSubmitAnswer(event){
+		event.preventDefault();	
+		// console.log(ReactDOM.findDOMNode(this.refs.answerbox));
+		// console.log(userAnswer);
+		var yo = this.myTextInput;
+		console.log(yo.testMethod());
+		// console.log(ReactDOM.findDOMNode(this.refs.answerbox));
+    // if (this.myTextInput !== null) {
+    //   this.myTextInput.focus();
+    // }		
+	}
+		// let userAnswer = ReactDOM.findDOMNode(this.refs.userAnswer).value.trim();
+		// (Meteor.call('riddleanswer.check', this.props.riddle._id, Meteor.user(), userAnswer, 
+		// 	function(error, result){
+		// 		console.log(result);
+		// 	}
+		// )) ? console.log("yo") : console.log("butts")
+	
+
+	componentDidMount(){
+		let test = ReactDOM.findDOMNode(this.refs.doodly);
+  	//console.log("from after the didmount " + test);
+  	this.setState({
+  		userAnswer: test,
+  	})
+	}
+
 	render(){
 		return (
 			<div className="riddle-object">
@@ -115,11 +143,12 @@ export default class Riddle extends Component {
 					} 
 				</div>
 
-				{ this.state.showAnswerBox ? 
+				{ this.state.showAnswerBox ?
 				<AnswerBox
 					className="col-sm-12 answer-box"
 					riddle={this.props.riddle}
-					handleGiveUp = { this.handleGiveUp.bind(this) }
+					onClick={ this.handleSubmitAnswer.bind(this) }
+					ref={ (ref) => this.myTextInput = ref }
 				/> : ''
 				}
 			</div>
