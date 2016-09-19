@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
+// import ReactDOM from 'react-dom';
 
 export class AnswerBox extends Component {
+	// handleSubmitAnswer(event){
+	// 	event.preventDefault();		
+	// 	let userAnswer = ReactDOM.findDOMNode(this.refs.userAnswer).value.trim();
+	// 	Meteor.call('riddleanswer.check', this.props.riddle._id, Meteor.user(), userAnswer, 
+	// 		function(error, result){
+	// 			console.log(result);
+	// 		}
+	// 	);
+	// }		
 	render(){
 			return (
 				<div className={ this.props.className }>
-						<form onSubmit={this.props.handleSubmitAnswer}>
+						<form onSubmit={ this.props.handleSubmitAnswer }>
 			        <input
 			        	className="answer-input"
 			          type="text"

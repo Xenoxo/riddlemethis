@@ -11,6 +11,11 @@ import { AnswerBox } from "./AnswerBox.jsx";
 
 export default class Riddle extends Component {
   
+  componentDidMount(){
+    var test = $(ReactDOM.findDOMNode(this.refs.userAnswer));
+    console.log(test);
+    // set el height and width etc.
+  }
   //in ES6 constructor == componentWillMount()
   constructor(props) {
     super(props);
@@ -80,16 +85,24 @@ export default class Riddle extends Component {
 		);
 	}
 
+
+  
 	/*
 		Handles the result of the user clicking "submit" on the riddle
 	*/
 	handleSubmitAnswer(event){
 		event.preventDefault();
+		//console.log();
 		let userAnswer = ReactDOM.findDOMNode(this.refs.userAnswer).value.trim();
 		Meteor.call('riddleanswer.check', this.props.riddle._id, Meteor.user(), userAnswer, 
 			function(error, result){
-				console.log(result);
+				if (result) {
+					console.log(result);
+				} else {
+					console.log(error);
+				}
 			}
+			
 		);
 	}
 
@@ -101,40 +114,42 @@ export default class Riddle extends Component {
 
 				<div className={"col-sm-12 riddle-container"}>
 								
-						<UpvoteBox
-							className={"upvote-box " + (this.hasInteracted() ? ( Meteor.user() && this.props.voteStatus[this.props.riddle._id]['upvoted'] ? "upvoted" : "not-upvoted" ) : "not-upvoted")}
-							upvotes={this.props.riddle.upvotes}
-							upvoteHandler={this.voteOnThisRiddle.bind(this)}
-						/>
+					<UpvoteBox
+						className={"upvote-box " + (this.hasInteracted() ? ( Meteor.user() && this.props.voteStatus[this.props.riddle._id]['upvoted'] ? "upvoted" : "not-upvoted" ) : "not-upvoted")}
+						upvotes={this.props.riddle.upvotes}
+						upvoteHandler={this.voteOnThisRiddle.bind(this)}
+					/>
 
-						<RiddleContent
-							className="riddle-content"
-							riddle={this.props.riddle.riddle}
-							username={this.props.riddle.username}
-							date={this.props.riddle.submitted.toDateString()}
-						/>
+					<RiddleContent
+						className="riddle-content"
+						riddle={this.props.riddle.riddle}
+						username={this.props.riddle.username}
+						date={this.props.riddle.submitted.toDateString()}
+					/>
 
-						<SolvedSpacer
-							className="solved-spacer"
-							isAuthor={ Meteor.userId() === this.props.riddle.author }
-							toggleAnswerBoxHandler={ this.toggleAnswerBox.bind(this) }
-							deleteRiddleHandler={ this.deleteRiddle.bind(this) }
-						/>
-						
-						{ // THIS IS FOR THE RIBBON
-							this.hasInteracted() && ( Meteor.user() && (this.props.voteStatus[this.props.riddle._id]['solved'] !== undefined) ) ? 
-							<div className="ribbon">
-									<span className={(this.props.voteStatus[this.props.riddle._id]['solved'] ? "solved" : "revealed")}>Solved!</span>
-							</div> : ''
-						}
-					</div>
+					<SolvedSpacer
+						className="solved-spacer"
+						isAuthor={ Meteor.userId() === this.props.riddle.author }
+						toggleAnswerBoxHandler={ this.toggleAnswerBox.bind(this) }
+						deleteRiddleHandler={ this.deleteRiddle.bind(this) }
+					/>
+					
+					{ // CODE FOR RIBBON
+						this.hasInteracted() && ( Meteor.user() && (this.props.voteStatus[this.props.riddle._id]['solved'] !== undefined) ) ? 
+						<div className="ribbon">
+								<span className={(this.props.voteStatus[this.props.riddle._id]['solved'] ? "solved" : "revealed")}>Solved!</span>
+						</div> : ''
+						// END OF CODE FOR RIBBON
+					} 
+
+				</div>
 
 				{ this.state.showAnswerBox ? 
-					<AnswerBox
-						className="col-sm-12 answer-box"
-						handleSubmitAnswer={ this.handleSubmitAnswer.bind(this) }
-						handleGiveUp = { this.handleGiveUp.bind(this) }
-					/> : ''
+				<AnswerBox
+					className="col-sm-12 answer-box"
+					handleSubmitAnswer={ this.handleSubmitAnswer.bind(this) }
+					handleGiveUp = { this.handleGiveUp.bind(this) }
+				/> : ''
 				}
 					
 			</div>
