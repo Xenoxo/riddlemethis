@@ -63,17 +63,16 @@ export default class Riddle extends Component {
 		Checks to see if the current user has ever interacted with the riddle
 	*/  
   hasSolved() {
-
-  	if (Meteor.user() && this.props.voteStatus[this.props.riddle._id].solved !== undefined) {
-  		return !this.props.voteStatus[this.props.riddle._id].solved;
-  	}
-  	return true;
+  		console.log("from the hasSolved method "+(Meteor.user() && this.props.voteStatus[this.props.riddle._id].solved === undefined));
+  		return (Meteor.user() && this.props.voteStatus[this.props.riddle._id].solved === undefined);
+  		// return !this.props.voteStatus[this.props.riddle._id].solved;
+  }
+  
   	//console.log("this is hasInteracted "+ Meteor.user());
   	// if (){
 	  // 	return false;
   	// }
  
-  }  
 
 
 	/*
@@ -104,10 +103,11 @@ export default class Riddle extends Component {
 
 	handleSubmitAnswer(event){
 		event.preventDefault();
-		this.setState({
-  		showAnswerBox: this.myTextInput.handleSubmitAnswer(event),
-  	});	
-		console.log();
+		this.myTextInput.handleSubmitAnswer(event)
+		// this.setState({
+  // 		showAnswerBox: ,
+  // 	});	
+		// console.log();
 		// console.log(ReactDOM.findDOMNode(this.refs.answerbox));
 		// console.log(userAnswer);
 		// var checkresponse = this.myTextInput;
