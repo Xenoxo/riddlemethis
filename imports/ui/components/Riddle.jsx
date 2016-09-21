@@ -29,7 +29,6 @@ export default class Riddle extends Component {
   	appropriate 'riddle id entry' and its upvoted value
   */  
 	voteOnThisRiddle(){
-		let newState;
 		Meteor.call('riddlevote.flip', this.props.riddle._id, Meteor.user(), 
 			function(error,result){
 				if (error){
@@ -51,7 +50,6 @@ export default class Riddle extends Component {
 		Checks to see if the current user has ever interacted with the riddle
 	*/  
   hasInteracted() {
-  	//console.log("this is hasInteracted "+ Meteor.user());
   	if (Meteor.user()){
 	  	return this.props.voteStatus[this.props.riddle._id] !== undefined;
   	}
@@ -60,20 +58,11 @@ export default class Riddle extends Component {
   
 
 	/*
-		Checks to see if the current user has ever interacted with the riddle
+		Checks to see if the current user has solved the riddle
 	*/  
   hasSolved() {
-  		console.log("from the hasSolved method "+(Meteor.user() && this.props.voteStatus[this.props.riddle._id].solved === undefined));
   		return (Meteor.user() && this.props.voteStatus[this.props.riddle._id].solved === undefined);
-  		// return !this.props.voteStatus[this.props.riddle._id].solved;
   }
-  
-  	//console.log("this is hasInteracted "+ Meteor.user());
-  	// if (){
-	  // 	return false;
-  	// }
- 
-
 
 	/*
 		Toggles the status of the answer box
@@ -89,68 +78,23 @@ export default class Riddle extends Component {
 	*/
 	handleGiveUp(event){
 		event.preventDefault();
-
 		Meteor.call('riddleanswer.reveal', this.props.riddle._id, Meteor.user(), 
 			function(error, result){
 				console.log(result);
 				window.alert(result);
 			}
 		);
-
-		console.log("IS THIS GOING IN HERE?");
   	this.setState({
   		showAnswerBox: false,
   	});	
 	}
 
-
+	/*
+		Handles the event of the user clicking submit, uses ref to call method in child component
+	*/
 	handleSubmitAnswer(event){
 		event.preventDefault();
 		this.myTextInput.handleSubmitAnswer(event)
-		// this.setState({
-  // 		showAnswerBox: ,
-  // 	});	
-		// console.log();
-		// console.log(ReactDOM.findDOMNode(this.refs.answerbox));
-		// console.log(userAnswer);
-		// var checkresponse = this.myTextInput;
-		// var showBox = checkresponse.handleSubmitAnswer(event);
-		// var test = Session.get('checkMethodResult');
-		// console.log("this is from Riddle.jsx "+ test);
-
-
-		// while( Session.get("isCorrect") === undefined ){
-		// 	console.log("cumon");
-		// }
-		// let result = Session.get("isCorrect");
-		// Session.set("isCorrect", undefined);
-		// if ( result )
-		// 	console.log("YAY! here is the result " + result);
-		// else if (result === false)
-		// 	console.log("Riddle.jsx sees failed")
-		// else
-		// 	console.log("dafuq is result... " + result)
-
-		// if(checkresponse.handleSubmitAnswer(event)){
-	 //  	this.setState({
-	 //  		showAnswerBox: false,
-	 //  	});
-		// }
-
-
-		// console.log(ReactDOM.findDOMNode(this.refs.answerbox));
-    // if (this.myTextInput !== null) {
-    //   this.myTextInput.focus();
-    // }		
-	}
-	
-
-	componentDidMount(){
-		let test = ReactDOM.findDOMNode(this.refs.doodly);
-  	//console.log("from after the didmount " + test);
-  	this.setState({
-  		userAnswer: test,
-  	})
 	}
 
 	render(){
@@ -186,7 +130,7 @@ export default class Riddle extends Component {
 					} 
 				</div>
 
-				{ this.state.showAnswerBox && this.hasSolved()?
+				{ this.state.showAnswerBox && this.hasSolved() ?
 				<AnswerBox
 					className="col-sm-12 answer-box"
 					riddle={this.props.riddle}
