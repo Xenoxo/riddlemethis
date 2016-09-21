@@ -36,7 +36,7 @@ const userComposer = function( props, onData ) {
   the collection is accessed such that sorting is implemented
 */
 const riddleComposer = function( props, onData ) {
-	const handle = Meteor.subscribe('riddles');
+  const handle = Meteor.subscribe('riddles');
   if ( handle.ready() ) {
     if ( props.test === -1 ){
       console.log('-1');
@@ -59,8 +59,8 @@ const riddleComposer = function( props, onData ) {
 */
 export default composeAll(
   composeWithTracker(userComposer),
-  composeWithTracker(riddleComposer),
-)(RiddleList)
+  composeWithTracker(riddleComposer)
+)(RiddleList);
 
 /*
   POTENTIAL IMPROVEMENTS

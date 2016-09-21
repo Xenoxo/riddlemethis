@@ -8,6 +8,7 @@ import { UpvoteBox } from './UpvoteBox.jsx';
 import { SolvedSpacer } from './SolvedSpacer.jsx';
 import { AnswerBox } from "./AnswerBox.jsx";
 
+import { Session } from 'meteor/session';
 
 export default class Riddle extends Component {
   //in ES6 constructor == componentWillMount()
@@ -57,6 +58,24 @@ export default class Riddle extends Component {
   	return false;
   }
   
+
+	/*
+		Checks to see if the current user has ever interacted with the riddle
+	*/  
+  hasSolved() {
+
+  	if (Meteor.user() && this.props.voteStatus[this.props.riddle._id].solved !== undefined) {
+  		return !this.props.voteStatus[this.props.riddle._id].solved;
+  	}
+  	return true;
+  	//console.log("this is hasInteracted "+ Meteor.user());
+  	// if (){
+	  // 	return false;
+  	// }
+ 
+  }  
+
+
 	/*
 		Toggles the status of the answer box
 	*/  
@@ -79,27 +98,48 @@ export default class Riddle extends Component {
 		);
   	this.setState({
   		showAnswerBox: false,
-  	})		
+  	});	
 	}
 
 
 	handleSubmitAnswer(event){
-		event.preventDefault();	
+		event.preventDefault();
+		this.setState({
+  		showAnswerBox: this.myTextInput.handleSubmitAnswer(event),
+  	});	
+		console.log();
 		// console.log(ReactDOM.findDOMNode(this.refs.answerbox));
 		// console.log(userAnswer);
-		var yo = this.myTextInput;
-		console.log("this is from Riddle.jsx "+ yo.handleSubmitAnswer(event));
+		// var checkresponse = this.myTextInput;
+		// var showBox = checkresponse.handleSubmitAnswer(event);
+		// var test = Session.get('checkMethodResult');
+		// console.log("this is from Riddle.jsx "+ test);
+
+
+		// while( Session.get("isCorrect") === undefined ){
+		// 	console.log("cumon");
+		// }
+		// let result = Session.get("isCorrect");
+		// Session.set("isCorrect", undefined);
+		// if ( result )
+		// 	console.log("YAY! here is the result " + result);
+		// else if (result === false)
+		// 	console.log("Riddle.jsx sees failed")
+		// else
+		// 	console.log("dafuq is result... " + result)
+
+		// if(checkresponse.handleSubmitAnswer(event)){
+	 //  	this.setState({
+	 //  		showAnswerBox: false,
+	 //  	});
+		// }
+
+
 		// console.log(ReactDOM.findDOMNode(this.refs.answerbox));
     // if (this.myTextInput !== null) {
     //   this.myTextInput.focus();
     // }		
 	}
-		// let userAnswer = ReactDOM.findDOMNode(this.refs.userAnswer).value.trim();
-		// (Meteor.call('riddleanswer.check', this.props.riddle._id, Meteor.user(), userAnswer, 
-		// 	function(error, result){
-		// 		console.log(result);
-		// 	}
-		// )) ? console.log("yo") : console.log("butts")
 	
 
 	componentDidMount(){
@@ -143,11 +183,12 @@ export default class Riddle extends Component {
 					} 
 				</div>
 
-				{ this.state.showAnswerBox ?
+				{ this.state.showAnswerBox && this.hasSolved()?
 				<AnswerBox
 					className="col-sm-12 answer-box"
 					riddle={this.props.riddle}
 					onClick={ this.handleSubmitAnswer.bind(this) }
+					hasSolved={ this.props.voteStatus[this.props.riddle._id]}
 					ref={ (ref) => this.myTextInput = ref }
 				/> : ''
 				}

@@ -1,0 +1,26 @@
+{
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+	"paths" : 
+	{
+		"linux": [],
+		"osx" : [
+			"~/github/riddlemethis/node_modules/eslint"
+		],
+		"windows":[]
+	},
+	"SublimeLinter":
+    {
+    	"linters":
+        {
+            "eslint": {
+                "excludes": [],
+                "ignore": ""
+            }
+        }
+    }
+}

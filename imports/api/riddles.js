@@ -1,6 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
+import { Session } from 'meteor/session';
 
 export const Riddles = new Meteor.Collection('riddles');
 
@@ -46,6 +47,9 @@ Meteor.methods({
 		Meteor.users.upsert(this.userId, {$set:query}); //updates user's account with record of this riddle
 	},
 
+	/*
+		Method removes given riddle
+	*/
 	'riddles.remove'(riddleId) {
 		check(riddleId, String);
 		Riddles.remove(riddleId);
@@ -55,7 +59,7 @@ Meteor.methods({
 		Method to give a riddle an upvote OR take one away
 		if the riddle already has one from this user.	
 		
-		It tests to see if user has ever interacted with this 
+		Tests to see if user has ever interacted with this 
 		riddle and upsert a new record if not, otherwise the
 		method will increase/decrease existing value by 1
 
@@ -64,7 +68,7 @@ Meteor.methods({
 	'riddlevote.flip'(riddleId, user) { 
 		if (! this.userId) {
 			throw new Meteor.Error('must log in to upvote');
-		}	
+		}
 
 		// Builds a query
 		let currentUser = Meteor.users.findOne(user._id);
@@ -101,7 +105,7 @@ Meteor.methods({
 
 		Returns true only if answer matches (ignoring case).
 	*/
-	'riddleanswer.check'(riddleId, user, userAnswer) { 
+	'riddleanswer.check'(riddleId, user, userAnswer) {
 		if (! this.userId) {
 			throw new Meteor.Error('must log in to upvote');
 		}		
@@ -124,10 +128,13 @@ Meteor.methods({
 				//
 
 				Riddles.upsert({_id: riddleId}, {$inc:{'solves':1}});
-				return true;
+				console.log("THIS IS TRUE");
+				return "THIS IS TRUE";
 			}
 		}
-		return false;
+		
+		console.log("THIS IS FALSE");
+		return "THIS IS FALSE";
 	},
 
 	/*
