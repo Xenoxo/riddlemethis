@@ -89,12 +89,15 @@ export default class Riddle extends Component {
 	*/
 	handleGiveUp(event){
 		event.preventDefault();
+
 		Meteor.call('riddleanswer.reveal', this.props.riddle._id, Meteor.user(), 
 			function(error, result){
 				console.log(result);
 				window.alert(result);
 			}
 		);
+
+		console.log("IS THIS GOING IN HERE?");
   	this.setState({
   		showAnswerBox: false,
   	});	
@@ -189,6 +192,7 @@ export default class Riddle extends Component {
 					riddle={this.props.riddle}
 					onClick={ this.handleSubmitAnswer.bind(this) }
 					hasSolved={ this.props.voteStatus[this.props.riddle._id]}
+					handleGiveUp={ this.handleGiveUp.bind(this) }
 					ref={ (ref) => this.myTextInput = ref }
 				/> : ''
 				}

@@ -89,8 +89,8 @@ export class AnswerBox extends Component {
 			      	</button>
 				    
 			      </form>
-			      <form onSubmit={ this.props.handleGiveUp }>
-			      	<button type="submit" className="btn btn-danger give-up">Give Up</button>
+			      <form >
+			      	<button onClick={ this.props.handleGiveUp } type="submit" className="btn btn-danger give-up">Give Up</button>
 				    
 			      </form>
 					</div>
