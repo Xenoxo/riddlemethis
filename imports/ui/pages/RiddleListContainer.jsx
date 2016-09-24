@@ -1,16 +1,16 @@
-/*
-  THIS IS A DATA CONTAINER FOR [[[ RiddleList.jsx ]]]
-  This code allows RiddleList.jsx to have data 
-  that is reactive
-*/
-
 import React, { Component } from 'react';
 import { Riddles } from '../../api/riddles.js';
 import RiddleList from './RiddleList.jsx';
 import { composeAll } from 'react-komposer'; 
 import { composeWithTracker } from 'react-komposer';
-
 import Containers from "meteor/utilities:react-list-container";
+
+
+/*
+  THIS IS A DATA CONTAINER FOR [[[ RiddleList.jsx ]]]
+  This code allows RiddleList.jsx to have data 
+  that is reactive
+*/
 
 // Composer needed in order for the data being composed
 // to be reactive
@@ -37,6 +37,11 @@ const userComposer = function( props, onData ) {
 */
 const riddleComposer = function( props, onData ) {
   const handle = Meteor.subscribe('riddles');
+  Tracker.autorun(() => {
+    const isReady = handle.ready();
+    console.log(`Handle is ${isReady ? 'ready' : 'not ready'}`);  
+  });
+
   if ( handle.ready() ) {
     if ( props.test === -1 ){
       console.log('-1');
@@ -48,10 +53,11 @@ const riddleComposer = function( props, onData ) {
       onData( null, {riddles} );
     }    
   } else {
-  	console.log( 'not ready yet....this is where you put loading things' )
+    console.log( 'not ready yet....this is where you put loading things' )
   }
   return () => { console.log( 'Riddle container disposed!') };
-};
+
+}
 
 /*
   The code below takes the newly created reactive

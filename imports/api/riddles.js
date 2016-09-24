@@ -3,12 +3,13 @@ import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { Session } from 'meteor/session';
 
-export const Riddles = new Meteor.Collection('riddles');
+export const Riddles = new Mongo.Collection('riddles');
 
 //	Server side methods to publish the two collections
 //	
 if (Meteor.isServer) {
-	Meteor.publish('riddles', function riddlesPublication(){
+	Meteor.publish('riddles', function(){
+		// this.ready();
 		return Riddles.find();
 	});
 	Meteor.publish("users", function(){
