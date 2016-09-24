@@ -16,7 +16,7 @@ export default class Footer extends Component {
               
                 <a href="https://twitter.com/besttimyouknow"><i className="fa fa-2x fa-twitter"></i></a>
                 <a href="https://github.com/Xenoxo"><i className="fa fa-2x fa-github-alt"></i></a>
-                <a href="https://github.com/Xenoxo"><i className="fa fa-2x fa-envelope"></i></a>
+                <a href="mailto:drillmecha@google.com"><i className="fa fa-2x fa-envelope"></i></a>
               
             </div>
             <div className="contact-points">
