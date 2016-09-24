@@ -33,19 +33,24 @@
 
 }	
 
+/*.footer span.footer-text {
+	
+	width: 100%;
+	font-family: roboto-light;
+}*/
+
 .footer-container {
 	width:100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-
 	margin:0px 0px 0px 0px; /*Margins don't do anything in this situation*/
-
-	padding:20px 0px 0px 0px;
+	padding: 15px 0px 10px 0px;
+	color: black;
 }
 
-.contact-points {
-	margin:0px 10px 0 10px;
+.contact-points a i{
+	margin:0px 30px 0 30px;
 }
 
 
