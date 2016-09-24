@@ -58,10 +58,16 @@ export default class Riddle extends Component {
   
 
 	/*
+		First checks to see if the user has ever interacted
+		to avoid error calling .solved on undefined
+
 		Checks to see if the current user has solved the riddle
-	*/  
+	*/
+
   hasSolved() {
-  		return (Meteor.user() && this.props.voteStatus[this.props.riddle._id].solved === undefined);
+		if(!this.hasInteracted())
+			return !this.hasInteracted();
+		return (Meteor.user() && this.props.voteStatus[this.props.riddle._id].solved === undefined);
   }
 
 	/*
