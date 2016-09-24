@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 import { createContainer } from 'meteor/react-meteor-data';
 import HeaderBar from './HeaderBar.jsx';
+import Footer from './Footer.jsx';
 
 export default class App extends Component {
  
@@ -10,6 +11,7 @@ export default class App extends Component {
       <div className="container">
         <HeaderBar />
         { this.props.children }
+        <Footer />
       </div>
     );
   }

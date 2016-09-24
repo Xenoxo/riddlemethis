@@ -1,5 +1,5 @@
 ## Purpose
-[Riddlemethis.xyz](http://www.riddlemethis.xyz) is a web app built as a place to gather people who are interested in sharing and solving riddles.
+[riddlemethis.xyz](http://www.riddlemethis.xyz) is a web app built as a place to gather people who are interested in sharing and solving riddles.
 
 Users are expected to create an account and login before they can attempt to solve any riddles or upvote them. Each user is able to create as many riddles as they wish but are limited to 1 upvote per riddle.
 

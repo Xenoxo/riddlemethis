@@ -19,7 +19,6 @@ Meteor.startup( () => {
 				<IndexRoute component={ RiddlePage } />
 				<Route path='submit-riddle' component={ SubmitRiddle }/>
 			</Route>
-			
 		</Router>,
 		document.getElementById( 'render-target' )
 	);
