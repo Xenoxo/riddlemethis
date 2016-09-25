@@ -8,27 +8,29 @@ export default class RiddlePage extends Component {
     super(props);
     this.state = {
       sortorder: -1,
+      sortby: "submitted"
     };
   }
 
-	handleSort(){
-		//console.log("this is the state "+(this.state.sortorder * 5));
+	handleSort(type){
+		console.log(type);
   	this.setState({
   		sortorder: ((this.state.sortorder) * -1),
+  		sortby: type,
   	});
 	}
-	render() {
-		// console.log("from riddlePage "+ this.props.thisuser);
-		// console.log("from riddlePage Meteor.user() "+ Meteor.user());
 
+	render() {
 		return (
 			<div>
 					<div>Sort by...
-						<a className="sortButton" onClick={this.handleSort.bind(this) } >
-							Post Date <i className="fa fa-caret-down" aria-hidden="true"></i>
-						</a>
+						<a className="sortButton" onClick={this.handleSort.bind(this, "submitted") } >
+							Post Date
+						</a>  or  <a className="sortButton" onClick={this.handleSort.bind(this, "upvotes") } >
+						Upvotes 
+						</a>			
 					</div>		
-	  		<RiddleListContainer test={ this.state.sortorder }/>
+	  		<RiddleListContainer sortorder={ this.state.sortorder } sortby={ this.state.sortby }/>
 			</div>
 		);
 	}
@@ -38,14 +40,3 @@ export default class RiddlePage extends Component {
 RiddlePage.propTypes = {
 	//riddles: React.PropTypes.array.isRequired,
 }
-
-{/*
-				{ Meteor.user() ? 
-					<div>Sort by...
-						<a className="sortButton" onClick={this.handleSort.bind(this) } >
-							Post Date <i className="fa fa-caret-down" aria-hidden="true"></i>
-						</a>
-					</div> : '' 
-				}
-
-*/}

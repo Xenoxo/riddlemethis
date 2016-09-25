@@ -43,13 +43,22 @@ const riddleComposer = function( props, onData ) {
   });
 
   if ( handle.ready() ) {
-    if ( props.test === -1 ){
-      console.log('-1');
-      let riddles = Riddles.find({}, { sort: { submitted: -1 } }).fetch();
+      let sortby = props.sortby
+      let sortorder = props.sortorder
+      let innerquery = {};
+      innerquery[sortby] = sortorder;
+      let sorttext = "sort";
+      let sortquery = {};
+      sortquery[sorttext] = innerquery;
+
+      console.log(sortquery);
+
+    if ( props.sortorder === -1 ){
+      let riddles = Riddles.find({}, sortquery).fetch();
+      console.log("sortquery");
       onData( null, {riddles} );      
     } else {
-      console.log('1');
-      let riddles = Riddles.find({}).fetch();
+      let riddles = Riddles.find({}, sortquery).fetch();
       onData( null, {riddles} );
     }    
   } else {
