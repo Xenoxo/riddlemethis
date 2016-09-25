@@ -77,8 +77,9 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	text-align: center;
 	margin: 10px 10px 10px 10px;
-	background-color: ;
+	width:80%;
 }
 
 .riddle-container .riddle-details {
