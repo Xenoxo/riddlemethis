@@ -10,7 +10,6 @@ class HeaderBarContainer extends Component {
 		return (
 			<div className="jumbotron header-container">
         <div>
-          
             <Link to="/">
               <h2 className="header-text">Riddle Me This (alpha)</h2>
             </Link>

@@ -4,12 +4,6 @@ import { Session } from 'meteor/session';
 
 export class AnswerBox extends Component {
 
-	handleSubmitAnswer(event){
-		event.preventDefault();
-		let userAnswer = this.userInput.value;
-		Meteor.call('riddleanswer.check', this.props.riddle._id, Meteor.user(), userAnswer);
-	}
-
 	render(){
 			return (
 				<div className={ this.props.className }>

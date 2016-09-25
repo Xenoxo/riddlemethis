@@ -43,7 +43,10 @@ export default class Riddle extends Component {
 		Removes the given riddle from the backend and by proxy, the front end
 	*/  
 	deleteRiddle(){
-		Meteor.call('riddles.remove', this.props.riddle._id);
+		let confirmbox = confirm("Are you sure you want to delete this riddle?");
+		if ( confirmbox) {
+			Meteor.call('riddles.remove', this.props.riddle._id);	
+		}
 	}
 
 	/*
@@ -100,7 +103,8 @@ export default class Riddle extends Component {
 	*/
 	handleSubmitAnswer(event){
 		event.preventDefault();
-		this.myTextInput.handleSubmitAnswer(event)
+		let userAnswer = this.myTextInput.userInput.value;
+		Meteor.call('riddleanswer.check', this.props.riddle._id, Meteor.user(), userAnswer);
 	}
 
 	render(){
