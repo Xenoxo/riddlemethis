@@ -27,7 +27,7 @@ export class AnswerBox extends Component {
 			      	<button 
 			      		className="btn btn-danger give-up"
 			      		onClick={ this.props.handleGiveUp }
-			      		type="submit"			      		
+			      		type="submit"
 			      	>Give Up</button>
 				    
 			      </form>

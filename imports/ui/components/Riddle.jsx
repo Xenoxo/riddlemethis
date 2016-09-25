@@ -11,7 +11,6 @@ import { AnswerBox } from "./AnswerBox.jsx";
 import { Session } from 'meteor/session';
 
 export default class Riddle extends Component {
-  //in ES6 constructor == componentWillMount()
   constructor(props) {
     super(props);
     this.state = {
@@ -21,13 +20,15 @@ export default class Riddle extends Component {
       userAnswer:"",
     };
   }
+
+
   /*
-  	If user has never voted on the riddle, then insert 
-  	entry into user collection under listofriddles obj
-  					-					-					-
-  	If already exists, then toggle the status of the 
-  	appropriate 'riddle id entry' and its upvoted value
-  */  
+   *If user has never voted on the riddle, then insert 
+   *entry into user collection under listofriddles obj
+   *    			-					-					-
+   *If already exists, then toggle the status of the 
+   *appropriate 'riddle id entry' and its upvoted value
+   */  
 	voteOnThisRiddle(){
 		Meteor.call('riddlevote.flip', this.props.riddle._id, Meteor.user(), 
 			function(error,result){
@@ -48,6 +49,7 @@ export default class Riddle extends Component {
 			Meteor.call('riddles.remove', this.props.riddle._id);	
 		}
 	}
+
 
 	/*
 		Checks to see if the current user has ever interacted with the riddle
@@ -87,15 +89,18 @@ export default class Riddle extends Component {
 	*/
 	handleGiveUp(event){
 		event.preventDefault();
-		Meteor.call('riddleanswer.reveal', this.props.riddle._id, Meteor.user(), 
-			function(error, result){
-				console.log(result);
-				window.alert(result);
-			}
-		);
-  	this.setState({
-  		showAnswerBox: false,
-  	});	
+		let confirmbox = confirm("Are you sure you want to see the answer?");
+		if ( confirmbox ) {
+			Meteor.call('riddleanswer.reveal', this.props.riddle._id, Meteor.user(), 
+				function(error, result){
+					console.log(result);
+					window.alert(result);
+				}
+			);
+	  	this.setState({
+	  		showAnswerBox: false,
+	  	});
+		}
 	}
 
 	/*
