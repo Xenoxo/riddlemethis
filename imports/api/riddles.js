@@ -129,12 +129,10 @@ Meteor.methods({
 				//
 
 				Riddles.upsert({_id: riddleId}, {$inc:{'solves':1}});
-				console.log("THIS IS TRUE");
 				return "THIS IS TRUE";
 			}
 		}
 		
-		console.log("THIS IS FALSE");
 		return "THIS IS FALSE";
 	},
 

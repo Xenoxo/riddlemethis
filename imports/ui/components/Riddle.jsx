@@ -30,14 +30,18 @@ export default class Riddle extends Component {
    *appropriate 'riddle id entry' and its upvoted value
    */  
 	voteOnThisRiddle(){
-		Meteor.call('riddlevote.flip', this.props.riddle._id, Meteor.user(), 
-			function(error,result){
-				if (error){
-					console.log(error);	
+		if (Meteor.user()) {
+			Meteor.call('riddlevote.flip', this.props.riddle._id, Meteor.user(), 
+				function(error,result){
+					if (error){
+						console.log(error);	
+					}
+					return result;
 				}
-				return result;
-			}
-		);
+			);
+		} else {
+			alert("Please login to vote.");
+		}
 	}
 
 	/*
@@ -79,9 +83,13 @@ export default class Riddle extends Component {
 		Toggles the status of the answer box
 	*/  
   toggleAnswerBox() {
-  	this.setState({
-  		showAnswerBox: !this.state.showAnswerBox,
-  	})
+  	if ( Meteor.user() ) {
+	  	this.setState({
+	  		showAnswerBox: !this.state.showAnswerBox,
+	  	})
+	  } else {
+	  	alert("Please login to solve.");
+	  }
   }
 
 	/*
