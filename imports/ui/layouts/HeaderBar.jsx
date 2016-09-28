@@ -22,7 +22,7 @@ class HeaderBarContainer extends Component {
           <div className="user-options">
             <AccountsUIWrapper/>
             { this.props.currentUser ?
-              <Link to="/submit-riddle">
+              <Link to="/#/submit-riddle">
                 <button className="btn btn-info">
                   New Riddle
                 </button>

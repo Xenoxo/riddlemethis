@@ -9,21 +9,27 @@ export default class RiddlePage extends Component {
     this.state = {
       sortorder: -1,
       sortby: "submitted",
-      postlimit: 5,
+      postlimit: 1,
     };
   }
 
-  componentDidMount(){
-  	 // console.log(this.props.params.postlimit);
+  componentWillMount(){
+  	 console.log("from comp will mount "+this.props.params.postlimit);
+  	 console.log("from comp will mount state "+this.state.postlimit);
   }
 
   componentWillReceiveProps(){
-  	console.log("from CWRP "+this.props.params.postlimit);
+  	// console.log("from CWRP "+this.props.params.postlimit);
   	let newlimit = parseInt(this.props.params.postlimit);
+  	console.log("from componentWillReceiveProps "+this.props.params.postlimit);
   	if (this.props.params.postlimit !== undefined ){
   		this.setState({
 	  		postlimit: newlimit,
   		});
+  	} else {
+  		this.setState({
+	  		postlimit: 2,
+  		});  		
   	}
   }
 
@@ -62,7 +68,7 @@ export default class RiddlePage extends Component {
 	  			sortby={ this.state.sortby }
 	  			postlimit= { this.state.postlimit }
 	  		/>
-	  		<Link to={'/9'}>Show More</Link>
+	  		<Link to={'/'+(this.state.postlimit+1)}>Show More</Link>
 			</div>
 		);
 	}

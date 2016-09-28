@@ -17,7 +17,7 @@ Meteor.startup( () => {
 		<Router history={ browserHistory }>
 			<Route path='/(:postlimit)' component={ App } >
 				<IndexRoute component={ RiddlePage } />
-				<Route path='submit-riddle' component={ SubmitRiddle }/>
+				<Route path='/#/submit-riddle' component={ SubmitRiddle }/>
 			</Route>
 		</Router>,
 		document.getElementById( 'render-target' )

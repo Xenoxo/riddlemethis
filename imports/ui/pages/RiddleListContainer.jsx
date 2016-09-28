@@ -41,10 +41,14 @@ const riddleComposer = function( props, onData ) {
   // Tracker.autorun(() => {
   //   const isReady = handle.ready();
   // });
-  // console.log( props.routeParams.postlimit);
+  
   if ( handle.ready() ) {
-      // console.log(props.postlimit);
+      
       let postlimit = props.postlimit;
+      // console.log(props.postlimit);
+      // if ( postlimit === 5){ //addresses weird bug
+      //   postlimit = 10;
+      // }
 
       if ( postlimit === undefined ) {
         postlimit = 2;
@@ -57,10 +61,8 @@ const riddleComposer = function( props, onData ) {
       let sorttext = "sort";
       let sortquery = {};
       sortquery[sorttext] = innerquery;
-      sortquery["limit"] = postlimit;
-      // sortquery["limit"] = 4;
+      sortquery["limit"] = postlimit; // end result: { sort: {submit/upvotes: 1/-1}, limit: postlimit}
 
-      // let theriddles = Riddles.find({}, sortquery).fetch();
       console.log(sortquery);
 
     if ( props.sortorder === -1 ){
