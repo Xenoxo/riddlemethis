@@ -15,7 +15,7 @@ import RiddleList from '../../ui/pages/RiddleList.jsx';
 Meteor.startup( () => {
 	render(
 		<Router history={ browserHistory }>
-			<Route path='/' component={ App } >
+			<Route path='/(:postlimit)' component={ App } >
 				<IndexRoute component={ RiddlePage } />
 				<Route path='submit-riddle' component={ SubmitRiddle }/>
 			</Route>

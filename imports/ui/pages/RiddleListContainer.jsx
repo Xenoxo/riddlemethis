@@ -7,9 +7,9 @@ import Containers from "meteor/utilities:react-list-container";
 
 
 /*
-  THIS IS A DATA CONTAINER FOR [[[ RiddleList.jsx ]]]
-  This code allows RiddleList.jsx to have data 
-  that is reactive
+ *  THIS IS A DATA CONTAINER FOR [[[ RiddleList.jsx ]]]
+ *  This code allows RiddleList.jsx to have data 
+ *  that is reactive
 */
 
 // Composer needed in order for the data being composed
@@ -32,14 +32,14 @@ const userComposer = function( props, onData ) {
 
 
 /*
-  Props passed in comes from Riddle page and determines the how
-  the collection is accessed such that sorting is implemented
+ *  Props passed in comes from Riddle page and determines the how
+ *  the collection is accessed such that sorting is implemented
 */
 const riddleComposer = function( props, onData ) {
   const handle = Meteor.subscribe('riddles');
   Tracker.autorun(() => {
     const isReady = handle.ready();
-    console.log(`Handle is ${isReady ? 'ready' : 'not ready'}`);  
+    // console.log(`Handle is ${isReady ? 'ready' : 'not ready'}`);  
   });
 
   if ( handle.ready() ) {
@@ -51,11 +51,8 @@ const riddleComposer = function( props, onData ) {
       let sortquery = {};
       sortquery[sorttext] = innerquery;
 
-      console.log(sortquery);
-
     if ( props.sortorder === -1 ){
-      let riddles = Riddles.find({}, sortquery).fetch();
-      console.log("sortquery");
+      let riddles = Riddles.find({}, {sort: {submitted: -1}, limit: 3}).fetch();
       onData( null, {riddles} );      
     } else {
       let riddles = Riddles.find({}, sortquery).fetch();
@@ -68,16 +65,13 @@ const riddleComposer = function( props, onData ) {
 
 }
 
+
 /*
-  The code below takes the newly created reactive
-  data sources above and 'pushes' them to RiddleList
+ *  The code below takes the newly created reactive
+ *  data sources above and 'pushes' them to RiddleList
 */
 export default composeAll(
   composeWithTracker(userComposer),
   composeWithTracker(riddleComposer)
 )(RiddleList);
 
-/*
-  POTENTIAL IMPROVEMENTS
-  - can constrain what is being subscribed to for faster loading
-*/

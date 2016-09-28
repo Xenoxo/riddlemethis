@@ -12,12 +12,12 @@ export default class RiddlePage extends Component {
     };
   }
 
-	handleSort(type){
-		console.log(type);
+	handleSort(type){ //passes in either 'submitted' or 'upvotes'
   	this.setState({
   		sortorder: ((this.state.sortorder) * -1),
   		sortby: type,
   	});
+  	console.log("this is the route param "+this.props.routeParams);
 	}
 
 	render() {
