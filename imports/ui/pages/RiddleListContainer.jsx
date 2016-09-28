@@ -8,12 +8,14 @@ import Containers from "meteor/utilities:react-list-container";
 
 /*
  *  THIS IS A DATA CONTAINER FOR [[[ RiddleList.jsx ]]]
+ *
  *  This code allows RiddleList.jsx to have data 
  *  that is reactive
+ *
+ *  'composer' used in order for the data being composed
+ *  to be reactive
 */
 
-// Composer needed in order for the data being composed
-// to be reactive
 const userComposer = function( props, onData ) {
 	const handle = Meteor.subscribe( 'users' );
   if ( handle.ready() ) {
@@ -30,19 +32,24 @@ const userComposer = function( props, onData ) {
   return () => { console.log( 'User container disposed!') };
 };
 
-
 /*
  *  Props passed in comes from Riddle page and determines the how
  *  the collection is accessed such that sorting is implemented
 */
 const riddleComposer = function( props, onData ) {
   const handle = Meteor.subscribe('riddles');
-  Tracker.autorun(() => {
-    const isReady = handle.ready();
-    // console.log(`Handle is ${isReady ? 'ready' : 'not ready'}`);  
-  });
-
+  // Tracker.autorun(() => {
+  //   const isReady = handle.ready();
+  // });
+  // console.log( props.routeParams.postlimit);
   if ( handle.ready() ) {
+      // console.log(props.postlimit);
+      let postlimit = props.postlimit;
+
+      if ( postlimit === undefined ) {
+        postlimit = 2;
+      }
+      console.log("postlimit " + postlimit);
       let sortby = props.sortby
       let sortorder = props.sortorder
       let innerquery = {};
@@ -50,9 +57,14 @@ const riddleComposer = function( props, onData ) {
       let sorttext = "sort";
       let sortquery = {};
       sortquery[sorttext] = innerquery;
+      sortquery["limit"] = postlimit;
+      // sortquery["limit"] = 4;
+
+      // let theriddles = Riddles.find({}, sortquery).fetch();
+      console.log(sortquery);
 
     if ( props.sortorder === -1 ){
-      let riddles = Riddles.find({}, {sort: {submitted: -1}, limit: 3}).fetch();
+      let riddles = Riddles.find({}, sortquery).fetch();
       onData( null, {riddles} );      
     } else {
       let riddles = Riddles.find({}, sortquery).fetch();
@@ -64,7 +76,6 @@ const riddleComposer = function( props, onData ) {
   return () => { console.log( 'Riddle container disposed!') };
 
 }
-
 
 /*
  *  The code below takes the newly created reactive
