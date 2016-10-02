@@ -24,9 +24,9 @@ export default class RiddlePage extends Component {
 		return (
 			<div>
 					<div>Sort by...
-						<a className="sortButton" onClick={this.handleSort.bind(this, "submitted") } >
+						<a className="sort-button" onClick={this.handleSort.bind(this, "submitted") } >
 							Post Date
-						</a>  or  <a className="sortButton" onClick={this.handleSort.bind(this, "upvotes") } >
+						</a>  or  <a className="sort-button" onClick={this.handleSort.bind(this, "upvotes") } >
 						Upvotes 
 						</a>			
 					</div>		
