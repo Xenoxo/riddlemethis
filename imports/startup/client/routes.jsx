@@ -9,10 +9,6 @@ import RiddlePageContainer from '../../ui/pages/RiddlePageContainer.jsx';
 import SubmitRiddle from '../../ui/pages/SubmitRiddle.jsx';
 import RiddlePage from '../../ui/pages/RiddlePage.jsx';
 
-// used for testing
-import RiddleList from '../../ui/pages/RiddleList.jsx';
-
-
 Meteor.startup( () => {
 	render(
 		<Router history={ browserHistory }>

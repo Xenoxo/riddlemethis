@@ -18,7 +18,6 @@ class HeaderBarContainer extends Component {
               : "Got a good riddle? Login/Sign Up to submit!"
             }
           </div>
-
           <div className="user-options">
             <AccountsUIWrapper/>
             { this.props.currentUser ?
