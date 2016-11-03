@@ -8,12 +8,14 @@ export class RiddleContent extends Component {
 						{this.props.riddle}
 					</h3>
 					<div className="riddle-details">
+						<div/>
 						<div>
-						 {this.props.date}
+						 By {this.props.username}
 						</div>
 						<div>
-							By {this.props.username}
+							{this.props.date}
 						</div>
+						<div/>
 					</div>
 				</div>
 			)

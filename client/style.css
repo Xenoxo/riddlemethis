@@ -111,6 +111,9 @@ body {
 	margin: 10px 10px 10px 10px;
 	width:80%;
 }
+.riddle-content h3 {
+	font-family: 'roboto-light'
+}
 
 .riddle-container .riddle-details {
 	display: flex;
@@ -127,12 +130,18 @@ body {
 	align-items: center;
 	justify-content: center;
 	width: 50px;
-	border: 1px black solid;
+	border-radius: 10px;
 	cursor: pointer;
 }
 
+	.upvote-box .fa-caret-up {
+		font-size: 30px;
+		margin-top: 
+	}
+
 	.not-upvoted {
-		background-color: white;
+		/*background-color: white;*/
+		border: 1px #659AC5 solid;
 		color:#659AC5;
 	}
 
