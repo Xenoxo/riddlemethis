@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import theRiddleContainer, { Riddle } from '../components/Riddle.jsx';
+import { Riddle } from '../components/Riddle.jsx';
 
 import RiddleList from './RiddleList.jsx';
+import RiddleListContainer from './RiddleListContainer.jsx';
 
 export default class RiddlePage extends Component {
   constructor(props) {
@@ -20,8 +21,6 @@ export default class RiddlePage extends Component {
 	}
 
 	render() {
-		// console.log("yo this user is ");
-		// console.log(this.props.thisuser);
 		return (
 			<div>
 					<div>Sort by...
@@ -31,7 +30,7 @@ export default class RiddlePage extends Component {
 						Upvotes 
 						</a>			
 					</div>		
-	  		<RiddleList sortorder={ this.state.sortorder } sortby={ this.state.sortby } riddles={ this.props.riddles } />
+	  		<RiddleListContainer sortorder={ this.state.sortorder } sortby={ this.state.sortby } riddles={ this.props.riddles } />
 			</div>
 		);
 	}

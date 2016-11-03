@@ -9,7 +9,8 @@ export const Riddles = new Mongo.Collection('riddles');
 //	
 if (Meteor.isServer) {
 	Meteor.publish('riddles', function(){
-		// this.ready();
+		// pushing all the riddles....
+
 		return Riddles.find();
 	});
 	Meteor.publish("users", function(){
