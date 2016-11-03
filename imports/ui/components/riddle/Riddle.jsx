@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Riddles } from '../../api/riddles';
+import { Riddles } from '../../../api/riddles';
 import { createContainer } from 'meteor/react-meteor-data';
 
 import { RiddleContent } from './RiddleContent.jsx';

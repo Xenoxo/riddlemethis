@@ -1,11 +1,9 @@
 import RiddleList from './RiddleList.jsx';
-
-import { Riddles } from '../../api/riddles.js';
+import { Riddles } from '../../../api/riddles.js';
 
 import Containers from "meteor/utilities:react-list-container";
 import { composeWithTracker } from 'react-komposer';
 import { composeAll } from 'react-komposer'; 
-
 
 // Composing user data
 // currently not used directly, helpful to have everything load
@@ -32,12 +30,6 @@ const userComposer = function( props, onData ) {
 // Composing the riddles data
 const riddleComposer = function( props, onData ) {
   const handle = Meteor.subscribe('riddles');
-  // Tracker.autorun(() => {
-  //   const isReady = handle.ready();
-  //   console.log(`Handle is ${isReady ? 'ready' : 'not ready'}`);  
-  // });
-  // console.log("handle is ")
-  // console.log(handle)
     const isReady = handle.ready();
     console.log(`Handle is ${isReady ? 'ready' : 'not ready'}`);  
   if ( handle.ready() ) {
@@ -52,7 +44,7 @@ const riddleComposer = function( props, onData ) {
       let riddles = Riddles.find({}, sortquery).fetch();
       onData( null, {riddles} );      
   } else {
-    console.log( 'not ready yet....this is where you put loading things' )
+    console.log( 'not ready yet from riddleComposer....this is where you put loading things' )
   }
   return () => { console.log( 'Riddle container disposed!') };
 

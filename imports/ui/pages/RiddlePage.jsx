@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Riddle } from '../components/Riddle.jsx';
 
-import RiddleList from './RiddleList.jsx';
-import RiddleListContainer from './RiddleListContainer.jsx';
+import RiddleListContainer from '../components/riddlelist/RiddleListContainer.jsx';
 
 export default class RiddlePage extends Component {
   constructor(props) {
