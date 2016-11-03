@@ -59,8 +59,9 @@ export default class Riddle extends Component {
 		Checks to see if the current user has ever interacted with the riddle
 	*/  
   hasInteracted() {
+  	
   	if (Meteor.user()){
-	  	return this.props.voteStatus[this.props.riddle._id] !== undefined;
+	  	return Meteor.user()['listofvoted'][this.props.riddle._id] !== undefined;
   	}
   	return false;
   }
@@ -76,7 +77,7 @@ export default class Riddle extends Component {
   hasSolved() {
 		if(!this.hasInteracted())
 			return !this.hasInteracted();
-		return (Meteor.user() && this.props.voteStatus[this.props.riddle._id].solved === undefined);
+		return (Meteor.user() && Meteor.user()['listofvoted'][this.props.riddle._id].solved === undefined);
   }
 
 	/*
@@ -125,7 +126,7 @@ export default class Riddle extends Component {
 			<div className="riddle-object">
 				<div className={"col-sm-12 riddle-container"}>
 					<UpvoteBox
-						className={"upvote-box " + (this.hasInteracted() ? ( Meteor.user() && this.props.voteStatus[this.props.riddle._id]['upvoted'] ? "upvoted" : "not-upvoted" ) : "not-upvoted")}
+						className={"upvote-box " + (this.hasInteracted() ? ( Meteor.user() && Meteor.user()['listofvoted'][this.props.riddle._id]['upvoted'] ? "upvoted" : "not-upvoted" ) : "not-upvoted")}
 						upvotes={this.props.riddle.upvotes}
 						upvoteHandler={this.voteOnThisRiddle.bind(this)}
 					/>
@@ -145,9 +146,9 @@ export default class Riddle extends Component {
 					/>
 					
 					{ // CODE FOR RIBBON
-						this.hasInteracted() && ( Meteor.user() && (this.props.voteStatus[this.props.riddle._id]['solved'] !== undefined) ) ? 
+						this.hasInteracted() && ( Meteor.user() && (Meteor.user()['listofvoted'][this.props.riddle._id]['solved'] !== undefined) ) ? 
 						<div className="ribbon">
-								<span className={(this.props.voteStatus[this.props.riddle._id]['solved'] ? "solved" : "revealed")}>Solved!</span>
+								<span className={(Meteor.user()['listofvoted'][this.props.riddle._id]['solved'] ? "solved" : "revealed")}>Solved!</span>
 						</div> : ''
 						// END OF CODE FOR RIBBON
 					} 
@@ -158,7 +159,7 @@ export default class Riddle extends Component {
 					className="col-sm-12 answer-box"
 					riddle={this.props.riddle}
 					onClick={ this.handleSubmitAnswer.bind(this) }
-					hasSolved={ this.props.voteStatus[this.props.riddle._id]}
+					hasSolved={ Meteor.user()['listofvoted'][this.props.riddle._id]}
 					handleGiveUp={ this.handleGiveUp.bind(this) }
 					ref={ (ref) => this.myTextInput = ref }
 				/> : ''
@@ -167,14 +168,3 @@ export default class Riddle extends Component {
 			);
 		}
 }
-
-export default theRiddleContainer = createContainer(({ params }) => {
-  let voteStatus;
-  if (Meteor.user()){
-  	voteStatus = Meteor.user()['listofvoted'];
-  }
-  return {
-  	voteStatus,
-   }
-
-}, Riddle);

@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"postlim",
+				"postlimit"
+			],
+			[
+				"sor",
+				"sortquery"
+			],
+			[
+				"comp",
+				"Component"
+			],
+			[
+				"route",
+				"routeParams"
+			],
+			[
+				"sort",
+				"sortorder"
+			],
+			[
+				"quer",
+				"query"
+			],
+			[
+				"create",
+				"createSubmitAsync"
+			],
+			[
 				"riddl",
 				"riddleComposer"
 			],
@@ -69,7 +97,7 @@
 			],
 			[
 				"MEte",
-				"Meteor.users	Meteor.users"
+				"Meteor.users\tMeteor.users"
 			],
 			[
 				"query",
@@ -153,11 +181,11 @@
 			],
 			[
 				"rcc",
-				"rcc	React: class component"
+				"rcc\tReact: class component"
 			],
 			[
 				"prop",
-				"props	React: this.props"
+				"props\tReact: this.props"
 			],
 			[
 				"textIn",
@@ -169,7 +197,7 @@
 			],
 			[
 				"Met",
-				"Meteor.user	Meteor.user()"
+				"Meteor.user\tMeteor.user()"
 			],
 			[
 				"handl",
@@ -205,7 +233,7 @@
 			],
 			[
 				"r",
-				"rcc	React: legacy component"
+				"rcc\tReact: legacy component"
 			],
 			[
 				"reac",
@@ -233,7 +261,7 @@
 			],
 			[
 				"s",
-				"sst	React: this.setState(…)"
+				"sst\tReact: this.setState(…)"
 			],
 			[
 				"User",
@@ -308,7 +336,7 @@
 	"command_palette":
 	{
 		"height": 354.0,
-		"last_filter": "install",
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -332,7 +360,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 692.0
+		"width": 550.0
 	},
 	"console":
 	{
@@ -355,40 +383,56 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/timwang/GitHub/riddlemethis"
+		"/Users/timwang/GitHub/riddlemethis",
+		"/Users/timwang/GitHub/riddlemethis/imports",
+		"/Users/timwang/GitHub/riddlemethis/imports/api",
+		"/Users/timwang/GitHub/riddlemethis/imports/ui",
+		"/Users/timwang/GitHub/riddlemethis/imports/ui/components",
+		"/Users/timwang/GitHub/riddlemethis/imports/ui/layouts",
+		"/Users/timwang/GitHub/riddlemethis/imports/ui/pages",
+		"/Users/timwang/GitHub/riddlemethis/server"
 	],
 	"file_history":
 	[
-		"/Users/timwang/Library/Application Support/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
-		"/Users/timwang/GitHub/riddlemethis/imports/api/riddles.js",
 		"/Users/timwang/GitHub/riddlemethis/imports/ui/components/Riddle.jsx",
-		"/Users/timwang/GitHub/riddlemethis/imports/ui/pages/SubmitRiddle.jsx",
-		"/Users/timwang/GitHub/riddlemethis/imports/ui/pages/RiddlePageContainer.jsx",
-		"/Users/timwang/GitHub/riddlemethis/imports/ui/pages/RiddleList.jsx",
-		"/Users/timwang/GitHub/riddlemethis/imports/ui/pages/RiddleListContainer.jsx",
+		"/Users/timwang/GitHub/riddlemethis/imports/ui/components/RiddleContainer.jsx",
 		"/Users/timwang/GitHub/riddlemethis/imports/ui/pages/RiddlePage.jsx",
-		"/Users/timwang/GitHub/riddlemethis/imports/startup/client/routes.jsx",
-		"/Users/timwang/GitHub/riddlemethis/imports/ui/layouts/App.jsx",
+		"/Users/timwang/GitHub/riddlemethis/client/style.css",
+		"/Users/timwang/GitHub/riddlemethis/imports/ui/layouts/Footer.jsx",
+		"/Users/timwang/GitHub/riddlemethis/imports/api/riddles.js",
 		"/Users/timwang/GitHub/riddlemethis/imports/ui/layouts/HeaderBar.jsx",
+		"/Users/timwang/GitHub/riddlemethis/imports/ui/pages/RiddleListContainer.jsx",
+		"/Users/timwang/GitHub/riddlemethis/imports/startup/client/routes.jsx",
+		"/Users/timwang/GitHub/riddlemethis/imports/ui/pages/RiddleList.jsx",
+		"/Users/timwang/GitHub/riddlemethis/imports/ui/layouts/App.jsx",
 		"/Users/timwang/GitHub/riddlemethis/imports/ui/components/AnswerBox.jsx",
+		"/Users/timwang/GitHub/riddlemethis/settings.json",
+		"/Users/timwang/GitHub/riddlemethis/node_modules/react-router/es6/Router.js",
 		"/Users/timwang/GitHub/riddlemethis/imports/ui/components/RiddleContent.jsx",
-		"/Users/timwang/GitHub/riddlemethis/imports/ui/components/SolvedSpacer.jsx",
 		"/Users/timwang/GitHub/riddlemethis/imports/ui/components/UpvoteBox.jsx",
+		"/Users/timwang/GitHub/riddlemethis/client/main.html",
+		"/Users/timwang/GitHub/riddlemethis/imports/startup/server/index.js",
+		"/Users/timwang/GitHub/riddlemethis/server/main.js",
+		"/Users/timwang/GitHub/riddlemethis/imports/ui/pages/SubmitRiddle.jsx",
+		"/Users/timwang/GitHub/riddlemethis/README.md",
+		"/Users/timwang/GitHub/riddlemethis/imports/startup/server/fixtures.js",
+		"/Users/timwang/GitHub/mupx-riddlemethis/mup.json",
+		"/Users/timwang/GitHub/riddlemethis/.deploy/mup.js",
+		"/Users/timwang/GitHub/riddlemethis/riddlemethis.sublime-project",
+		"/Users/timwang/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/Users/timwang/GitHub/riddlemethis/client/main.js",
+		"/Users/timwang/Library/Application Support/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/Users/timwang/GitHub/riddlemethis/imports/ui/pages/RiddlePageContainer.jsx",
+		"/Users/timwang/GitHub/riddlemethis/imports/ui/components/SolvedSpacer.jsx",
 		"/Users/timwang/GitHub/riddlemethis/node_modules/react-router/es6/Route.js",
 		"/Users/timwang/GitHub/riddlemethis/imports/ui/layouts/AccountsUIWrapper.jsx",
 		"/Users/timwang/GitHub/riddlemethis/imports/startup/server/accountconfig.js",
 		"/Users/timwang/GitHub/riddlemethis/imports/startup/client/index.js",
 		"/Users/timwang/GitHub/riddlemethis/imports/ui/containers/HeaderBarContainer.jsx",
-		"/Users/timwang/GitHub/riddlemethis/client/main.js",
-		"/Users/timwang/GitHub/riddlemethis/client/style.css",
 		"/Users/timwang/GitHub/riddlemethis/text.txt",
-		"/Users/timwang/GitHub/riddlemethis/node_modules/react-router/es6/Router.js",
-		"/Users/timwang/GitHub/riddlemethis/imports/startup/server/fixtures.js",
 		"/Users/timwang/GitHub/riddlemethis/imports/ui/containers/App.jsx",
-		"/Users/timwang/GitHub/riddlemethis/client/main.html",
 		"/Users/timwang/GitHub/riddlemethis/font-awesome.min.css",
 		"/Users/timwang/GitHub/riddlemethis/imports/startup/accounts-config.js",
-		"/Users/timwang/GitHub/riddlemethis/imports/startup/server/index.js",
 		"/Users/timwang/GitHub/riddlemethis/imports/ui/containers/RiddleContainer.jsx",
 		"/Users/timwang/GitHub/riddlemethis/imports/ui/components/navigation.jsx",
 		"/Users/timwang/GitHub/riddlemethis/imports/ui/containers/Submit.jsx",
@@ -414,7 +458,6 @@
 		"/Users/timwang/GitHub/riddlemethis/client/Task.jsx",
 		"/Users/timwang/GitHub/riddlemethis/client/main.jsx",
 		"/Users/timwang/GitHub/riddlemethis/client/App.jsx",
-		"/Users/timwang/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
 		"/Users/timwang/GitHub/riddlemethis/riddlemethis.css",
 		"/Users/timwang/GitHub/riddlemethis/riddlemethis.js",
 		"/Users/timwang/GitHub/riddlemethis/main.html",
@@ -465,7 +508,7 @@
 	],
 	"find":
 	{
-		"height": 24.0
+		"height": 70.0
 	},
 	"find_in_files":
 	{
@@ -479,6 +522,53 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"session",
+			"params",
+			"theriddlecon",
+			"thelim",
+			"();",
+			"subsc",
+			"console.",
+			".check",
+			"check",
+			"answer",
+			"give",
+			"reveal",
+			"test",
+			"mytext",
+			"userIn",
+			"handlesubm",
+			"delete",
+			"riddle",
+			".riddle",
+			"hassol",
+			"vetic",
+			"hel",
+			"helvet",
+			"font",
+			"footer-se",
+			"riddle-page",
+			"arr",
+			"fa-",
+			"header",
+			"subscribe",
+			"riddlesPublication()",
+			"riddles.insert",
+			"dock",
+			"ribbon",
+			"console.",
+			"handlegiveup",
+			"reveal",
+			".solved",
+			"hasintera",
+			"riddleanswer",
+			"yo.",
+			"parsing err",
+			"Riddles",
+			"eslint",
+			"eslin",
+			"usr/bin",
+			"bin:",
 			"/usr/local/bin",
 			"/usr/bin",
 			"/opt/bin",
@@ -559,54 +649,7 @@
 			"riddlevote",
 			"giveup",
 			"handlesub",
-			"giveup",
-			"give",
-			"form",
-			"handlesub",
-			"theriddle",
-			"theRiddle",
-			"flex-dir",
-			"userId",
-			"riddles.insert",
-			"upvoted",
-			"console",
-			"key",
-			"pls",
-			"current",
-			"upvote",
-			"console",
-			"consle",
-			"delete",
-			"riddleow",
-			"riddles",
-			"Riddles",
-			"on",
-			"_id",
-			"btn",
-			"Riddle",
-			"Riddles",
-			"date",
-			".post",
-			"post-",
-			"item",
-			"postItem",
-			"style",
-			"private",
-			"console.",
-			"toggle",
-			"showPrivateButton",
-			"show",
-			"showPrivate",
-			"boolean",
-			"this.state.",
-			"tasks",
-			"toggle",
-			"bind",
-			"textIn",
-			"import",
-			"style",
-			"get",
-			"home"
+			"giveup"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -631,7 +674,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 24.0
+		"height": 70.0
 	},
 	"input":
 	{
@@ -678,8 +721,108 @@
 		"selected_items":
 		[
 			[
+				".css",
+				"client/style.css"
+			],
+			[
+				"riddlepa",
+				"imports/ui/pages/RiddlePage.jsx"
+			],
+			[
+				"foot",
+				"imports/ui/layouts/Footer.jsx"
+			],
+			[
 				"riddl",
+				"imports/ui/components/RiddleContainer.jsx"
+			],
+			[
+				"head",
+				"imports/ui/layouts/HeaderBar.jsx"
+			],
+			[
+				"riddlelist",
+				"imports/ui/pages/RiddleList.jsx"
+			],
+			[
+				"app",
+				"imports/ui/layouts/App.jsx"
+			],
+			[
+				"riddlepage",
+				"imports/ui/pages/RiddlePage.jsx"
+			],
+			[
+				"routes",
+				"imports/startup/client/routes.jsx"
+			],
+			[
+				"router",
+				"node_modules/react-router/es6/Router.js"
+			],
+			[
+				"answer",
+				"imports/ui/components/AnswerBox.jsx"
+			],
+			[
+				"riddle.js",
 				"imports/ui/components/Riddle.jsx"
+			],
+			[
+				"riddlelis",
+				"imports/ui/pages/RiddleListContainer.jsx"
+			],
+			[
+				"riddleconta",
+				"imports/ui/components/RiddleContainer.jsx"
+			],
+			[
+				"riddle",
+				"imports/api/riddles.js"
+			],
+			[
+				"riddle.jsx",
+				"imports/ui/components/Riddle.jsx"
+			],
+			[
+				"riddlelistcontai",
+				"imports/ui/pages/RiddleListContainer.jsx"
+			],
+			[
+				"header",
+				"imports/ui/layouts/HeaderBar.jsx"
+			],
+			[
+				"riddleconten",
+				"imports/ui/components/RiddleContent.jsx"
+			],
+			[
+				"upv",
+				"imports/ui/components/UpvoteBox.jsx"
+			],
+			[
+				"hea",
+				"imports/ui/layouts/HeaderBar.jsx"
+			],
+			[
+				"riddlelistcon",
+				"imports/ui/pages/RiddleListContainer.jsx"
+			],
+			[
+				"fixt",
+				"imports/startup/server/fixtures.js"
+			],
+			[
+				"submit",
+				"imports/ui/pages/SubmitRiddle.jsx"
+			],
+			[
+				"riddles.s",
+				"imports/api/riddles.js"
+			],
+			[
+				"riddleli",
+				"imports/ui/pages/RiddleList.jsx"
 			],
 			[
 				"ri",
@@ -694,14 +837,6 @@
 				"imports/ui/components/RiddleContent.jsx"
 			],
 			[
-				"riddle",
-				"imports/api/riddles.js"
-			],
-			[
-				"routes",
-				"imports/startup/client/routes.jsx"
-			],
-			[
 				"route",
 				"node_modules/react-router/es6/Route.js"
 			],
@@ -712,10 +847,6 @@
 			[
 				"routes.j",
 				"imports/startup/client/routes.jsx"
-			],
-			[
-				"riddlelist",
-				"imports/ui/pages/RiddleList.jsx"
 			],
 			[
 				"sty",
@@ -734,10 +865,6 @@
 				"imports/api/riddles.js"
 			],
 			[
-				"router",
-				"node_modules/react-router/es6/Router.js"
-			],
-			[
 				"fix",
 				"imports/startup/server/fixtures.js"
 			],
@@ -754,28 +881,8 @@
 				"imports/startup/server/accountconfig.js"
 			],
 			[
-				".css",
-				"client/style.css"
-			],
-			[
 				"submi",
 				"imports/ui/pages/SubmitRiddle.jsx"
-			],
-			[
-				"submit",
-				"imports/ui/pages/SubmitRiddle.jsx"
-			],
-			[
-				"riddle.jsx",
-				"imports/ui/components/Riddle.jsx"
-			],
-			[
-				"riddleli",
-				"imports/ui/pages/RiddleList.jsx"
-			],
-			[
-				"app",
-				"imports/ui/containers/App.jsx"
 			],
 			[
 				"style",
@@ -874,7 +981,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 237.0,
+	"side_bar_width": 171.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

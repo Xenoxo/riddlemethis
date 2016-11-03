@@ -8,11 +8,13 @@ export default class RiddleList extends Component {
 			<Riddle 
 				key={riddle._id}
 				riddle={riddle}
+				thisUser={this.props.thisUser}
 			/>
 		));
 	}
 
 	render() {
+		// console.log("from riddlelist "+this.props.thisUser);
 		return (
 			<div>
 	  		{ this.renderRiddles() }
@@ -24,5 +26,5 @@ export default class RiddleList extends Component {
 
 
 RiddleList.propTypes = {
-	riddles: React.PropTypes.array.isRequired,
+	riddles: React.PropTypes.array
 }

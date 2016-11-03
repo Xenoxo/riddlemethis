@@ -25,9 +25,9 @@ const userComposer = function( props, onData ) {
     	onData( null, {allusers} );
     }
   } else {
-  	console.log( 'not ready yet....this is where you put loading things' )
+  	console.log( 'not ready yet....from RiddlePageContainer' )
   }
   return () => { console.log( 'User container disposed!') };
 };
 
-//export default composeWithTracker(userComposer)(RiddlePage);
+export default composeWithTracker(userComposer)(RiddlePage);

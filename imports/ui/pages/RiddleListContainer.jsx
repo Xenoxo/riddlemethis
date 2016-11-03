@@ -16,16 +16,18 @@ import Containers from "meteor/utilities:react-list-container";
 // to be reactive
 const userComposer = function( props, onData ) {
 	const handle = Meteor.subscribe( 'users' );
+  console.log("from RidlistCont "+Meteor.user());
   if ( handle.ready() ) {
 		if ( Meteor.user() ) {
-	    const thisuser = Meteor.users.find( Meteor.user()._id ).fetch();
-	    onData( null, {thisuser} );
+	    const thisUser = Meteor.users.find( Meteor.user()._id ).fetch();
+      console.log(thisUser);
+	    onData( null, {thisUser} );
     } else {
-    	const allusers = Meteor.users.find().fetch();	
-    	onData( null, {allusers} );
+    	const allUsers = Meteor.users.find().fetch();	
+    	onData( null, {allUsers} );
     }
   } else {
-  	console.log( 'not ready yet....this is where you put loading things' )
+  	console.log( 'not ready yet....from userComposer' )
   }
   return () => { console.log( 'User container disposed!') };
 };

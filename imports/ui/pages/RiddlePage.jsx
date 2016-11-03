@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Riddle from '../components/Riddle.jsx';
+import theRiddleContainer, { Riddle } from '../components/Riddle.jsx';
 
 import RiddleListContainer from './RiddleListContainer.jsx';
 
