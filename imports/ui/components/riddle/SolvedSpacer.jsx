@@ -9,7 +9,7 @@ export class SolvedSpacer extends Component {
 				</button>
 				{ this.props.isAuthor ? 
 					<div className="delete" onClick={ this.props.deleteRiddleHandler }>
-						delete
+						<i className="fa fa-trash-o fa-1x"></i>
 					</div> : ''
 				}
 			</div>			

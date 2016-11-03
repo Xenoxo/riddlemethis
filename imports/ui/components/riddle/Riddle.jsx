@@ -19,6 +19,7 @@ export default class Riddle extends Component {
       solved: false,
       userAnswer:"",
     };
+    this.date = this.props.riddle.submitted;
   }
 
 
@@ -120,6 +121,9 @@ export default class Riddle extends Component {
 		Meteor.call('riddleanswer.check', this.props.riddle._id, Meteor.user(), userAnswer);
 	}
 
+	getDate(){
+		return (this.date.getMonth() + 1) + '-' + this.date.getDate() + '-' +  this.date.getFullYear()
+	}
 	render(){
 		return (
 			<div className="riddle-object">
@@ -134,7 +138,7 @@ export default class Riddle extends Component {
 						className="riddle-content"
 						riddle={this.props.riddle.riddle}
 						username={this.props.riddle.username}
-						date={this.props.riddle.submitted.toDateString()}
+						date={this.getDate()}
 					/>
 
 					<SolvedSpacer

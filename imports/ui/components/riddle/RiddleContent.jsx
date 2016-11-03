@@ -8,7 +8,12 @@ export class RiddleContent extends Component {
 						{this.props.riddle}
 					</h3>
 					<div className="riddle-details">
-						Submitted by {this.props.username} on {this.props.date}
+						<div>
+						 {this.props.date}
+						</div>
+						<div>
+							By {this.props.username}
+						</div>
 					</div>
 				</div>
 			)

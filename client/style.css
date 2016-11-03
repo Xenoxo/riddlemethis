@@ -113,9 +113,12 @@ body {
 }
 
 .riddle-container .riddle-details {
-	font-size: 16px;
+	display: flex;
+	justify-content: space-between;
+	font-size: 12px;
 	font-weight: 200;
-	color:#1A1A1A;
+	width:100%;
+	color: #5E5F60;
 }
 
 .riddle-container .upvote-box {
@@ -139,7 +142,7 @@ body {
 	}
 
 .riddle-container .solved-spacer {
-	height: 100px;
+	/*height: 100px;*/
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -148,6 +151,12 @@ body {
 
 .solved-spacer .btn {
 	width: 100%;
+	border-radius: 25px;
+	background-color: #193441;
+}
+
+.fa-question {
+	color:#D1DBBD;
 }
 
 .solved-spacer .delete {
