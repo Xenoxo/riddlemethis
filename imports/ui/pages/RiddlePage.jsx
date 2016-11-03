@@ -21,6 +21,9 @@ export default class RiddlePage extends Component {
 	render() {
 		return (
 			<div>
+          <div className="splash-text">
+            <h2 className="header-text">riddle me this</h2>
+          </div>			
 					<div>Sort by...
 						<a className="sort-button" onClick={this.handleSort.bind(this, "submitted") } >
 							Post Date

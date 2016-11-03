@@ -6,6 +6,18 @@ body {
 	background-color: #3B424C
 }
 
+.splash-text {
+	background-color: #3B424C;
+	color:#FCFEF5;
+	text-align: center;
+	margin: 10em 0 0.5em 0;
+}
+
+	.header-text {
+		font-family: 'salsabilla';
+		font-size: 75px;
+	}
+
 /*
 
 	=========================================================
@@ -35,14 +47,44 @@ body {
 	=========================================================
 
 */
+.navbar {
+	background-color: #332532;
+	opacity: 0.8;
+	border: none;
+}
+
+.navbar .container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	background-color: inherit;
+	padding: 0px;
+}
+
+	.login, .nav-title {
+		color: white;
+		
+		width: 50%;
+		/*padding-top:.25em;*/
+		margin-top: .5em;
+	}
+
+	.login {
+		text-align: right;
+		font-family: "roboto-light"
+	}
+
+	.nav-title {
+		font-family: 'salsabilla'	
+	}
 
 .sort-button {
 	cursor: pointer;
 }
 
-.header-text {
-	font-family: 'salsabilla'
-}
+
+
+
 
 /*
 
