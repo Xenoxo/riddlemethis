@@ -59,7 +59,6 @@ export default class Riddle extends Component {
 		Checks to see if the current user has ever interacted with the riddle
 	*/  
   hasInteracted() {
-  	
   	if (Meteor.user()){
 	  	return Meteor.user()['listofvoted'][this.props.riddle._id] !== undefined;
   	}

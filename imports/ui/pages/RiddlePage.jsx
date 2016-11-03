@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import theRiddleContainer, { Riddle } from '../components/Riddle.jsx';
 
-import RiddleListContainer from './RiddleListContainer.jsx';
+import RiddleList from './RiddleList.jsx';
 
 export default class RiddlePage extends Component {
   constructor(props) {
@@ -13,7 +13,6 @@ export default class RiddlePage extends Component {
   }
 
 	handleSort(type){
-		console.log(type);
   	this.setState({
   		sortorder: ((this.state.sortorder) * -1),
   		sortby: type,
@@ -21,6 +20,8 @@ export default class RiddlePage extends Component {
 	}
 
 	render() {
+		// console.log("yo this user is ");
+		// console.log(this.props.thisuser);
 		return (
 			<div>
 					<div>Sort by...
@@ -30,7 +31,7 @@ export default class RiddlePage extends Component {
 						Upvotes 
 						</a>			
 					</div>		
-	  		<RiddleListContainer sortorder={ this.state.sortorder } sortby={ this.state.sortby }/>
+	  		<RiddleList sortorder={ this.state.sortorder } sortby={ this.state.sortby } riddles={ this.props.riddles } />
 			</div>
 		);
 	}
