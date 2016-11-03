@@ -9,7 +9,6 @@ import { composeAll } from 'react-komposer';
 // currently not used directly, helpful to have everything load
 // 
 // However - the structure would be helpful in the future for potential other things
-// 
 const userComposer = function( props, onData ) {
   const handle = Meteor.subscribe( 'users' );
   if ( handle.ready() ) {
@@ -47,7 +46,6 @@ const riddleComposer = function( props, onData ) {
     console.log( 'not ready yet from riddleComposer....this is where you put loading things' )
   }
   return () => { console.log( 'Riddle container disposed!') };
-
 }
 
 export default composeAll(

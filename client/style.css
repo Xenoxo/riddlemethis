@@ -1,3 +1,18 @@
+body {
+	background-color: #3B424C
+}
+
+.container {
+	background-color: #3B424C
+}
+
+/*
+
+	=========================================================
+	====	 			 	 			    			 			  			   ====
+	=========================================================
+
+*/
 .header-container {
 	display: flex;
 	justify-content: space-between;
@@ -16,7 +31,7 @@
 /*
 
 	=========================================================
-	====	 			 	 			    			 			  			   ====
+	====	 			 	 			Header    			 			  			   ====
 	=========================================================
 
 */
@@ -25,7 +40,9 @@
 	cursor: pointer;
 }
 
-
+.header-text {
+	font-family: 'salsabilla'
+}
 
 /*
 
@@ -75,12 +92,13 @@
 */
 .riddle-container {
 	/* color:#659AC5; */
-	background-color: #E3E5F8;
+	background-color: #D1DBBD;
 	font-size: 24px;
 	margin:10px 0px 0px 0px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	border-radius: 10px;
 
 }
 
