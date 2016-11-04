@@ -99,29 +99,19 @@ export default class Riddle extends Component {
 		Handles the result of the user clicking "give up" on the riddle
 	*/
 	handleGiveUp(event){
-        Alert.warning('<h1>Test message 1</h1>', {
-            position: 'top-right',
-            effect: 'scale',
-            onShow: function () {
-                console.log('aye!')
-            },
-            beep: false,
-            timeout: 'none',
-            offset: 100
-        });
-		// event.preventDefault();
-		// let confirmbox = confirm("Are you sure you want to see the answer?");
-		// if ( confirmbox ) {
-		// 	Meteor.call('riddleanswer.reveal', this.props.riddle._id, Meteor.user(), 
-		// 		function(error, result){
-		// 			console.log(result);
-		// 			window.alert(result);
-		// 		}
-		// 	);
-	 //  	this.setState({
-	 //  		showAnswerBox: false,
-	 //  	});
-		// }
+		event.preventDefault();
+		let confirmbox = confirm("Are you sure you want to see the answer?");
+		if ( confirmbox ) {
+			Meteor.call('riddleanswer.reveal', this.props.riddle._id, Meteor.user(), 
+				function(error, result){
+					console.log(result);
+					window.alert(result);
+				}
+			);
+	  	this.setState({
+	  		showAnswerBox: false,
+	  	});
+		}
 	}
 
 	/*
@@ -130,7 +120,30 @@ export default class Riddle extends Component {
 	handleSubmitAnswer(event){
 		event.preventDefault();
 		let userAnswer = this.myTextInput.userInput.value;
-		Meteor.call('riddleanswer.check', this.props.riddle._id, Meteor.user(), userAnswer);
+		Meteor.call('riddleanswer.check', this.props.riddle._id, Meteor.user(), userAnswer, (err, res)=>{
+				console.log("hey there");
+				console.log(res);
+			if (err) {
+				console.log(err);
+			} else if (!res) {			
+        Alert.info('Good try, but that\'s not it. Try again!', {
+	        position: 'top-right',
+	        effect: 'scale',
+	        beep: false,
+	        timeout: 3000,
+	        offset: 35,
+        });				
+			} else {
+        Alert.success('Congrats, you got it!', {
+	        position: 'top-right',
+	        effect: 'scale',
+	        beep: false,
+	        timeout: 3000,
+	        offset: 35,
+        });				
+			}
+
+		});
 	}
 
 	getDate(){
