@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { Session } from 'meteor/session';
 
 export class AnswerBox extends Component {
-
 	render(){
+			let lgClose = () => this.setState({ lgShow: false });
 			return (
 				<div className={this.props.className}>
 					<div className="content">
@@ -16,18 +16,18 @@ export class AnswerBox extends Component {
 			        />
 			      <div className="answer-button-container">      
 			        
-			        						<button 
-		      		className="btn btn-danger give-up"
-		      		onClick={ this.props.handleGiveUp }
-		      		type="submit"
-		      	>Give Up</button>
+							<button 
+			      		className="btn btn-danger give-up"
+			      		onClick={ this.props.handleGiveUp }
+			      		type="submit"
+			      	>I give up.</button>
 
 			      
-			 			      	<button
+			 			   <button
 			      		className="btn answer-submit"
 			      		onClick={ this.props.onClick }
 			      		type="submit"
-			      	>Submit</button>
+			      	>Solve</button>
 			      </div>
 			      <div/>
 					</div>

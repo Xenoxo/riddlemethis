@@ -43,7 +43,13 @@ export default class Riddle extends Component {
 				}
 			);
 		} else {
-			alert("Please login to vote.");
+			Alert.info('Please login to vote.', {
+	      position: 'top-right',
+	      effect: 'scale',
+	      beep: false,
+	      timeout: 3000,
+	      offset: 35,
+		   });
 		}
 	}
 
@@ -51,10 +57,7 @@ export default class Riddle extends Component {
 		Removes the given riddle from the backend and by proxy, the front end
 	*/  
 	deleteRiddle(){
-		let confirmbox = confirm("Are you sure you want to delete this riddle?");
-		if ( confirmbox) {
-			Meteor.call('riddles.remove', this.props.riddle._id);	
-		}
+		Meteor.call('riddles.remove', this.props.riddle._id);	
 	}
 
 
@@ -91,27 +94,41 @@ export default class Riddle extends Component {
 	  		showAnswerBox: !this.state.showAnswerBox,
 	  	})
 	  } else {
-	  	alert("Please login to solve.");
-	  }
-  }
+			Alert.info('Please login to solve.', {
+	      position: 'top-right',
+	      effect: 'scale',
+	      beep: false,
+	      timeout: 3000,
+	      offset: 35,
+		   });
+		}
+	 }
+  
 
 	/*
 		Handles the result of the user clicking "give up" on the riddle
 	*/
 	handleGiveUp(event){
 		event.preventDefault();
-		let confirmbox = confirm("Are you sure you want to see the answer?");
-		if ( confirmbox ) {
 			Meteor.call('riddleanswer.reveal', this.props.riddle._id, Meteor.user(), 
 				function(error, result){
-					console.log(result);
-					window.alert(result);
+					if (error) {
+						console.log(error);
+					} else {
+		        Alert.error('Ah, tough one! The answer was: <h2>'+result+'</h2>', {
+			        position: 'top-right',
+			        effect: 'scale',
+			        beep: false,
+			        timeout: 'none',
+			        offset: 35,
+			        html: true
+		        });							
+					}
 				}
 			);
 	  	this.setState({
 	  		showAnswerBox: false,
 	  	});
-		}
 	}
 
 	/*
@@ -121,11 +138,9 @@ export default class Riddle extends Component {
 		event.preventDefault();
 		let userAnswer = this.myTextInput.userInput.value;
 		Meteor.call('riddleanswer.check', this.props.riddle._id, Meteor.user(), userAnswer, (err, res)=>{
-				console.log("hey there");
-				console.log(res);
 			if (err) {
 				console.log(err);
-			} else if (!res) {			
+			} else if (!res) {
         Alert.info('Good try, but that\'s not it. Try again!', {
 	        position: 'top-right',
 	        effect: 'scale',
