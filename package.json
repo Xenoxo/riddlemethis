@@ -17,7 +17,8 @@
     "react-dom": "^15.0.2",
     "react-komposer": "^1.8.0",
     "react-mounter": "^1.2.0",
-    "react-router": "^2.4.0"
+    "react-router": "^2.4.0",
+    "react-s-alert": "^1.2.0"
   },
   "devDependencies": {
     "eslint": "^3.5.0",

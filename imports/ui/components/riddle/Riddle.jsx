@@ -10,6 +10,8 @@ import { AnswerBox } from "./AnswerBox.jsx";
 
 import { Session } from 'meteor/session';
 
+import Alert from 'react-s-alert';
+
 export default class Riddle extends Component {
   constructor(props) {
     super(props);
@@ -97,19 +99,29 @@ export default class Riddle extends Component {
 		Handles the result of the user clicking "give up" on the riddle
 	*/
 	handleGiveUp(event){
-		event.preventDefault();
-		let confirmbox = confirm("Are you sure you want to see the answer?");
-		if ( confirmbox ) {
-			Meteor.call('riddleanswer.reveal', this.props.riddle._id, Meteor.user(), 
-				function(error, result){
-					console.log(result);
-					window.alert(result);
-				}
-			);
-	  	this.setState({
-	  		showAnswerBox: false,
-	  	});
-		}
+        Alert.warning('<h1>Test message 1</h1>', {
+            position: 'top-right',
+            effect: 'scale',
+            onShow: function () {
+                console.log('aye!')
+            },
+            beep: false,
+            timeout: 'none',
+            offset: 100
+        });
+		// event.preventDefault();
+		// let confirmbox = confirm("Are you sure you want to see the answer?");
+		// if ( confirmbox ) {
+		// 	Meteor.call('riddleanswer.reveal', this.props.riddle._id, Meteor.user(), 
+		// 		function(error, result){
+		// 			console.log(result);
+		// 			window.alert(result);
+		// 		}
+		// 	);
+	 //  	this.setState({
+	 //  		showAnswerBox: false,
+	 //  	});
+		// }
 	}
 
 	/*
