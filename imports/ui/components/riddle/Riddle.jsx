@@ -142,7 +142,6 @@ export default class Riddle extends Component {
 					/>
 
 					<SolvedSpacer
-						className="solved-spacer"
 						isAuthor={ Meteor.userId() === this.props.riddle.author }
 						toggleAnswerBoxHandler={ this.toggleAnswerBox.bind(this) }
 						deleteRiddleHandler={ this.deleteRiddle.bind(this) }
@@ -159,7 +158,7 @@ export default class Riddle extends Component {
 
 				{ this.state.showAnswerBox && this.hasSolved() ?
 				<AnswerBox
-					className="col-sm-12 answer-box"
+					className="col-sm-12 answer-box-container"
 					riddle={this.props.riddle}
 					onClick={ this.handleSubmitAnswer.bind(this) }
 					hasSolved={ Meteor.user()['listofvoted'][this.props.riddle._id]}

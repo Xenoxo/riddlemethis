@@ -6,9 +6,9 @@ export class AnswerBox extends Component {
 
 	render(){
 			return (
-				<div className={ this.props.className }>
-
-						<form >
+				<div className={this.props.className}>
+					<div className={"content"}>
+						<form>
 			        <input
 			        	className="answer-input"
 			          type="text"
@@ -32,6 +32,7 @@ export class AnswerBox extends Component {
 				    
 			      </form>
 					</div>
+				</div>
 			)
 	}
 };

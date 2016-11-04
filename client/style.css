@@ -133,7 +133,6 @@ body {
 
 */
 .riddle-container {
-	/* color:#659AC5; */
 	background-color: #D1DBBD;
 	font-size: 24px;
 	margin:10px 0px 0px 0px;
@@ -234,14 +233,20 @@ body {
 
 */
 
-.answer-box {
-	background-color: #E3E5F8;
+.answer-box-container{
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	padding-bottom: 5px;
 }
 
+.answer-box-container .content{
+	background-color: #D1DBBD;
+	padding: 0 15px 0 15px;
+	width: 100%;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
 
 .answer-input {
 	width: 65%;

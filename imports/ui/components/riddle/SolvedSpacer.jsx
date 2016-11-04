@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export class SolvedSpacer extends Component {
 	render(){
 		return (
-			<div className={ this.props.className }>
+			<div className="solved-spacer">
 				<button className="btn btn-primary" onClick={ this.props.toggleAnswerBoxHandler }>
 					<i className="fa fa-question fa-3x"></i>
 				</button>
