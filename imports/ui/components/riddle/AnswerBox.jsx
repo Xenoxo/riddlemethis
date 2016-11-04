@@ -7,30 +7,29 @@ export class AnswerBox extends Component {
 	render(){
 			return (
 				<div className={this.props.className}>
-					<div className={"content"}>
-						<form>
-			        <input
+					<div className="content">
+						<input
 			        	className="answer-input"
 			          type="text"
 			          ref = {(ref) => this.userInput = ref}
-			          placeholder="Type your answers here!"
+			          placeholder="  Type your guess here!"
 			        />
-			    	
-			      	<button
-			      		className="btn btn-success answer-submit"
+			      <div className="answer-button-container">      
+			        
+			        						<button 
+		      		className="btn btn-danger give-up"
+		      		onClick={ this.props.handleGiveUp }
+		      		type="submit"
+		      	>Give Up</button>
+
+			      
+			 			      	<button
+			      		className="btn answer-submit"
 			      		onClick={ this.props.onClick }
 			      		type="submit"
 			      	>Submit</button>
-				    
-			      </form>
-			      <form >
-			      	<button 
-			      		className="btn btn-danger give-up"
-			      		onClick={ this.props.handleGiveUp }
-			      		type="submit"
-			      	>Give Up</button>
-				    
-			      </form>
+			      </div>
+			      <div/>
 					</div>
 				</div>
 			)
