@@ -12,6 +12,7 @@ class HeaderBarContainer extends Component {
               <div className="container">
                 <div className="nav-title">Riddle Me This</div>
                 <div className="login">Sign in / Create Account</div>
+                <AccountsUIWrapper/>
               </div>
             </nav>
           )

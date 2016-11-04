@@ -36,7 +36,7 @@ Meteor.methods({
 			answers: answer,
 			reveals: 0,
 			solves: 0,
-			author: this.userId,
+			author_id: this.userId,
 			username: Meteor.users.findOne(this.userId).username,
 			submitted: new Date(),
 			upvotes: 0,
