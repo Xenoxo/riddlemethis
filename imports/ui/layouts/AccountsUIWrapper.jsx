@@ -5,8 +5,7 @@ import { Blaze } from 'meteor/blaze';
 
 export default class AccountsUIWrapper extends Component {
 	componentDidMount() {
-		this.view = Blaze.render(Template.loginButtons,
-			ReactDOM.findDOMNode(this.refs.container));
+		this.view = Blaze.render(Template.loginButtons, ReactDOM.findDOMNode(this.refs.container));
 	}
 
 	componentWillUnmount() {
@@ -14,6 +13,6 @@ export default class AccountsUIWrapper extends Component {
 	}
 
 	render() {
-		return <span ref="container" />;
+		return <span className={'user-account-container'} ref="container" />;
 	}
 }
