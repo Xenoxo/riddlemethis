@@ -145,16 +145,42 @@ body {
 .footer-container {
 	width:100%;
 	display: flex;
+	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
 	margin:0px 0px 0px 0px; /*Margins don't do anything in this situation*/
-	padding: 15px 0px 10px 0px;
+	padding: 30px 0px 20px 0px;
 	color: black;
 }
 
-.contact-points a i{
-	margin:0px 30px 0 30px;
-}
+
+	.contact-points{
+		width: 100%;
+		padding: 10px 0px 15px 0px;
+	}
+	.contact-points a i{
+		margin:0px 30px 0 30px;
+		color: #D1DBBD;
+	}
+
+	.credits {
+		width: 33%;
+	}
+
+	.credits p {
+		font-family: 'roboto-light';
+		margin: 0;
+		color: #EEEEEE;
+		font-weight: 100;
+	}
+
+	.credits a {
+		color: #F3954D;
+	}
+	.credits a:hover {
+		text-decoration: none;
+		color: #F3954D;
+	}
 
 
 /*

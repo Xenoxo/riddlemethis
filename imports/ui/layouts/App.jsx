@@ -25,6 +25,7 @@ export default class App extends Component {
       <div className="container">
         <HeaderBar />
         { this.props.children }
+        <br/>
         <Footer />
         <Alert stack={{limit: 3}} />
       </div>

@@ -251,7 +251,7 @@ if (Riddles.find().count() === 0) {
 						author_id: riddleMaster._id,
 						username: riddleMaster.username,
 						email:'',
-						submitted: new Date(now - 7 * 3600 * 1000),
+						submitted: new Date(now), // original -> submitted: new Date(now - 7 * 3600 * 1000),
 						upvotes:0,
 						difficulty:0,
 					}		
