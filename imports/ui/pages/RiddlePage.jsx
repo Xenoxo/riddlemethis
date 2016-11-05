@@ -24,12 +24,12 @@ export default class RiddlePage extends Component {
           <div className="splash-text">
             <h2 className="header-text">riddle me this</h2>
           </div>			
-					<div>Sort by...
-						<a className="sort-button" onClick={this.handleSort.bind(this, "submitted") } >
-							Post Date
-						</a>  or  <a className="sort-button" onClick={this.handleSort.bind(this, "upvotes") } >
-						Upvotes 
-						</a>			
+					<div className="sort-container">
+						<p>Sort by <a className="sort-button" onClick={this.handleSort.bind(this, "submitted") } >Post Date
+							</a>  or  <a className="sort-button" onClick={this.handleSort.bind(this, "upvotes") } >
+								Upvotes
+							</a>
+						</p>
 					</div>		
 	  		<RiddleListContainer sortorder={ this.state.sortorder } sortby={ this.state.sortby } riddles={ this.props.riddles } />
 			</div>

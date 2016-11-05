@@ -114,9 +114,33 @@ body {
 		font-family: 'roboto-light';
 		font-size: 15px;
 	}
-.user-account-container {
+	
+	.user-account-container {
 
-}
+	}
+
+	/*.sort-container {
+		display: flex;
+
+	}*/
+
+	.sort-container a {
+		background-color: #332532;
+		padding: 5px;
+		color: #EEE;
+		text-decoration: none;
+		border: solid 1px #332532;
+	}
+
+	.sort-container a:hover {
+		color: #EEE;
+		text-decoration: none;
+		border: solid 1px #D1DBBD;
+	}
+
+	.sort-container p {
+		color: white;
+	}	
 
 /*
 
