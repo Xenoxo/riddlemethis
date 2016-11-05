@@ -27,7 +27,7 @@ export class AnswerBox extends Component {
 			      		className="btn answer-submit"
 			      		onClick={ this.props.onClick }
 			      		type="submit"
-			      	>Solve</button>
+			      	>Solve!</button>
 			      </div>
 			      <div/>
 					</div>

@@ -13,6 +13,8 @@ export default class AccountsUIWrapper extends Component {
 	}
 
 	render() {
-		return <span className={'user-account-container'} ref="container" />;
+		return (
+				<span ref="container" />
+		);
 	}
 }

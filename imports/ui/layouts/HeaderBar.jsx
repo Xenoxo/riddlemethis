@@ -10,8 +10,7 @@ class HeaderBarContainer extends Component {
     return (
             <nav className="navbar navbar-default navbar-fixed-top">
               <div className="container">
-                <div className="nav-title">Riddle Me This</div>
-                <div className="login">Sign in / Create Account</div>
+                <div className="nav-title">riddle me this</div>
                 <AccountsUIWrapper/>
               </div>
             </nav>
