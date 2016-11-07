@@ -9,19 +9,22 @@ export default class Footer extends Component {
 			<div className="footer">
         
         <div className="footer-container">
-            <div className="credits">
-              <p>Design by</p>
-              <p><a href="mailto:kczarny2@gmail.com">Kathrina Czarny</a></p>
-            </div>                    
-            <div className="credits">
-              <p>Built by</p>
-              <p><a href="http://timyanchenwang.com" target="_blank">Tim Yanchen Wang</a></p>
-            </div>
-            <div className="credits">
-              <p>Riddles from</p>
-              <p><a href="http://darktowercompendium.com" target="_blank">The Darktower Compendium</a></p>
-            </div>
+          <div className="credits">
+            <p>Design by</p>
+            <p><a href="mailto:kczarny2@gmail.com">Kathrina Czarny</a></p>
+          </div>                    
+          <div className="credits">
+            <p>Built by</p>
+            <p><a href="http://timyanchenwang.com" target="_blank">Tim Yanchen Wang</a></p>
+          </div>
+          <div className="credits">
+            <p>Riddles from</p>
+            <p><a href="http://darktowercompendium.com" target="_blank">Darktower Compendium</a></p>
+          </div>
         </div>
+        <div className="disclaimer-container">
+          <p className="disclaimer">The contents of the submissions are not evaluated in any way</p>
+        </div>        
 			</div>
 		);
 	}

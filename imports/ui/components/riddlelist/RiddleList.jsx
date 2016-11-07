@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Riddle from '../riddle/Riddle.jsx'
-import Infinite from 'react-infinite'
-// <Infinite containerHeight={400} elementHeight={40}></Infinite>
+
+
 export default class RiddleList extends Component {
 
 	renderRiddles() {

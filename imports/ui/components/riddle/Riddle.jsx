@@ -149,7 +149,7 @@ export default class Riddle extends Component {
 	        offset: 35,
         });				
 			} else {
-        Alert.success('Congrats, you got it!', {
+        Alert.success('Congrats! You got it!', {
 	        position: 'top-right',
 	        effect: 'scale',
 	        beep: false,
