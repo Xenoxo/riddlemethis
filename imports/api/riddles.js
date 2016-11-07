@@ -30,10 +30,16 @@ Meteor.methods({
 		if (! this.userId) {// Make sure the user is logged in before inserting
 			throw new Meteor.Error('not-authorized');
 		}
+		let theAnswer = answer;
+
+		for (var i = 0; i < theAnswer.length; i++) {
+			theAnswer[i] = theAnswer[i].toLowerCase();
+		}
+
 
    let riddleId = Riddles.insert({ //adds the Riddle to the riddle collection and returns id
       riddle: riddle,
-			answers: answer,
+			answers: theAnswer,
 			reveals: 0,
 			solves: 0,
 			author_id: this.userId,

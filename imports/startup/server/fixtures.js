@@ -24,7 +24,7 @@ let defaultRiddles = [
 	},
 	{
 		riddle:"What has four wheels and flies?",
-		answer:"a garbage truck",
+		answer:"garbage truck, a garbage truck",
 	},
 	{
 		riddle:"When is a door not a door?",

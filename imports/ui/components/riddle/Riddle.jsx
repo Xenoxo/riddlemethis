@@ -136,7 +136,7 @@ export default class Riddle extends Component {
 	*/
 	handleSubmitAnswer(event){
 		event.preventDefault();
-		let userAnswer = this.myTextInput.userInput.value;
+		let userAnswer = this.myTextInput.userInput.value.toLowerCase();
 		Meteor.call('riddleanswer.check', this.props.riddle._id, Meteor.user(), userAnswer, (err, res)=>{
 			if (err) {
 				console.log(err);
