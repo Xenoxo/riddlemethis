@@ -182,7 +182,7 @@ export default class Riddle extends Component {
 					/>
 
 					<SolvedSpacer
-						isAuthor={ Meteor.userId() === this.props.riddle.author }
+						isAuthor={ Meteor.userId() === this.props.riddle.author_id }
 						toggleAnswerBoxHandler={ this.toggleAnswerBox.bind(this) }
 						deleteRiddleHandler={ this.deleteRiddle.bind(this) }
 					/>

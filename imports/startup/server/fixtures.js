@@ -26,21 +26,10 @@ let defaultRiddles = [
 		riddle:"What has four wheels and flies?",
 		answer:"garbage truck, a garbage truck",
 	},
-	{
-		riddle:"When is a door not a door?",
-		answer:"when it's a jar",
-	},
-	{
-		riddle:"What has eyes yet cannot see? (This has four answers)",
-		answer:"a potatoe, a needle, a storm, and a true lover",
-	},
-	{
-		riddle:"What is the difference between a cat and a complex sentence?",
-		answer:"a cat has it's claws at the end of it's paws, and a complex sentence has it's pause at the end of it's clause",
-	},
+
 	{
 		riddle:"Black within and red without. Four corners round about. What am I?",
-		answer:"a chimney",
+		answer:"chimney",
 	},
 	{
 		riddle:"Long legs, crooked thighs, little head, and no eyes. What am I?",
@@ -48,15 +37,15 @@ let defaultRiddles = [
 	},
 	{
 		riddle:"Nearly bright as the sun, sometimes dark as space. Like a pearl on black velvet, with diamonds twinkling in a case. What am I?",
-		answer:"the moon",
+		answer:"moon",
 	},
 	{
 		riddle:"I move without wings, between silken strings, I leave as you find, my substance behind. What am I?",
-		answer:"a spider",
+		answer:"spider",
 	},
 	{
 		riddle:"A little house full of meat, no door to go in and eat. What am I?",
-		answer:"a nut",
+		answer:"nut",
 	},
 	{
 		riddle:"Riddle me, riddle me, what is that, over the head and under the hat?",
@@ -64,15 +53,15 @@ let defaultRiddles = [
 	},
 	{
 		riddle:"White and thin, red within, with a nail at the end. What is it?",
-		answer:"a finger",
+		answer: "finger",
 	},
 	{
 		riddle:"A skin have I, more eyes than one. I can be very nice when I am done. What am I?",
-		answer:"a potato",
+		answer:"potato",
 	},
 	{
 		riddle:"Riddle me, riddle me, riddle me ree, I saw a nut cracker up in a tree. What was it?",
-		answer:"a squirrel",
+		answer:"squirrel",
 	},
 	{
 		riddle:"Take off my skin - I won't cry, but you will! What am I?",
@@ -84,7 +73,7 @@ let defaultRiddles = [
 	},
 	{
 		riddle:"What gets bigger the more you take away from it?",
-		answer:"a hole",
+		answer:"hole",
 	},
 	{
 		riddle:"What is pronounced like one letter, written with three letters, and belongs to all animals?",
@@ -96,39 +85,23 @@ let defaultRiddles = [
 	},
 	{
 		riddle:"I reach for the sky, but clutch to the ground; sometimes I leave, but I am always around. What am I?",
-		answer:"a tree",
+		answer:"tree",
 	},
 	{
 		riddle:"Tear one off and scratch my head, what once was red is black instead. What am I?",
-		answer:"a match",
+		answer:"match",
 	},
 	{
 		riddle:"What is the beginning of eternity, the end of time and space; the beginning of every end, and the end of every race?",
-		answer:"the letter E",
-	},
-	{
-		riddle:"What is not alive but still is?",
-		answer:"a ghost",
-	},
-	{
-		riddle:"A warrior amongst the flowers, he bears a thrusting sword. He uses it when'er he must to defend his golden hoard. What is he?",
-		answer:"a bee",
+		answer:["the letter E", "letter E", "E"]
 	},
 	{
 		riddle:"If you have it, you want to share it. If you share it, you don't have it. What is it?",
-		answer:"a secret",
-	},
-	{
-		riddle:"Face with a tree, skin like the sea. A great beast I am, yet vermin frightens me. What am I?",
-		answer:"an elephant",
+		answer:"secret",
 	},
 	{
 		riddle:"A wee wee man in a red coat. Staff in my hand, stone in my throat. What am I?",
-		answer:"a cherry",
-	},
-	{
-		riddle:"I run around the city, but I never move. What am I?",
-		answer:"a wall",
+		answer:"cherry",
 	},
 	{
 		riddle:"I am not alive, but I grow; I don't have lungs, but I need air; I don't have a mouth, but water kills me. What am I?",
@@ -140,15 +113,15 @@ let defaultRiddles = [
 	},
 	{
 		riddle:"In many hallways you would stand, if not with this in hand. What am I?",
-		answer:"a key",
+		answer:"key",
 	},
 	{
 		riddle:"I'm the source of all emotion, but I'm caged in a white prison. What am I?",
-		answer:"a heart",
+		answer:"heart",
 	},
 	{
 		riddle:"By Moon or by Sun, I shall be found. Yet I am undone, if there's no light around.",
-		answer:"a shadow",
+		answer:"shadow",
 	},
 	{
 		riddle:"The more you have of it, the less you see. What is it?",
@@ -156,22 +129,14 @@ let defaultRiddles = [
 	},
 	{
 		riddle:"Foward I am heavy, but backward I am not. What am I?",
-		answer:"a TON",
-	},
-	{
-		riddle:"I have a face, yet no senses. But I don't really care, because time is of the essence.",
-		answer:"a clock",
-	},
-	{
-		riddle:"My life is often a volume of grief, your help is needed to turn a new leaf. Stiff is my spine and my body is pale, but I'm always ready to tell a tale.",
-		answer:"a book",
-	},
+		answer:"TON",
+	},	
 	{
 		riddle:"Who is he that runs without a leg and his house on his back?",
 		answer:"a snail",
 	},
 	{
-		riddle:"My first is twice in apple but not once in tart. My second is in liver but not in heart. My third is in giant and also in ghost. Whole I'm best when I am roast. What am I?",
+		riddle:"My first is twice in apple but not once in tart. My second is in liver but not in heart. My third is in giant and also in ghost. Whole I'm best when I'm roast. What am I?",
 		answer:"pig",
 	},
 	{
@@ -197,44 +162,84 @@ let defaultRiddles = [
 	{
 		riddle:"I saw a man in white, he looked quite a sight. He was not old, but he stood in the cold. And when he felt the sun he started to run. Who could he be? Please answer me.",
 		answer:"a snowman",
-	},
-	{
-		riddle:"What has six legs, two heads, four ears, two hands, but walks on four feet?",
-		answer:"a horse & rider",
-	},
-	{
-		riddle:"I'm a busy active creature, full of mirth and play by nature; nimbly I skip from tree to tree, to get the food that's fit for me; then let me hear, if you can tell, what is my name and where I dwell!",
-		answer:"squirrel & tree",
-	},
+	},	
 	{
 		riddle:"What always goes to bed with his shoes on?",
 		answer:"a horse",
 	},
 	{
 		riddle:"What runs around all day then lies under the bed with its tongue hanging out?",
-		answer:"your shoe",
+		answer:"shoes",
 	},
 	{
 		riddle:"What kind of nut has no shell?",
-		answer:"a doughnut",
+		answer:"doughnut",
 	},
-	{
-		riddle:"When is a boat not a boat?",
-		answer:"when it's a float",
-	},
+
 	{
 		riddle:"What runs around a city but never moves?",
 		answer:"a wall",
-	},
-	{
-		riddle:"I'm very tempting, so it's said, I have a shiny coat of red, and my flesh is white beneath. I smell so sweet, taste good to eat, and help to guard your teeth. What am I?",
-		answer:"an apple",
-	},
-	{
-		riddle:"I open wide and tight I shut, sharp am I and paper-cut fingers too, so do take care, I'm good and bad, so best beware.",
-		answer:"scissors",
-	},
-]
+	},]
+
+
+	// 	{
+	// 	riddle:"When is a door not a door?",
+	// 	answer: ["when it's a jar", "a jar", "jar"],
+	// },
+	// {
+	// 	riddle:"What has eyes yet cannot see? (This has four answers)",
+	// 	answer:[
+	// 		"potato",
+	// 		"needle",
+	// 		"storm",
+	// 		"lover",]
+	// },
+
+	// {
+	// 	riddle:"What has six legs, two heads, four ears, two hands, but walks on four feet?",
+	// 	answer:"a horse & rider",
+	// },
+	// {
+	// 	riddle:"What is not alive but still is?",
+	// 	answer:"a ghost",
+	// },
+	// {
+	// 	riddle:"A warrior amongst the flowers, he bears a thrusting sword. He uses it when'er he must to defend his golden hoard. What is he?",
+	// 	answer:"bee",
+	// },	
+	// {
+	// 	riddle:"Face with a tree, skin like the sea. A great beast I am, yet vermin frightens me. What am I?",
+	// 	answer:"elephant",
+	// },	
+	// {
+	// 	riddle:"I run around the city, but I never move. What am I?",
+	// 	answer:"wall",
+	// },	
+
+	// {
+	// 	riddle:"I have a face, yet no senses. But I don't really care, because time is of the essence.",
+	// 	answer:"a clock",
+	// },
+	// {
+	// 	riddle:"My life is often a volume of grief, your help is needed to turn a new leaf. Stiff is my spine and my body is pale, but I'm always ready to tell a tale.",
+	// 	answer:"a book",
+	// },
+	// {
+	// 	riddle:"I'm a busy active creature, full of mirth and play by nature; nimbly I skip from tree to tree, to get the food that's fit for me; then let me hear, if you can tell, what is my name and where I dwell!",
+	// 	answer:"squirrel & tree",
+	// },	
+	// {
+	// 	riddle:"When is a boat not a boat?",
+	// 	answer:"when it's a float",
+	// },
+	// {
+	// 	riddle:"I'm very tempting, so it's said, I have a shiny coat of red, and my flesh is white beneath. I smell so sweet, taste good to eat, and help to guard your teeth. What am I?",
+	// 	answer:"an apple",
+	// },
+	// {
+	// 	riddle:"I open wide and tight I shut, sharp am I and paper-cut fingers too, so do take care, I'm good and bad, so best beware.",
+	// 	answer:"scissors",
+	// },
 
 if (Riddles.find().count() === 0) {
 	let riddleMaster = Meteor.users.findOne({username: 'Abel_Vannay'});

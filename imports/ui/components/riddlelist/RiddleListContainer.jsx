@@ -21,7 +21,7 @@ const userComposer = function( props, onData ) {
       onData( null, {allusers} );
     }
   } else {
-    console.log( 'not ready yet, from userComposer' )
+    // console.log( 'not ready yet, from userComposer' )
   }
   return () => { console.log( 'User container disposed!') };
 };
@@ -43,7 +43,7 @@ const riddleComposer = function( props, onData ) {
       let riddles = Riddles.find({}, sortquery).fetch();
       onData( null, {riddles} );      
   } else {
-    console.log( 'not ready yet from riddleComposer....this is where you put loading things' )
+    // console.log( 'not ready yet from riddleComposer....this is where you put loading things' )
   }
   return () => { console.log( 'Riddle container disposed!') };
 }
