@@ -11,7 +11,7 @@ export default class Footer extends Component {
         <div className="footer-container">
             <div className="credits">
               <p>Design by</p>
-              <p><a href="#">Kathrina Czarny</a></p>
+              <p><a href="mailto:kczarny2@gmail.com">Kathrina Czarny</a></p>
             </div>                    
             <div className="credits">
               <p>Built by</p>

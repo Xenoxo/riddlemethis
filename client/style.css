@@ -26,20 +26,11 @@ body {
 	=========================================================
 
 */
-.header-container {
+/*.header-container {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-}
-
-.header-container .user-options{
-	display: flex;
-	flex-direction: column;
-}
-
-.user-options span {
-	margin-bottom: 5px;
-}
+}*/
 
 /*
 
@@ -62,10 +53,29 @@ body {
 	padding: 0px;
 }
 
+.user-options{
+	display: flex;
+	flex-direction: row;
+	align-items: right;
+	justify-content: space-between;
+	/*width: 100%;*/
+}
+
+.submit-filler {
+	color: #EEEEEE;
+	width: 98px;
+}
+
+.user-options span {
+	margin-bottom: 5px;
+	padding-right: 15px;
+	width: 300px;
+}
+
 .navbar .container span {
-	width: 25%;
+	/*width: 25%;*/
 	text-align: right;
-	padding: .5em 3em 0 0;
+	/*padding: .5em 3em 0 0;*/
 }
 
 	.nav-title {
@@ -74,6 +84,11 @@ body {
 		padding: .25em 0 0 2em;
 		/*padding-top:.25em;
 		margin-top: .5em;*/
+	}
+
+	.nav-title a {
+		text-decoration: none;
+		color: white;
 	}
 
 /*	.login {
@@ -91,13 +106,18 @@ body {
 }
 
 
+.submit-btn {
+	background-color: #F3954D;
+}
+
+.submit-btn:hover {
+	background-color: #F3954D;
+	color: white;
+}
 
 #login-buttons {
 	padding-top: 15px;
 }
-/*.login-link-and-dropdown-list {
-	width: 50%;
-}*/
 
 	#login-buttons a{
 		color: #FCFEF5;
@@ -107,7 +127,7 @@ body {
 	.accounts-dialog {
 		background-color: #211820;
 		color: white;
-		margin:-8px -12px 0 -80px;
+		margin:-8px -12px 0 -40px;
 	}
 
 	.login-link-text {
@@ -119,28 +139,23 @@ body {
 
 	}
 
-	/*.sort-container {
-		display: flex;
+.sort-container a {
+	background-color: #332532;
+	padding: 5px;
+	color: #EEE;
+	text-decoration: none;
+	border: solid 1px #332532;
+}
 
-	}*/
+.sort-container a:hover {
+	color: #EEE;
+	text-decoration: none;
+	border: solid 1px #D1DBBD;
+}
 
-	.sort-container a {
-		background-color: #332532;
-		padding: 5px;
-		color: #EEE;
-		text-decoration: none;
-		border: solid 1px #332532;
-	}
-
-	.sort-container a:hover {
-		color: #EEE;
-		text-decoration: none;
-		border: solid 1px #D1DBBD;
-	}
-
-	.sort-container p {
-		color: white;
-	}	
+.sort-container p {
+	color: white;
+}	
 
 /*
 

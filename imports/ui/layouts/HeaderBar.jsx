@@ -10,9 +10,20 @@ class HeaderBarContainer extends Component {
     return (
             <nav className="navbar navbar-default navbar-fixed-top">
               <div className="container">
-                <div className="nav-title">riddle me this</div>
+                <div className="nav-title"><Link to="/">riddle me this</Link></div>
+                <div className="user-options">
                 <AccountsUIWrapper/>
+                { this.props.currentUser ?
+                <Link to="/submit-riddle">
+                  <button className="btn submit-btn">
+                    New Riddle
+                  </button>
+                </Link>
+                : <div className="submit-filler"></div>
+              }
               </div>
+              </div>
+
             </nav>
           )
   }
@@ -38,14 +49,7 @@ class HeaderBarContainer extends Component {
 
  //          <div className="user-options">
  //            <AccountsUIWrapper/>
- //            { this.props.currentUser ?
- //              <Link to="/submit-riddle">
- //                <button className="btn btn-info">
- //                  New Riddle
- //                </button>
- //              </Link>
- //              : "Login to Submit"
- //            }
+ //            
  //          </div>
 	// 		</div>
 	// 	);
