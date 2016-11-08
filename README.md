@@ -9,4 +9,4 @@ Once a riddle is solved either through trying or giving up, the user cannot atte
 riddlemethis is built on Meteor + React + Mongo and deployed via [Kadira's Meteor-up](https://github.com/kadirahq/meteor-up) to Digital Ocean
 
 ## Questions?
-Follow me at [@besttimyouknow](https://twitter.com/besttimyouknow) or email me at drillmecha@gmail.com
+Follow me at [@besttimyouknow](https://twitter.com/besttimyouknow) or email me at info@timyanchenwang.com
